@@ -6,4 +6,20 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="App\DB" />
+      <Folder Include="App\Model" />
+      <Folder Include="App\UI" />
+      <Folder Include="Resources\Img" />
+      <Folder Include="Resources\Theme" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ApplicationDefinition Remove="App.xaml" />
+      <ApplicationDefinition Include="App\App.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+      </ApplicationDefinition>
+    </ItemGroup>
+
 </Project>
