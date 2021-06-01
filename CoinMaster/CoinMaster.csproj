@@ -14,12 +14,4 @@
       <Folder Include="Resources\Theme" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ApplicationDefinition Remove="App.xaml" />
-      <ApplicationDefinition Include="App\App.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-      </ApplicationDefinition>
-    </ItemGroup>
-
 </Project>
