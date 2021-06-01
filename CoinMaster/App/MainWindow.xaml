@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinMaster"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow"
+        Height="600"
+        Width="960">
 
-    </Grid>
+    <Border Background="{StaticResource BackgroundDark}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border Background="{StaticResource BackgroundLight}"
+                    Grid.Column="0"
+                    Grid.Row="0" />
+
+            <Border Background="{StaticResource BackgroundLight}"
+                    Grid.Column="0"
+                    Grid.Row="1" />
+
+            <Image Grid.Row="0" Grid.Column="0" Source="../Resources/Img/coin.png"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   HorizontalAlignment="Left"
+                   Height="45"
+                   Width="45"
+                   Margin="10,0,0,0" />
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{StaticResource AppName}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="{StaticResource White}"
+                       FontSize="22"
+                       Margin="65,0,0,0" />
+
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0">
+
+                <RadioButton Content="{StaticResource AddCoin}"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True" />
+
+                <RadioButton Content="{StaticResource Dashboard}"
+                             Style="{StaticResource MenuButtonTheme}" />
+
+                <RadioButton Content="{StaticResource MarketOverview}"
+                             Style="{StaticResource MenuButtonTheme}" />
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

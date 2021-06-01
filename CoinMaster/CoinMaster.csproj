@@ -7,11 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Img\coin.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Resources\Img\coin.png">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="App\DB" />
       <Folder Include="App\Model" />
       <Folder Include="App\UI" />
-      <Folder Include="Resources\Img" />
-      <Folder Include="Resources\Theme" />
     </ItemGroup>
 
 </Project>
