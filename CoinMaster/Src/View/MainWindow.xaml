@@ -56,11 +56,13 @@
                         Grid.Column="0">
 
                 <RadioButton Content="{StaticResource AddCoin}"
-                             Style="{StaticResource MenuButtonTheme}"
-                             IsChecked="True" />
+                             Style="{StaticResource MenuButtonTheme}" 
+                             Command="{Binding AddCoinCommand}"/>
 
                 <RadioButton Content="{StaticResource Dashboard}"
-                             Style="{StaticResource MenuButtonTheme}" />
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding HomeScreenCommand}"
+                             IsChecked="True" />
 
                 <RadioButton Content="{StaticResource MarketOverview}"
                              Style="{StaticResource MenuButtonTheme}" />
