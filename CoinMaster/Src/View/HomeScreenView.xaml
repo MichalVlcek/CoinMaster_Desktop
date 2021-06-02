@@ -7,39 +7,14 @@
              d:DesignHeight="720"
              d:DesignWidth="927">
     <UserControl.Resources>
-        <Style x:Key="GridViewColumnHeaderStyle"
-               TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                        <Border BorderThickness="0,0,0,0"
-                                BorderBrush="Black"
-                                Background="Transparent">
-                            <TextBlock x:Name="ContentHeader"
-                                       Text="{TemplateBinding Content}"
-                                       Padding="10"
-                                       Width="{TemplateBinding Width}"
-                                       FontWeight="Bold"
-                                       TextAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="OverridesDefaultStyle"
-                    Value="True" />
-            <Setter Property="Foreground"
-                    Value="{StaticResource Grey}" />
-            <Setter Property="FontSize"
-                    Value="14" />
-        </Style>
-
 
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="0.8*" />
         </Grid.RowDefinitions>
 
         <Border Grid.Column="0"
@@ -136,5 +111,23 @@
                 <ListItem />
             </ListView>
         </ScrollViewer>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    x:Name="EditButton"
+                    Content="EDIT SELECTED"
+                    Margin="8"
+                    Style="{StaticResource BlueButtonTheme}" />
+            <Button Grid.Column="1"
+                    x:Name="DeleteButton"
+                    Content="DELETE SELECTED"
+                    Margin="8"
+                    Style="{StaticResource RedButtonTheme}" />
+        </Grid>
     </Grid>
 </UserControl>

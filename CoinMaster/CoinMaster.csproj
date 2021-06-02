@@ -18,7 +18,6 @@
 
     <ItemGroup>
       <Folder Include="Src\DB" />
-      <Folder Include="Src\Model" />
     </ItemGroup>
 
 </Project>

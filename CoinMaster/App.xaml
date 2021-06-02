@@ -13,6 +13,9 @@
                 <ResourceDictionary Source="Resources/Theme/MenuButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/ListItemTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/TableHeaderTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/BasicButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/RedButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/BlueButtonTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeScreenViewModel}">
