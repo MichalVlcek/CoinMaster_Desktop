@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="600"
-             d:DesignWidth="735">
+             d:DesignHeight="720"
+             d:DesignWidth="927">
     <UserControl.Resources>
         <Style x:Key="GridViewColumnHeaderStyle"
                TargetType="{x:Type GridViewColumnHeader}">
@@ -56,28 +56,84 @@
         <ScrollViewer Grid.Row="1"
                       HorizontalContentAlignment="Stretch"
                       VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Hidden"
                       VerticalScrollBarVisibility="Auto">
-            <ListView Background="Transparent"
+            <ListView x:Name="CoinList"
+                      Background="Transparent"
                       BorderBrush="Transparent">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                        <GridViewColumn Header="Rank"
-                                        Width="150" />
-                        <GridViewColumn Header="Coin"
-                                        Width="150" />
-                        <GridViewColumn Header="Start Time"
-                                        Width="150" />
-                        <GridViewColumn Header="End Time"
-                                        Width="150" />
+                        <GridViewColumn Header="{StaticResource Coin}"
+                                        Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource HoldingsValue}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource Amount}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource Percent24h}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource Percent7d}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource CurrentPrice}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
-                <ListView.Items>
-                    <Button>b</Button>
-                    <Button>a</Button>
-                    <Button>c</Button>
-                    <Button>d</Button>
-                    <Button>e</Button>
-                </ListView.Items>
+                <ListItem />
+                <ListItem />
+                <ListItem />
             </ListView>
         </ScrollViewer>
     </Grid>

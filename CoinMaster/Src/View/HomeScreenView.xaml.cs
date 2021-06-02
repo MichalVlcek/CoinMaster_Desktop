@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace CoinMaster.Src.View
 {
@@ -7,11 +8,6 @@ namespace CoinMaster.Src.View
         public HomeScreenView()
         {
             InitializeComponent();
-        }
-
-        private void GridView_GotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-
         }
     }
 }
