@@ -2,6 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CoinMaster"
+             xmlns:view="clr-namespace:CoinMaster.Src.View"
+             xmlns:viewModel="clr-namespace:CoinMaster.Src.ViewModel"
              StartupUri="Src/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -9,7 +11,13 @@
                 <ResourceDictionary Source="Resources/Values/Strings.xaml" />
                 <ResourceDictionary Source="Resources/Values/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/ListItemTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/TableHeaderTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeScreenViewModel}">
+                <view:HomeScreenView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
