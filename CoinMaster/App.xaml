@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:CoinMaster"
              xmlns:view="clr-namespace:CoinMaster.Src.View"
              xmlns:viewModel="clr-namespace:CoinMaster.Src.ViewModel"
-             StartupUri="Src/MainWindow.xaml">
+             StartupUri="Src/View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
