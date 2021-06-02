@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CoinMaster.Core
+namespace CoinMaster.Src.Core
 {
     public class RelayCommand : ICommand
     {

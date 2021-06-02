@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using CoinMaster.Annotations;
 
-namespace CoinMaster.Core
+namespace CoinMaster.Src.Core
 {
     public class ObservableObject : INotifyPropertyChanged
     {
