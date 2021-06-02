@@ -17,16 +17,17 @@
                 <ResourceDictionary Source="Resources/Theme/RedButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BlueButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/TextBoxTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeScreenViewModel}">
                 <view:HomeScreenView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewModel:AddCoinViewModel}">
                 <view:AddCoinView />
             </DataTemplate>
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

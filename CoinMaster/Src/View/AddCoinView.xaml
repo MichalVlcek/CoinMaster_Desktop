@@ -8,11 +8,11 @@
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">
-    
+
     <UserControl.DataContext>
         <viewModel:AddCoinViewModel />
     </UserControl.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -29,5 +29,370 @@
                  HorizontalAlignment="Stretch"
                  Margin="10"
                  Style="{StaticResource TextBoxTheme}" />
+
+        <ScrollViewer Grid.Row="1"
+                      Grid.Column="0"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto">
+            <ListView x:Name="AddCoinList"
+                      Background="Transparent"
+                      BorderBrush="Transparent">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                        <GridViewColumn Header="Rank"
+                                        Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Coin"
+                                        Width="180">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Price"
+                                        Width="95">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Market Cap"
+                                        Width="105">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListItem />
+                <ListItem />
+                <ListItem />
+            </ListView>
+        </ScrollViewer>
+
+
+        <Grid Grid.Column="1"
+              Grid.Row="0"
+              Grid.RowSpan="2"
+              Background="{StaticResource BackgroundLight}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.2*" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="4*" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--#region Border definition-->
+            <Border Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,2,0,1"
+                    Margin="10,0,10,0" />
+
+            <Border Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,1,0,1"
+                    Margin="10,0,10,0" />
+
+            <Border Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,1,0,1"
+                    Margin="10,0,10,0" />
+
+            <Border Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,1,0,1"
+                    Margin="10,0,10,0" />
+
+            <Border Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,1,0,1"
+                    Margin="10,0,10,0" />
+
+            <Border Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,1,0,1"
+                    Margin="10,0,10,0" />
+
+            <Border Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,1,0,1"
+                    Margin="10,0,10,0" />
+
+            <Border Grid.Row="8"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="{StaticResource BackgroundDark}"
+                    BorderThickness="0,1,0,2"
+                    Margin="10,0,10,0" />
+            <!--#endregion-->
+
+            <!--#region Label Definition-->
+
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Image x:Name="CoinIcon"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Source="../../Resources/Img/coin.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Width="50"
+                       Height="50"
+                       HorizontalAlignment="Left"
+                       Margin="20,0,0,0" />
+                <TextBlock x:Name="CoinName"
+                           Text="Coin - COIN"
+                           FontSize="22"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="Rank:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="CoinRank"
+                           Text="#1"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="Price:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="CoinPrice"
+                           Text="$60 000"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="ATH:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="Ath"
+                           Text="$60 000"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="ATH Change:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="AthChange"
+                           Text="-45.15%"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="ATL:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="Atl"
+                           Text="$53.05"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="ATL Change:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="AtlChange"
+                           Text="+58 021%"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="Market Cap:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="MarketCap"
+                           Text="$676 999 599 946"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="Circulating Supply:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="CirSupply"
+                           Text="18 722 668 BTC"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="Maximum Supply:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="MaxSupply"
+                           Text="21 000 000 BTC"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="7"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="24h Change:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="Change24h"
+                           Text="+$5 515"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="7"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="24h %:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="Percent24h"
+                           Text="+5.05%"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="8"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="7d Change:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="Change7d"
+                           Text="+$5 515"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="8"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+
+                <TextBlock Text="7d %:"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="20,0,0,0" />
+
+                <TextBlock x:Name="Percent7d"
+                           Text="+5.05%"
+                           Style="{StaticResource BasicLabel}"
+                           Margin="10,0,0,0" />
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <Button Grid.Row="11"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Content="ADD COIN"
+                    Margin="10"
+                    Style="{StaticResource BlueButtonTheme}" />
+
+        </Grid>
     </Grid>
 </UserControl>

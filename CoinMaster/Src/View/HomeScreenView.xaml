@@ -14,8 +14,8 @@
     <UserControl.DataContext>
         <viewModel:HomeScreenViewModel />
     </UserControl.DataContext>
-    
-    <Grid>
+
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
             <RowDefinition Height="6*" />

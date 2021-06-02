@@ -56,8 +56,8 @@
                         Grid.Column="0">
 
                 <RadioButton Content="{StaticResource AddCoin}"
-                             Style="{StaticResource MenuButtonTheme}" 
-                             Command="{Binding AddCoinCommand}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding AddCoinCommand}" />
 
                 <RadioButton Content="{StaticResource Dashboard}"
                              Style="{StaticResource MenuButtonTheme}"
@@ -71,7 +71,6 @@
             <ContentControl Grid.Row="0"
                             Grid.Column="1"
                             Grid.RowSpan="2"
-                            Margin="10"
                             Content="{Binding CurrentView}" />
         </Grid>
     </Border>
