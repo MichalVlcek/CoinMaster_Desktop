@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="CoinMaster.Src.View.AddCoinView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:CoinMaster.Src.ViewModel"
+             xmlns:local="clr-namespace:CoinMaster.Src.View"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="927">
+    
+    <UserControl.DataContext>
+        <viewModel:AddCoinViewModel />
+    </UserControl.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Column="0"
+                 Grid.Row="0"
+                 VerticalContentAlignment="Center"
+                 HorizontalAlignment="Stretch"
+                 Margin="10"
+                 Style="{StaticResource TextBoxTheme}" />
+    </Grid>
+</UserControl>
