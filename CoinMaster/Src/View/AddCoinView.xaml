@@ -37,6 +37,7 @@
                       HorizontalScrollBarVisibility="Hidden"
                       VerticalScrollBarVisibility="Auto">
             <ListView x:Name="AddCoinList"
+                      ItemsSource="{Binding Coins}"
                       Background="Transparent"
                       BorderBrush="Transparent"
                       SelectionMode="Single">

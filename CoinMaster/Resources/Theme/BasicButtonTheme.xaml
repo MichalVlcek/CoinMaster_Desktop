@@ -7,7 +7,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="10,10,10,10"
+                        <Border CornerRadius="5"
                                 VerticalAlignment="Stretch"
                                 HorizontalAlignment="Stretch"
                                 Background="{TemplateBinding Background}">
