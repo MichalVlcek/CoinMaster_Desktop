@@ -1,24 +1,28 @@
-﻿namespace CoinMaster.Src.Model
+﻿using System.Text.Json.Serialization;
+
+namespace CoinMaster.Model
 {
     public class Coin
     {
-        public string Icon { get; }
-        public int Rank { get; }
-        public string Name { get; }
-        public string Symbol { get; }
-        public decimal Price { get; }
-        public decimal MarketCap { get; }
-        public decimal Supply { get; }
+        [JsonPropertyName("image")] public string Icon { get; set; }
+        [JsonPropertyName("market_cap_rank")] public int Rank { get; set; }
+        [JsonPropertyName("name")] public string Name { get; set; }
+        [JsonPropertyName("symbol")] public string Symbol { get; set; }
+        [JsonPropertyName("current_price")] public decimal Price { get; set; }
+        [JsonPropertyName("market_cap")] public decimal MarketCap { get; set; }
 
-        public Coin(string icon, int rank, string name, string symbol, decimal price, decimal marketCap, decimal supply)
-        {
-            Icon = icon;
-            Rank = rank;
-            Name = name;
-            Symbol = symbol;
-            Price = price;
-            MarketCap = marketCap;
-            Supply = supply;
-        }
+        [JsonPropertyName("circulating_supply")]
+        public decimal CirculatingSupply { get; set; }
+
+        [JsonPropertyName("max_supply")] public decimal? MaxSupply { get; set; }
+        [JsonPropertyName("ath")] public decimal Ath { get; set; }
+
+        [JsonPropertyName("ath_change_percentage")]
+        public decimal AthPercentChange { get; set; }
+
+        [JsonPropertyName("atl")] public decimal Atl { get; set; }
+
+        [JsonPropertyName("atl_change_percentage")]
+        public decimal AtlPercentChange { get; set; }
     }
 }
