@@ -1,6 +1,6 @@
 ﻿using CoinMaster.Src.Core;
 
-namespace CoinMaster.Src.ViewModel
+namespace CoinMaster.ViewModel
 {
     public class HomeScreenViewModel : ObservableObject
     {

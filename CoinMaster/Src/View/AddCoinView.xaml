@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModel="clr-namespace:CoinMaster.Src.ViewModel"
              xmlns:local="clr-namespace:CoinMaster.Src.View"
+             xmlns:viewModel1="clr-namespace:CoinMaster.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">
 
     <UserControl.DataContext>
-        <viewModel:AddCoinViewModel />
+        <viewModel1:AddCoinViewModel />
     </UserControl.DataContext>
 
     <Grid>
@@ -38,7 +38,8 @@
                       VerticalScrollBarVisibility="Auto">
             <ListView x:Name="AddCoinList"
                       Background="Transparent"
-                      BorderBrush="Transparent">
+                      BorderBrush="Transparent"
+                      SelectionMode="Single">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="Rank"

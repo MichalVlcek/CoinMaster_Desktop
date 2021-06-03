@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CoinMaster"
              xmlns:view="clr-namespace:CoinMaster.Src.View"
-             xmlns:viewModel="clr-namespace:CoinMaster.Src.ViewModel"
+             xmlns:viewModel1="clr-namespace:CoinMaster.ViewModel"
              StartupUri="Src/View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -20,11 +20,11 @@
                 <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate DataType="{x:Type viewModel:HomeScreenViewModel}">
+            <DataTemplate DataType="{x:Type viewModel1:HomeScreenViewModel}">
                 <view:HomeScreenView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:AddCoinViewModel}">
+            <DataTemplate DataType="{x:Type viewModel1:AddCoinViewModel}">
                 <view:AddCoinView />
             </DataTemplate>
 
