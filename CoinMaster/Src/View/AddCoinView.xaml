@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:local="clr-namespace:CoinMaster.Src.View"
              xmlns:viewModel1="clr-namespace:CoinMaster.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCoins}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <UserControl.DataContext>
         <viewModel1:AddCoinViewModel />
@@ -15,8 +22,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -32,6 +39,7 @@
 
         <ScrollViewer Grid.Row="1"
                       Grid.Column="0"
+                      Margin="10"
                       HorizontalContentAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       HorizontalScrollBarVisibility="Hidden"
@@ -40,14 +48,15 @@
                       ItemsSource="{Binding Coins}"
                       Background="Transparent"
                       BorderBrush="Transparent"
-                      SelectionMode="Single">
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedCoin}">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="Rank"
                                         Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding Rank }"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -55,7 +64,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Coin"
-                                        Width="180">
+                                        Width="170">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"
@@ -69,7 +78,7 @@
                                         Width="95">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding Price}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -77,10 +86,10 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Market Cap"
-                                        Width="105">
+                                        Width="115">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding MarketCap}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -89,9 +98,6 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-                <ListItem />
-                <ListItem />
-                <ListItem />
             </ListView>
         </ScrollViewer>
 
@@ -102,8 +108,8 @@
               Background="{StaticResource BackgroundLight}">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -188,14 +194,14 @@
                 <Image x:Name="CoinIcon"
                        Grid.Row="0"
                        Grid.Column="0"
-                       Source="../../Resources/Img/coin.png"
+                       Source="{Binding SelectedCoin.Icon}"
                        RenderOptions.BitmapScalingMode="HighQuality"
                        Width="50"
                        Height="50"
                        HorizontalAlignment="Left"
                        Margin="20,0,0,0" />
                 <TextBlock x:Name="CoinName"
-                           Text="Coin - COIN"
+                           Text="{Binding SelectedCoin.Name}"
                            FontSize="22"
                            Style="{StaticResource BasicLabel}"
                            Margin="20,0,0,0" />
@@ -210,7 +216,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="CoinRank"
-                           Text="#1"
+                           Text="{Binding SelectedCoin.Rank}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -224,7 +230,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="CoinPrice"
-                           Text="$60 000"
+                           Text="{Binding SelectedCoin.Price}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -238,7 +244,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="Ath"
-                           Text="$60 000"
+                           Text="{Binding SelectedCoin.Ath}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -252,7 +258,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="AthChange"
-                           Text="-45.15%"
+                           Text="{Binding SelectedCoin.AthPercentChange}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -266,7 +272,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="Atl"
-                           Text="$53.05"
+                           Text="{Binding SelectedCoin.Atl}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -280,7 +286,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="AtlChange"
-                           Text="+58 021%"
+                           Text="{Binding SelectedCoin.AtlPercentChange}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -295,7 +301,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="MarketCap"
-                           Text="$676 999 599 946"
+                           Text="{Binding SelectedCoin.MarketCap}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -310,7 +316,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="CirSupply"
-                           Text="18 722 668 BTC"
+                           Text="{Binding SelectedCoin.CirculatingSupply}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -325,7 +331,7 @@
                            Margin="20,0,0,0" />
 
                 <TextBlock x:Name="MaxSupply"
-                           Text="21 000 000 BTC"
+                           Text="{Binding SelectedCoin.MaxSupply}"
                            Style="{StaticResource BasicLabel}"
                            Margin="10,0,0,0" />
             </StackPanel>
@@ -388,12 +394,13 @@
 
             <!--#endregion-->
 
-            <Button Grid.Row="11"
+            <Button Grid.Row="10"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Content="ADD COIN"
                     Margin="10"
-                    Style="{StaticResource BlueButtonTheme}" />
+                    Style="{StaticResource BlueButtonTheme}"
+                    Command="{Binding LoadCoins}" />
 
         </Grid>
     </Grid>

@@ -1,4 +1,5 @@
-﻿using CoinMaster.Src.Core;
+﻿using CoinMaster.Core;
+using CoinMaster.Src.Core;
 
 namespace CoinMaster.ViewModel
 {
