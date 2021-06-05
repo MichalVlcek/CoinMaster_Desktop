@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using CoinMaster.Api;
 using CoinMaster.Core;
 using CoinMaster.Model;
@@ -11,6 +8,8 @@ namespace CoinMaster.ViewModel
 {
     public class AddCoinViewModel : ObservableObject
     {
+        public AddCoinPanelViewModel AddCoinPanelViewModel { get; }
+        
         public RelayCommand LoadCoins { get; set; }
 
         private BindingList<Coin> _coins;
@@ -23,7 +22,7 @@ namespace CoinMaster.ViewModel
                 OnPropertyChanged();
             }
         }
-        
+
         private Coin _selectedCoin;
         public Coin SelectedCoin
         {
@@ -37,6 +36,7 @@ namespace CoinMaster.ViewModel
 
         public AddCoinViewModel()
         {
+            AddCoinPanelViewModel = new AddCoinPanelViewModel();
             LoadCoins = new RelayCommand(async _ => Coins = await ApiService.LoadCoins());
         }
     }
