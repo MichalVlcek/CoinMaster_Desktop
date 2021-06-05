@@ -19,6 +19,7 @@
     <ItemGroup>
       <Folder Include="Src\Data" />
       <Folder Include="Src\DB" />
+      <Folder Include="Src\Services" />
     </ItemGroup>
 
     <ItemGroup>

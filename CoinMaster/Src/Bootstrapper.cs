@@ -1,6 +1,4 @@
-﻿using System;
-using CoinMaster.Core;
-using CoinMaster.Interfaces;
+﻿using CoinMaster.Core;
 using CoinMaster.Modules;
 using CoinMaster.ViewModel;
 using Stylet;

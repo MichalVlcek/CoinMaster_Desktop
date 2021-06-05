@@ -7,8 +7,8 @@ namespace CoinMaster.ViewModel
 {
     public class AddCoinViewModel : Screen
     {
-        public AddCoinPanelViewModel AddCoinPanel { get; }
-        
+        public AddCoinPanelViewModel AddCoinPanel { get; set; }
+
         private BindingList<Coin> _coins;
         public BindingList<Coin> Coins
         {
@@ -20,7 +20,11 @@ namespace CoinMaster.ViewModel
         public Coin SelectedCoin
         {
             get => _selectedCoin;
-            set => SetAndNotify(ref _selectedCoin, value);
+            set
+            {
+                SetAndNotify(ref _selectedCoin, value);
+                AddCoinPanel.SelectedCoin = value;
+            }
         }
 
         public AddCoinViewModel()
