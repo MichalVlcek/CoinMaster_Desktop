@@ -1,43 +1,37 @@
 ﻿using System.ComponentModel;
 using CoinMaster.Api;
-using CoinMaster.Core;
 using CoinMaster.Model;
-using CoinMaster.Src.Core;
+using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class AddCoinViewModel : ObservableObject
+    public class AddCoinViewModel : Screen
     {
-        public AddCoinPanelViewModel AddCoinPanelViewModel { get; }
+        public AddCoinPanelViewModel AddCoinPanel { get; }
         
-        public RelayCommand LoadCoins { get; set; }
-
         private BindingList<Coin> _coins;
         public BindingList<Coin> Coins
         {
             get => _coins;
-            set
-            {
-                _coins = value;
-                OnPropertyChanged();
-            }
+            private set => SetAndNotify(ref _coins, value);
         }
 
         private Coin _selectedCoin;
         public Coin SelectedCoin
         {
             get => _selectedCoin;
-            set
-            {
-                _selectedCoin = value;
-                OnPropertyChanged();
-            }
+            set => SetAndNotify(ref _selectedCoin, value);
         }
 
         public AddCoinViewModel()
         {
-            AddCoinPanelViewModel = new AddCoinPanelViewModel();
-            LoadCoins = new RelayCommand(async _ => Coins = await ApiService.LoadCoins());
+            AddCoinPanel = new AddCoinPanelViewModel();
+        }
+
+        protected override async void OnActivate()
+        {
+            base.OnActivate();
+            Coins = await ApiService.LoadCoins();
         }
     }
 }

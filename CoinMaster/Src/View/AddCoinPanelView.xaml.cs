@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoinMaster.Src.View
+namespace CoinMaster.View
 {
     /// <summary>
-    /// Interaction logic for AddCoinPanel.xaml
+    /// Interaction logic for AddCoinPanelView.xaml
     /// </summary>
-    public partial class AddCoinPanel : UserControl
+    public partial class AddCoinPanelView : UserControl
     {
-        public AddCoinPanel()
+        public AddCoinPanelView()
         {
             InitializeComponent();
         }

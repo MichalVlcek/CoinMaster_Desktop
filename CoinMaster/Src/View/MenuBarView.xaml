@@ -1,23 +1,17 @@
-﻿<Window x:Class="CoinMaster.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
-        mc:Ignorable="d"
-        Title="MainWindow"
-        ResizeMode="NoResize"
-        Height="720"
-        Width="1152">
-    <Window.DataContext>
-        <viewModel:MainViewModel />
-    </Window.DataContext>
-
+﻿<UserControl x:Class="CoinMaster.View.MenuBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:local="clr-namespace:CoinMaster.View"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="225">
     <Border Background="{StaticResource BackgroundDark}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="225" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="225"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -57,21 +51,16 @@
 
                 <RadioButton Content="{StaticResource AddCoin}"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding AddCoinCommand}" />
+                             Command="{s:Action OpenAddCoins}" />
 
                 <RadioButton Content="{StaticResource Dashboard}"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding HomeScreenCommand}"
+                             Command="{s:Action OpenHomeScreen}"
                              IsChecked="True" />
 
                 <RadioButton Content="{StaticResource MarketOverview}"
                              Style="{StaticResource MenuButtonTheme}" />
             </StackPanel>
-
-            <ContentControl Grid.Row="0"
-                            Grid.Column="1"
-                            Grid.RowSpan="2"
-                            Content="{Binding CurrentView}" />
         </Grid>
     </Border>
-</Window>
+</UserControl>

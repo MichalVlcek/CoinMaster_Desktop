@@ -1,9 +1,8 @@
-﻿using CoinMaster.Core;
-using CoinMaster.Src.Core;
+﻿using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class HomeScreenViewModel : ObservableObject
+    public class HomeScreenViewModel : Screen
     {
 
     }

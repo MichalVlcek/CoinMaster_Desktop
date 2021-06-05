@@ -1,23 +1,15 @@
-﻿using CoinMaster.Core;
-using CoinMaster.Model;
+﻿using CoinMaster.Model;
+using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class AddCoinPanelViewModel : ObservableObject
+    public class AddCoinPanelViewModel : Screen
     {
         private Coin _selectedCoin;
         public Coin SelectedCoin
         {
             get => _selectedCoin;
-            set
-            {
-                _selectedCoin = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public AddCoinPanelViewModel()
-        {
+            set => SetAndNotify(ref _selectedCoin, value);
         }
     }
 }

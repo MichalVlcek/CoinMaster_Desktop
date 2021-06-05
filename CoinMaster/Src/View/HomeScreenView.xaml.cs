@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 
-namespace CoinMaster.Src.View
+namespace CoinMaster.View
 {
     public partial class HomeScreenView : UserControl
     {
