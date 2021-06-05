@@ -51,11 +51,11 @@
 
                 <RadioButton Content="{StaticResource AddCoin}"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{s:Action OpenAddCoins}" />
+                             Command="{s:Action NavigateToAddCoinScreen}" />
 
                 <RadioButton Content="{StaticResource Dashboard}"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{s:Action OpenHomeScreen}"
+                             Command="{s:Action NavigateToHomeScreen}"
                              IsChecked="True" />
 
                 <RadioButton Content="{StaticResource MarketOverview}"

@@ -9,7 +9,7 @@
                 <local:Bootstrapper />
             </s:ApplicationLoader.Bootstrapper>
 
-            <ResourceDictionary.MergedDictionaries>
+            <s:ApplicationLoader.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Values/Strings.xaml" />
                 <ResourceDictionary Source="Resources/Values/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Theme/MenuButtonTheme.xaml" />
@@ -20,7 +20,7 @@
                 <ResourceDictionary Source="Resources/Theme/BlueButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/TextBoxTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            </s:ApplicationLoader.MergedDictionaries>
 
         </s:ApplicationLoader>
     </Application.Resources>

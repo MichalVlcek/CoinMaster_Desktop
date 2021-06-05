@@ -17,7 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Src\Core" />
       <Folder Include="Src\Data" />
       <Folder Include="Src\DB" />
     </ItemGroup>

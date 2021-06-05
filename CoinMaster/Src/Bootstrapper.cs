@@ -1,4 +1,8 @@
-﻿using CoinMaster.ViewModel;
+﻿using System;
+using CoinMaster.Core;
+using CoinMaster.Interfaces;
+using CoinMaster.Modules;
+using CoinMaster.ViewModel;
 using Stylet;
 using StyletIoC;
 
@@ -8,12 +12,14 @@ namespace CoinMaster
     {
         protected override void ConfigureIoC(IStyletIoCBuilder builder)
         {
-            // Configure the IoC container in here
+            builder.AddModule(new NavigationModule());
         }
 
-        protected override void Configure()
+        protected override void OnLaunch()
         {
-            // Perform any other configuration before the application starts
+            var navigationController = Container.Get<NavigationController>();
+            navigationController.Delegate = RootViewModel;
+            navigationController.NavigateToHomeScreen();
         }
     }
 }

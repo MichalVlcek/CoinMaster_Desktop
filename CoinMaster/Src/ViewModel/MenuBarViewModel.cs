@@ -1,19 +1,18 @@
-﻿using Stylet;
+﻿using CoinMaster.Interfaces;
+using Stylet;
 
 namespace CoinMaster.ViewModel
 {
     public class MenuBarViewModel : Screen
     {
-        private RootViewModel GetParent => Parent as RootViewModel;
-        
-        public void OpenAddCoins()
+        private readonly INavigationController navigationController;
+
+        public MenuBarViewModel(INavigationController navigationController)
         {
-            GetParent?.ActivateItem(GetParent.AddCoinScreen);
+            this.navigationController = navigationController;
         }
 
-        public void OpenHomeScreen()
-        {
-            GetParent?.ActivateItem(GetParent.HomeScreen);
-        }
+        public void NavigateToAddCoinScreen() => navigationController.NavigateToAddCoinsScreen();
+        public void NavigateToHomeScreen() => navigationController.NavigateToHomeScreen();
     }
 }
