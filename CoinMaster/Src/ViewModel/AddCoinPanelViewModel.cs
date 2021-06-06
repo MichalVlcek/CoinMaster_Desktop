@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Data;
+using System.Windows.Markup;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using CoinMaster.Utility;
@@ -14,7 +15,23 @@ namespace CoinMaster.ViewModel
         public Coin SelectedCoin
         {
             get => _selectedCoin;
-            set => SetAndNotify(ref _selectedCoin, value);
+            set
+            {
+                SetAndNotify(ref _selectedCoin, value); 
+                OnPropertyChanged(nameof(Rank));
+                OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(Ath));
+                OnPropertyChanged(nameof(Atl));
+                OnPropertyChanged(nameof(AthChange));
+                OnPropertyChanged(nameof(AtlChange));
+                OnPropertyChanged(nameof(MarketCap));
+                OnPropertyChanged(nameof(CirculatingSupply));
+                OnPropertyChanged(nameof(MaximumSupply));
+                OnPropertyChanged(nameof(PriceChangePercent24H));
+                OnPropertyChanged(nameof(PriceChangePercent7D));
+                OnPropertyChanged(nameof(PriceChange24H));
+                OnPropertyChanged(nameof(PriceChange7D));
+            }
         }
 
         public AddCoinPanelViewModel(IEventAggregator eventAggregator)
@@ -39,11 +56,11 @@ namespace CoinMaster.ViewModel
 
         public string PriceChange24H =>
             StringFormats.CurrencyFormat(CoinUtils.CalculatePriceChange(SelectedCoin.Price,
-                SelectedCoin.PriceChangePercent7D ?? 0));
+                SelectedCoin.PriceChangePercent24H ?? 0));
 
         public string PriceChange7D =>
             StringFormats.CurrencyFormat(CoinUtils.CalculatePriceChange(SelectedCoin.Price,
-                SelectedCoin.PriceChangePercent24H ?? 0));
+                SelectedCoin.PriceChangePercent7D ?? 0));
 
         public void Handle(CoinSelectedEvent message)
         {
