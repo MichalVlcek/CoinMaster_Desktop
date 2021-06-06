@@ -18,11 +18,11 @@ namespace CoinMaster.Model
         [JsonPropertyName("ath")] public decimal Ath { get; set; }
 
         [JsonPropertyName("ath_change_percentage")]
-        public decimal AthPercentChange { get; set; }
+        public double AthPercentChange { get; set; }
 
         [JsonPropertyName("atl")] public decimal Atl { get; set; }
 
         [JsonPropertyName("atl_change_percentage")]
-        public decimal AtlPercentChange { get; set; }
+        public double AtlPercentChange { get; set; }
     }
 }

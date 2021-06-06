@@ -4,15 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CoinMaster.View"
-             xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
+             xmlns:vms="clr-namespace:CoinMaster.ViewModel"
+             d:DataContext="{d:DesignInstance vms:AddCoinPanelViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="412">
-
-    <UserControl.DataContext>
-        <viewModel:AddCoinPanelViewModel />
-    </UserControl.DataContext>
-
     <Grid Background="{StaticResource BackgroundLight}">
 
         <Grid.ColumnDefinitions>
@@ -124,7 +120,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="CoinRank"
-                       Text="{Binding SelectedCoin.Rank}"
+                       Text="{Binding Rank}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -138,7 +134,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="CoinPrice"
-                       Text="{Binding SelectedCoin.Price}"
+                       Text="{Binding Price}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -152,7 +148,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Ath"
-                       Text="{Binding SelectedCoin.Ath}"
+                       Text="{Binding Ath}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -166,7 +162,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="AthChange"
-                       Text="{Binding SelectedCoin.AthPercentChange}"
+                       Text="{Binding AthChange}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -180,7 +176,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Atl"
-                       Text="{Binding SelectedCoin.Atl}"
+                       Text="{Binding Atl}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -194,7 +190,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="AtlChange"
-                       Text="{Binding SelectedCoin.AtlPercentChange}"
+                       Text="{Binding AtlChange}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -209,7 +205,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="MarketCap"
-                       Text="{Binding SelectedCoin.MarketCap}"
+                       Text="{Binding MarketCap}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -224,7 +220,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="CirSupply"
-                       Text="{Binding SelectedCoin.CirculatingSupply}"
+                       Text="{Binding CirculatingSupply}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -239,7 +235,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="MaxSupply"
-                       Text="{Binding SelectedCoin.MaxSupply}"
+                       Text="{Binding MaximumSupply}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -281,7 +277,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Change7d"
-                       Text="+$5 515"
+                       Text="ASASGAS"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>

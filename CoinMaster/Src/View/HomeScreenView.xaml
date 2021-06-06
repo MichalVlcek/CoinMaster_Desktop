@@ -8,14 +8,6 @@
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">
-    <UserControl.Resources>
-
-    </UserControl.Resources>
-
-    <UserControl.DataContext>
-        <viewModel1:HomeScreenViewModel />
-    </UserControl.DataContext>
-
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />

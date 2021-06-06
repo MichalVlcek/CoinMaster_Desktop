@@ -7,14 +7,10 @@
              xmlns:local="clr-namespace:CoinMaster.View"
              xmlns:m="clr-namespace:CoinMaster.Model"
              xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
+             d:DataContext="{d:DesignInstance viewModel:AddCoinViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">
-
-    <UserControl.DataContext>
-        <viewModel:AddCoinViewModel />
-    </UserControl.DataContext>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*" />

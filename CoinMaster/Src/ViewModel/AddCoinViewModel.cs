@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using CoinMaster.Api;
+using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
 
@@ -8,6 +9,8 @@ namespace CoinMaster.ViewModel
     public class AddCoinViewModel : Screen
     {
         public AddCoinPanelViewModel AddCoinPanel { get; set; }
+
+        private IEventAggregator events;
 
         private BindingList<Coin> _coins;
         public BindingList<Coin> Coins
@@ -23,13 +26,14 @@ namespace CoinMaster.ViewModel
             set
             {
                 SetAndNotify(ref _selectedCoin, value);
-                AddCoinPanel.SelectedCoin = value;
+                events.Publish(new CoinSelectedEvent {Coin = SelectedCoin});
             }
         }
 
-        public AddCoinViewModel()
+        public AddCoinViewModel(AddCoinPanelViewModel addCoinPanel, IEventAggregator events)
         {
-            AddCoinPanel = new AddCoinPanelViewModel();
+            this.events = events;
+            AddCoinPanel = addCoinPanel;
         }
 
         protected override async void OnActivate()
