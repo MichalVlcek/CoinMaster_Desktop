@@ -249,7 +249,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Change24h"
-                       Text="+$5 515"
+                       Text="{Binding PriceChange24H}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -263,7 +263,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Percent24h"
-                       Text="+5.05%"
+                       Text="{Binding PriceChangePercent24H}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -277,7 +277,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Change7d"
-                       Text="ASASGAS"
+                       Text="{Binding PriceChange7D}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -291,7 +291,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Percent7d"
-                       Text="+5.05%"
+                       Text="{Binding PriceChangePercent7D}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>

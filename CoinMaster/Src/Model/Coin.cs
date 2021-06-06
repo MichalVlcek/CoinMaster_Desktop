@@ -24,5 +24,11 @@ namespace CoinMaster.Model
 
         [JsonPropertyName("atl_change_percentage")]
         public double AtlPercentChange { get; set; }
+        
+        [JsonPropertyName("price_change_percentage_24h_in_currency")]
+        public double? PriceChangePercent24H { get; set; }
+        
+        [JsonPropertyName("price_change_percentage_7d_in_currency")]
+        public double? PriceChangePercent7D { get; set; }
     }
 }

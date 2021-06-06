@@ -22,7 +22,8 @@ namespace CoinMaster.Api
                 .AddOrUpdateParameter("vs_currency", "usd")
                 .AddOrUpdateParameter("order", "market_cap_desc")
                 .AddOrUpdateParameter("per_page", 250)
-                .AddOrUpdateParameter("page", 1);
+                .AddOrUpdateParameter("page", 1)
+                .AddOrUpdateParameter("price_change_percentage", "24h,7d");
         }
 
         public static async Task<BindingList<Coin>> LoadCoins()
