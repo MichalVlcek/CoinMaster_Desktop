@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="CoinMaster.View.AddCoinView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:local="clr-namespace:CoinMaster.View"
+             xmlns:m="clr-namespace:CoinMaster.Model"
+             xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
+             d:DataContext="{d:DesignInstance viewModel:AddCoinViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="927">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="9*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Column="0"
+                 Grid.Row="0"
+                 VerticalContentAlignment="Center"
+                 HorizontalAlignment="Stretch"
+                 Margin="10"
+                 Style="{StaticResource TextBoxTheme}" />
+
+        <ScrollViewer Grid.Row="1"
+                      Grid.Column="0"
+                      Margin="10"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto">
+            <ListView x:Name="AddCoinList"
+                      Background="Transparent"
+                      BorderBrush="Transparent"
+                      SelectionMode="Single"
+                      ItemsSource="{Binding Coins}"
+                      SelectedItem="{Binding SelectedCoin}">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                        <GridViewColumn Header="Rank"
+                                        Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Rank }"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Coin"
+                                        Width="170">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Price"
+                                        Width="95">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Price}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Market Cap"
+                                        Width="115">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding MarketCap}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+
+
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.RowSpan="2">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="s:View.Model"
+                            Value="{Binding AddCoinPanel}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedCoin }"
+                                     Value="{x:Null}">
+                            <Setter Property="ContentControl.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch"
+                                              Background="{StaticResource BackgroundLight}">
+
+                                            <TextBlock TextAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="30"
+                                                       Foreground="{StaticResource White}"
+                                                       Text="No Coin Selected!" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </Grid>
+</UserControl>

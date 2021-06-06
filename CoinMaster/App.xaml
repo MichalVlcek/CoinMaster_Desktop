@@ -1,15 +1,27 @@
 ﻿<Application x:Class="CoinMaster.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CoinMaster"
-             StartupUri="Src/MainWindow.xaml">
+             xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:local="clr-namespace:CoinMaster">
     <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+        <s:ApplicationLoader>
+            <s:ApplicationLoader.Bootstrapper>
+                <local:Bootstrapper />
+            </s:ApplicationLoader.Bootstrapper>
+
+            <s:ApplicationLoader.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Values/Strings.xaml" />
                 <ResourceDictionary Source="Resources/Values/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Theme/MenuButtonTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+                <ResourceDictionary Source="Resources/Theme/ListItemTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/TableHeaderTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/BasicButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/RedButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/BlueButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/TextBoxTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
+            </s:ApplicationLoader.MergedDictionaries>
+
+        </s:ApplicationLoader>
     </Application.Resources>
 </Application>

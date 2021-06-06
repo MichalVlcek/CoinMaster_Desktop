@@ -5,4 +5,10 @@
     <system:String x:Key="AddCoin">Add Coin</system:String>
     <system:String x:Key="Dashboard">Dashboard</system:String>
     <system:String x:Key="MarketOverview">Market Overview</system:String>
+    <system:String x:Key="Coin">Coin</system:String>
+    <system:String x:Key="HoldingsValue">Holdings Value</system:String>
+    <system:String x:Key="Amount">Coin Amount</system:String>
+    <system:String x:Key="Percent24h">24h %</system:String>
+    <system:String x:Key="Percent7d">7d %</system:String>
+    <system:String x:Key="CurrentPrice">Current Price</system:String>
 </ResourceDictionary>

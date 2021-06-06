@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="CoinMaster.View.HomeScreenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel1="clr-namespace:CoinMaster.ViewModel"
+             xmlns:s="https://github.com/canton7/Stylet"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="927">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="0.8*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0"
+                Grid.Row="0"
+                Background="{StaticResource BackgroundLight}"
+                BorderBrush="{StaticResource Orange}"
+                BorderThickness="2,2,2,2"
+                Margin="0,0,0,10"
+                CornerRadius="25">
+
+            <!--Add some info here-->
+        </Border>
+
+        <ScrollViewer Grid.Row="1"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto">
+            <ListView x:Name="CoinList"
+                      Background="Transparent"
+                      BorderBrush="Transparent">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                        <GridViewColumn Header="{StaticResource Coin}"
+                                        Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource HoldingsValue}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource Amount}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource Percent24h}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource Percent7d}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{StaticResource CurrentPrice}"
+                                        Width="134">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListItem />
+                <ListItem />
+                <ListItem />
+            </ListView>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    x:Name="EditButton"
+                    Content="EDIT SELECTED"
+                    Margin="8"
+                    Style="{StaticResource BlueButtonTheme}" />
+            <Button Grid.Column="1"
+                    x:Name="DeleteButton"
+                    Content="DELETE SELECTED"
+                    Margin="8"
+                    Style="{StaticResource RedButtonTheme}" />
+        </Grid>
+    </Grid>
+</UserControl>
