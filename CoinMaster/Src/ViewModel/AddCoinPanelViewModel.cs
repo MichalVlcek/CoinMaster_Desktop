@@ -11,11 +11,10 @@ namespace CoinMaster.ViewModel
     public class AddCoinPanelViewModel : Screen, IHandle<CoinSelectedEvent>
     {
         private Coin _selectedCoin;
-
         public Coin SelectedCoin
         {
             get => _selectedCoin;
-            set
+            private set
             {
                 SetAndNotify(ref _selectedCoin, value); 
                 OnPropertyChanged(nameof(Rank));
@@ -32,11 +31,6 @@ namespace CoinMaster.ViewModel
                 OnPropertyChanged(nameof(PriceChange24H));
                 OnPropertyChanged(nameof(PriceChange7D));
             }
-        }
-
-        public AddCoinPanelViewModel(IEventAggregator eventAggregator)
-        {
-            eventAggregator.Subscribe(this);
         }
 
         public string Rank => StringFormats.RankFormat(SelectedCoin.Rank);
@@ -62,6 +56,11 @@ namespace CoinMaster.ViewModel
             StringFormats.CurrencyFormat(CoinUtils.CalculatePriceChange(SelectedCoin.Price,
                 SelectedCoin.PriceChangePercent7D ?? 0));
 
+        public AddCoinPanelViewModel(IEventAggregator eventAggregator)
+        {
+            eventAggregator.Subscribe(this);
+        }
+        
         public void Handle(CoinSelectedEvent message)
         {
             SelectedCoin = message.Coin;
