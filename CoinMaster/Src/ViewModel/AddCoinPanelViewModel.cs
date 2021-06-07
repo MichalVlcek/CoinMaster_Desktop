@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Data;
-using System.Windows.Markup;
+﻿using CoinMaster.DB;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using CoinMaster.Utility;
@@ -64,6 +62,13 @@ namespace CoinMaster.ViewModel
         public void Handle(CoinSelectedEvent message)
         {
             SelectedCoin = message.Coin;
+        }
+
+        public void SaveToDb()
+        {
+            // using var db = new Pes();
+            // db.Add(SelectedCoin);
+            // db.SaveChanges();
         }
     }
 }

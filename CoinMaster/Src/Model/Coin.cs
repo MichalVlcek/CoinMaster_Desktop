@@ -1,9 +1,14 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace CoinMaster.Model
 {
     public class Coin
     {
+        [Key]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
         [JsonPropertyName("image")] public string Icon { get; set; }
         [JsonPropertyName("market_cap_rank")] public int Rank { get; set; }
         [JsonPropertyName("name")] public string Name { get; set; }
