@@ -106,7 +106,7 @@
                    HorizontalAlignment="Left"
                    Margin="20,0,0,0" />
             <TextBlock x:Name="CoinName"
-                       Text="{Binding Title}"
+                       Text="{Binding SelectedCoin.Title}"
                        FontSize="22"
                        Style="{StaticResource BasicLabel}"
                        Margin="20,0,0,0" />
@@ -121,7 +121,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="CoinRank"
-                       Text="{Binding Rank}"
+                       Text="{Binding SelectedCoin.RankFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -135,7 +135,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="CoinPrice"
-                       Text="{Binding Price}"
+                       Text="{Binding SelectedCoin.PriceFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -149,7 +149,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Ath"
-                       Text="{Binding Ath}"
+                       Text="{Binding SelectedCoin.AthFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -163,7 +163,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="AthChange"
-                       Text="{Binding AthChange}"
+                       Text="{Binding SelectedCoin.AthChangeFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -177,7 +177,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Atl"
-                       Text="{Binding Atl}"
+                       Text="{Binding SelectedCoin.AtlFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -191,7 +191,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="AtlChange"
-                       Text="{Binding AtlChange}"
+                       Text="{Binding SelectedCoin.AtlChangeFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -206,7 +206,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="MarketCap"
-                       Text="{Binding MarketCap}"
+                       Text="{Binding SelectedCoin.MarketCapFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -221,7 +221,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="CirSupply"
-                       Text="{Binding CirculatingSupply}"
+                       Text="{Binding SelectedCoin.CirculatingSupplyFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -236,7 +236,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="MaxSupply"
-                       Text="{Binding MaximumSupply}"
+                       Text="{Binding SelectedCoin.MaximumSupplyFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -250,7 +250,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Change24h"
-                       Text="{Binding PriceChange24H}"
+                       Text="{Binding SelectedCoin.PriceChange24HFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -264,7 +264,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Percent24h"
-                       Text="{Binding PriceChangePercent24H}"
+                       Text="{Binding SelectedCoin.PriceChangePercent24HFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -278,7 +278,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Change7d"
-                       Text="{Binding PriceChange7D}"
+                       Text="{Binding SelectedCoin.PriceChange7DFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
@@ -292,7 +292,7 @@
                        Margin="20,0,0,0" />
 
             <TextBlock x:Name="Percent7d"
-                       Text="{Binding PriceChangePercent7D}"
+                       Text="{Binding SelectedCoin.PriceChangePercent7DFormat}"
                        Style="{StaticResource BasicLabel}"
                        Margin="10,0,0,0" />
         </StackPanel>
