@@ -17,6 +17,7 @@ namespace CoinMaster.ViewModel
             private set
             {
                 SetAndNotify(ref _selectedCoin, value); 
+                OnPropertyChanged(nameof(Title));
                 OnPropertyChanged(nameof(Rank));
                 OnPropertyChanged(nameof(Price));
                 OnPropertyChanged(nameof(Ath));
@@ -33,6 +34,7 @@ namespace CoinMaster.ViewModel
             }
         }
 
+        public string Title => $"{SelectedCoin.Name} - {SelectedCoin.Symbol.ToUpper()}";
         public string Rank => StringFormats.RankFormat(SelectedCoin.Rank);
         public string Price => StringFormats.CurrencyFormat(SelectedCoin.Price);
         public string Ath => StringFormats.CurrencyFormat(SelectedCoin.Ath, SelectedCoin.Symbol);

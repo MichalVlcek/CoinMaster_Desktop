@@ -105,7 +105,7 @@
                    HorizontalAlignment="Left"
                    Margin="20,0,0,0" />
             <TextBlock x:Name="CoinName"
-                       Text="{Binding SelectedCoin.Name}"
+                       Text="{Binding Title}"
                        FontSize="22"
                        Style="{StaticResource BasicLabel}"
                        Margin="20,0,0,0" />

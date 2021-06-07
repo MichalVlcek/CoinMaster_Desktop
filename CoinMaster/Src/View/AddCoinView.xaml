@@ -58,10 +58,23 @@
                                         Width="170">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
-                                               Foreground="White"
-                                               FontSize="14"
-                                               TextAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Width="170"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center">
+                                        <Image x:Name="CoinIcon"
+                                               Source="{Binding Icon}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="30"
+                                               Height="30"
+                                               HorizontalAlignment="Left"
+                                               Margin="0,0,10,0" />
+
+                                        <TextBlock Text="{Binding Name}"
+                                                   Foreground="White"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
