@@ -67,5 +67,10 @@ namespace CoinMaster.ViewModel
         {
             SelectedCoin = message.Coin;
         }
+
+        public void AddCoin()
+        {
+            TmpDatabase.Coins.Add(SelectedCoin);
+        }
     }
 }
