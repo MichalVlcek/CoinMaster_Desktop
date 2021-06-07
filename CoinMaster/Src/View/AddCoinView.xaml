@@ -127,7 +127,7 @@
                                                        VerticalAlignment="Center"
                                                        FontSize="30"
                                                        Foreground="{StaticResource White}"
-                                                       Text="No Coin Selected!" />
+                                                       Text="No Coin Selected." />
                                         </Grid>
                                     </ControlTemplate>
                                 </Setter.Value>
