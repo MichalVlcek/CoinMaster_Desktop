@@ -28,7 +28,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="4*" />
-            <RowDefinition />
+            <RowDefinition Height="1.2*"/>
         </Grid.RowDefinitions>
 
         <!--#region Border definition-->

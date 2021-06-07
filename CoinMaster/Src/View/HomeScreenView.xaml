@@ -14,7 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
             <RowDefinition Height="6*" />
-            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="0.9*" />
         </Grid.RowDefinitions>
 
         <Border Grid.Column="0"
@@ -23,7 +23,7 @@
                 BorderBrush="{StaticResource Orange}"
                 BorderThickness="2,2,2,2"
                 Margin="0,0,0,10"
-                CornerRadius="25">
+                CornerRadius="15">
 
             <!--Add some info here-->
         </Border>
@@ -132,12 +132,12 @@
             <Button Grid.Column="0"
                     x:Name="EditButton"
                     Content="EDIT SELECTED"
-                    Margin="8"
+                    Margin="0,6,6,6"
                     Style="{StaticResource BlueButtonTheme}" />
             <Button Grid.Column="1"
                     x:Name="DeleteButton"
                     Content="DELETE SELECTED"
-                    Margin="8"
+                    Margin="6,6,0,6"
                     Style="{StaticResource RedButtonTheme}" />
         </Grid>
     </Grid>
