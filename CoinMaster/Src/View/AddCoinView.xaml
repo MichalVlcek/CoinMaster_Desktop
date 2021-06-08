@@ -58,10 +58,23 @@
                                         Width="170">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
-                                               Foreground="White"
-                                               FontSize="14"
-                                               TextAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Width="170"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center">
+                                        <Image x:Name="CoinIcon"
+                                               Source="{Binding Icon}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="30"
+                                               Height="30"
+                                               HorizontalAlignment="Left"
+                                               Margin="0,0,10,0" />
+
+                                        <TextBlock Text="{Binding Title}"
+                                                   Foreground="White"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -69,7 +82,7 @@
                                         Width="95">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Price}"
+                                    <TextBlock Text="{Binding PriceFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -80,7 +93,7 @@
                                         Width="115">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding MarketCap}"
+                                    <TextBlock Text="{Binding MarketCapFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -114,7 +127,7 @@
                                                        VerticalAlignment="Center"
                                                        FontSize="30"
                                                        Foreground="{StaticResource White}"
-                                                       Text="No Coin Selected!" />
+                                                       Text="No Coin Selected." />
                                         </Grid>
                                     </ControlTemplate>
                                 </Setter.Value>
