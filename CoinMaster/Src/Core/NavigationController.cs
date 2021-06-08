@@ -8,14 +8,14 @@ namespace CoinMaster.Core
     {
         private readonly Func<AddCoinViewModel> addCoinViewModelFactory;
         private readonly Func<HomeScreenViewModel> homeScreenViewModelFactory;
-        private readonly Func<CoinOverviewViewModel> coinOverviewViewModelFactory;
+        private readonly CoinOverviewViewModel coinOverviewViewModelFactory;
 
         public INavigationControllerDelegate Delegate { get; set; }
 
         public NavigationController(
             Func<AddCoinViewModel> addCoinViewModelFactory,
             Func<HomeScreenViewModel> homeScreenViewModelFactory,
-            Func<CoinOverviewViewModel> coinOverviewViewModelFactory)
+           CoinOverviewViewModel coinOverviewViewModelFactory)
         {
             this.addCoinViewModelFactory = addCoinViewModelFactory;
             this.homeScreenViewModelFactory = homeScreenViewModelFactory;
@@ -24,6 +24,6 @@ namespace CoinMaster.Core
 
         public void NavigateToAddCoinsScreen() => Delegate?.NavigateTo(addCoinViewModelFactory());
         public void NavigateToHomeScreen() => Delegate?.NavigateTo(homeScreenViewModelFactory());
-        public void NavigateToCoinOverview() => Delegate?.NavigateTo(coinOverviewViewModelFactory());
+        public void NavigateToCoinOverview() => Delegate?.NavigateTo(coinOverviewViewModelFactory);
     }
 }
