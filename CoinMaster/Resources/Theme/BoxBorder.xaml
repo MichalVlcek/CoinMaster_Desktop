@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Border"
+           x:Key="BoxBorder">
+
+        <Setter Property="Background"
+                Value="{StaticResource BackgroundLight}" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource BackgroundDark}" />
+        <Setter Property="CornerRadius"
+                Value="4" />
+        <Setter Property="BorderThickness"
+                Value="5" />
+    </Style>
+</ResourceDictionary>

@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="Resources/Theme/BlueButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/TextBoxTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/BoxBorder.xaml" />
             </s:ApplicationLoader.MergedDictionaries>
 
         </s:ApplicationLoader>

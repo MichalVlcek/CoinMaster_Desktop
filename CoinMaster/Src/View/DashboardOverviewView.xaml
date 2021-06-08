@@ -46,8 +46,7 @@
                     <Border Grid.Column="0"
                             Grid.Row="0"
                             Grid.ColumnSpan="2"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderBrush="{StaticResource BackgroundDark}"
+                            Style="{StaticResource BoxBorder}"
                             BorderThickness="5,5,5,3"
                             CornerRadius="14,4,4,4">
                         <StackPanel VerticalAlignment="Center">
@@ -65,9 +64,7 @@
                     <Border Grid.Column="0"
                             Grid.Row="1"
                             Grid.ColumnSpan="2"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderBrush="{StaticResource BackgroundDark}"
-                            CornerRadius="4"
+                            Style="{StaticResource BoxBorder}"
                             BorderThickness="5,3,5,3">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource BasicLabel}"
@@ -83,8 +80,7 @@
 
                     <Border Grid.Column="0"
                             Grid.Row="2"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderBrush="{StaticResource BackgroundDark}"
+                            Style="{StaticResource BoxBorder}"
                             BorderThickness="5,3,3,5"
                             CornerRadius="4,4,4,14">
                         <StackPanel VerticalAlignment="Center">
@@ -103,8 +99,7 @@
 
                     <Border Grid.Column="1"
                             Grid.Row="2"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderBrush="{StaticResource BackgroundDark}"
+                            Style="{StaticResource BoxBorder}"
                             BorderThickness="3,3,5,5"
                             CornerRadius="4">
                         <StackPanel VerticalAlignment="Center">
@@ -137,9 +132,8 @@
                     </Grid.RowDefinitions>
 
                     <Border Grid.Row="0"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderThickness="5,5,5,3"
-                            CornerRadius="4">
+                            Style="{StaticResource BoxBorder}"
+                            BorderThickness="5,5,5,3">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource BasicLabel}"
                                        Text="7d Portfolio Change"
@@ -155,9 +149,8 @@
                     </Border>
 
                     <Border Grid.Row="1"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderThickness="5,3,5,3"
-                            CornerRadius="4">
+                            Style="{StaticResource BoxBorder}"
+                            BorderThickness="5,3,5,3">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource BasicLabel}"
                                        Text="7d Percent Change"
@@ -173,9 +166,8 @@
                     </Border>
 
                     <Border Grid.Row="2"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderThickness="5,3,5,3"
-                            CornerRadius="4">
+                            Style="{StaticResource BoxBorder}"
+                            BorderThickness="5,3,5,3">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource BasicLabel}"
                                        Text="7d High"
@@ -191,9 +183,8 @@
                     </Border>
 
                     <Border Grid.Row="3"
-                            Background="{StaticResource BackgroundLight}"
-                            BorderThickness="5,3,5,5"
-                            CornerRadius="4">
+                            Style="{StaticResource BoxBorder}"
+                            BorderThickness="5,3,5,5">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource BasicLabel}"
                                        Text="7d Low"
