@@ -124,7 +124,8 @@
                     x:Name="EditButton"
                     Content="EDIT SELECTED"
                     Margin="0,6,6,6"
-                    Style="{StaticResource BlueButtonTheme}" />
+                    Style="{StaticResource BlueButtonTheme}" 
+                    Command="{s:Action NavigateToCoinOverview}"/>
             <Button Grid.Column="1"
                     x:Name="DeleteButton"
                     Content="DELETE SELECTED"
