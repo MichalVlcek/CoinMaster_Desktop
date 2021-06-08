@@ -167,9 +167,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="#1"
+                               Text="{Binding SelectedCoin.RankFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -187,9 +186,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="$73 829.242552"
+                               Text="{Binding SelectedCoin.PriceFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -207,9 +205,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="$73 829.2425"
+                               Text="{Binding SelectedCoin.AthFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -227,9 +224,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="+45 245.15%"
+                               Text="{Binding SelectedCoin.AthChangeFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -247,9 +243,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="$73 829.2425"
+                               Text="{Binding SelectedCoin.AtlFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -267,9 +262,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="+45 245.15%"
+                               Text="{Binding SelectedCoin.AtlChangeFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -288,9 +282,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="$676 999 599 916.051"
+                               Text="{Binding SelectedCoin.MarketCapFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -309,9 +302,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="$676 999 599 916.051"
+                               Text="{Binding SelectedCoin.CirculatingSupplyFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -330,9 +322,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="$676 999 599 916.051"
+                               Text="{Binding SelectedCoin.MaximumSupplyFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -345,14 +336,13 @@
                             Orientation="Horizontal"
                             Margin="10,0,0,0">
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="1d Change:"
+                               Text="24h Change:"
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="+$12 158.15"
+                               Text="{Binding SelectedCoin.PriceChange24HFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -365,14 +355,13 @@
                             Orientation="Horizontal"
                             Margin="10,0,0,0">
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="1d %:"
+                               Text="24h %:"
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="+$12 158.15"
+                               Text="{Binding SelectedCoin.PriceChangePercent24HFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -390,9 +379,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="+$12 158.15"
+                               Text="{Binding SelectedCoin.PriceChange7DFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
@@ -410,9 +398,8 @@
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="+$12 158.15"
+                               Text="{Binding SelectedCoin.PriceChangePercent7DFormat}"
                                HorizontalAlignment="Center"
-                               FontSize="20"
                                Margin="10,0,0,0" />
                 </StackPanel>
             </Border>
