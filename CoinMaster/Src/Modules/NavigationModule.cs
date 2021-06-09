@@ -12,8 +12,10 @@ namespace CoinMaster.Modules
         {
             Bind<NavigationController>().And<INavigationController>().To<NavigationController>().InSingletonScope();
             Bind<Func<AddCoinViewModel>>().ToFactory<Func<AddCoinViewModel>>(c => () => c.Get<AddCoinViewModel>());
-            Bind<Func<HomeScreenViewModel>>().ToFactory<Func<HomeScreenViewModel>>(c => () => c.Get<HomeScreenViewModel>());
-            Bind<Func<CoinDetailViewModel>>().ToFactory<Func<CoinDetailViewModel>>(c => () => c.Get<CoinDetailViewModel>());
+            Bind<Func<HomeScreenViewModel>>()
+                .ToFactory<Func<HomeScreenViewModel>>(c => () => c.Get<HomeScreenViewModel>());
+            Bind<Func<CoinDetailViewModel>>()
+                .ToFactory<Func<CoinDetailViewModel>>(c => () => c.Get<CoinDetailViewModel>());
         }
     }
 }
