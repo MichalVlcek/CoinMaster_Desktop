@@ -12,15 +12,17 @@
             <s:ApplicationLoader.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Values/Strings.xaml" />
                 <ResourceDictionary Source="Resources/Values/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/Buttons/MenuButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/ListItemTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/TableHeaderTheme.xaml" />
-                <ResourceDictionary Source="Resources/Theme/BasicButtonTheme.xaml" />
-                <ResourceDictionary Source="Resources/Theme/RedButtonTheme.xaml" />
-                <ResourceDictionary Source="Resources/Theme/BlueButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/Buttons/BasicButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/Buttons/RedButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/Buttons/BlueButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/TextBoxTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BoxBorder.xaml" />
+                <ResourceDictionary Source="Resources/Theme/Buttons/TopbarButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/Buttons/LightButtonTheme.xaml" />
             </s:ApplicationLoader.MergedDictionaries>
 
         </s:ApplicationLoader>

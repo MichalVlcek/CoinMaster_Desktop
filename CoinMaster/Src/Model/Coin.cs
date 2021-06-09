@@ -59,7 +59,7 @@ namespace CoinMaster.Model
         public string AtlFormat => StringFormats.CurrencyFormat(Atl, Symbol);
         public string AthChangeFormat => StringFormats.PercentFormat(AthPercentChange);
         public string AtlChangeFormat => StringFormats.PercentFormat(AtlPercentChange);
-        public string MarketCapFormat => StringFormats.CurrencyFormat(MarketCap, Symbol);
+        public string MarketCapFormat => StringFormats.CurrencyFormat(MarketCap);
 
         public string CirculatingSupplyFormat => StringFormats.CurrencyFormat(CirculatingSupply, Symbol);
 

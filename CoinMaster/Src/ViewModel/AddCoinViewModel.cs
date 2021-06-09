@@ -10,7 +10,7 @@ namespace CoinMaster.ViewModel
     {
         public AddCoinPanelViewModel AddCoinPanel { get; set; }
 
-        private IEventAggregator events;
+        private readonly IEventAggregator events;
 
         private BindingList<Coin> _coins;
         public BindingList<Coin> Coins

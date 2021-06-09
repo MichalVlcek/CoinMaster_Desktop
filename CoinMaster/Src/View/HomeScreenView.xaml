@@ -27,7 +27,8 @@
             <ListView x:Name="CoinList"
                       Background="Transparent"
                       BorderBrush="Transparent"
-                      ItemsSource="{Binding Coins}">
+                      ItemsSource="{Binding Coins}"
+                      SelectedItem="{Binding SelectedCoin}">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="{StaticResource Coin}"
@@ -125,7 +126,7 @@
                     Content="EDIT SELECTED"
                     Margin="0,6,6,6"
                     Style="{StaticResource BlueButtonTheme}" 
-                    Command="{s:Action NavigateToCoinOverview}"/>
+                    Command="{s:Action NavigateToCoinDetail}"/>
             <Button Grid.Column="1"
                     x:Name="DeleteButton"
                     Content="DELETE SELECTED"

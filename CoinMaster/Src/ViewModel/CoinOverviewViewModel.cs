@@ -1,10 +1,11 @@
-﻿using CoinMaster.Interfaces;
-using Stylet;
+﻿using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class CoinOverviewViewModel : Screen
+    public class CoinOverviewViewModel : AbstractCoinSubscriber
     {
-
+        public CoinOverviewViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        {
+        }
     }
 }
