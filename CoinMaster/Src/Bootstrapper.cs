@@ -1,6 +1,5 @@
 ﻿using CoinMaster.Core;
 using CoinMaster.Modules;
-using CoinMaster.View;
 using CoinMaster.ViewModel;
 using Stylet;
 using StyletIoC;
