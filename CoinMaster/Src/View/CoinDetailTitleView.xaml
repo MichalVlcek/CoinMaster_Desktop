@@ -13,8 +13,8 @@
         <Image x:Name="CoinIcon"
                Source="{Binding SelectedCoin.Icon}"
                RenderOptions.BitmapScalingMode="HighQuality"
-               Width="50"
-               Height="50"
+               Width="40"
+               Height="40"
                HorizontalAlignment="Left"
                Margin="0,0,10,0" />
 

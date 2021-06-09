@@ -13,16 +13,21 @@
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="1*" />
             <RowDefinition Height="4*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"
-                   Style="{StaticResource BasicLabel}"
-                   Text="Investment Overview"
-                   HorizontalAlignment="Center"
-                   FontSize="32" />
+        <Border Grid.Row="0"
+                Background="{StaticResource BackgroundLighter}"
+                Style="{StaticResource BoxBorder}"
+                BorderThickness="5,5,5,3">
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource BasicLabel}"
+                       Text="Investment Overview"
+                       HorizontalAlignment="Center"
+                       FontSize="25" />
+        </Border>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -132,11 +137,15 @@
             </Border>
         </Grid>
 
-        <TextBlock Grid.Row="2"
-                   Style="{StaticResource BasicLabel}"
-                   Text="General Overview"
-                   HorizontalAlignment="Center"
-                   FontSize="32" />
+        <Border Grid.Row="2"
+                Background="{StaticResource BackgroundLighter}"
+                Style="{StaticResource BoxBorder}"
+                BorderThickness="5,3,5,3">
+            <TextBlock Style="{StaticResource BasicLabel}"
+                       Text="General Overview"
+                       HorizontalAlignment="Center"
+                       FontSize="25" />
+        </Border>
 
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
