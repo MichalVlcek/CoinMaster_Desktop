@@ -31,6 +31,10 @@
                 Command="{s:Action NavigateToHomeScreen}"
                 Style="{StaticResource BlueButtonTheme}" />
 
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        s:View.Model="{Binding CoinTitle}" />
+
         <RadioButton Grid.Row="0"
                      Grid.Column="2"
                      Style="{StaticResource MenuButtonTheme}"

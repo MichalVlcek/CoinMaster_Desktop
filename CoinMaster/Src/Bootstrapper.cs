@@ -13,6 +13,7 @@ namespace CoinMaster
             builder.AddModule(new NavigationModule());
             
             builder.Bind<CoinOverviewViewModel>().ToSelf().InSingletonScope();
+            builder.Bind<CoinDetailTitleViewModel>().ToSelf().InSingletonScope();
         }
 
         protected override void OnLaunch()
@@ -21,8 +22,9 @@ namespace CoinMaster
             navigationController.Delegate = RootViewModel;
             navigationController.NavigateToHomeScreen();
 
-            // Creating instance of the object on launch, because I need the object to be already created when starting app
+            // Creating instances of the objects on launch, because I need the objects to be already created when starting app
             var coinOverview = Container.Get<CoinOverviewViewModel>();
+            var coinTitle = Container.Get<CoinDetailTitleViewModel>();
         }
     }
 }

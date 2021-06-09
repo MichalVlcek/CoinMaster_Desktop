@@ -374,7 +374,7 @@
                             Orientation="Horizontal"
                             Margin="10,0,0,0">
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="7d %:"
+                               Text="7d Change:"
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}"
                                FontSize="14" />
