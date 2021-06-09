@@ -21,6 +21,8 @@
                 <ResourceDictionary Source="Resources/Theme/TextBoxTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BoxBorder.xaml" />
+                <ResourceDictionary Source="Resources/Theme/TopbarButtonTheme.xaml" />
+                <ResourceDictionary Source="Resources/Theme/LightButtonTheme.xaml" />
             </s:ApplicationLoader.MergedDictionaries>
 
         </s:ApplicationLoader>

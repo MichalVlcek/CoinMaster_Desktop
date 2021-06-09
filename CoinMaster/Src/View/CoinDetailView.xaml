@@ -13,7 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="9*" />
+            <RowDefinition Height="12*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -27,9 +27,9 @@
         <Button Grid.Column="0"
                 Grid.Row="0"
                 Content="Back"
-                Margin="15"
+                Margin="10"
                 Command="{s:Action NavigateToHomeScreen}"
-                Style="{StaticResource BlueButtonTheme}" />
+                Style="{StaticResource LightButtonTheme}" />
 
         <ContentControl Grid.Row="0"
                         Grid.Column="1"
@@ -37,7 +37,7 @@
 
         <RadioButton Grid.Row="0"
                      Grid.Column="2"
-                     Style="{StaticResource MenuButtonTheme}"
+                     Style="{StaticResource TopbarButtonTheme}"
                      Command="{s:Action ShowOverview}"
                      IsChecked="True"
                      GroupName="Menu"
@@ -45,7 +45,7 @@
 
         <RadioButton Grid.Row="0"
                      Grid.Column="3"
-                     Style="{StaticResource MenuButtonTheme}"
+                     Style="{StaticResource TopbarButtonTheme}"
                      Command="{s:Action ShowTransactions}"
                      GroupName="Menu"
                      Content="Transactions" />
