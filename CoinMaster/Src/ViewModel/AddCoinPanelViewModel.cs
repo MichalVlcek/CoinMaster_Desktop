@@ -5,9 +5,8 @@ namespace CoinMaster.ViewModel
 {
     public class AddCoinPanelViewModel : AbstractCoinSubscriber
     {
-        public AddCoinPanelViewModel(IEventAggregator eventAggregator)
+        public AddCoinPanelViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-            eventAggregator.Subscribe(this);
         }
 
         public void AddCoin()

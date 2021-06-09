@@ -4,9 +4,8 @@ namespace CoinMaster.ViewModel
 {
     public class CoinOverviewViewModel : AbstractCoinSubscriber
     {
-        public CoinOverviewViewModel(IEventAggregator eventAggregator)
+        public CoinOverviewViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-            eventAggregator.Subscribe(this);
         }
     }
 }

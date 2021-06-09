@@ -13,6 +13,11 @@ namespace CoinMaster.ViewModel
             private set => SetAndNotify(ref _selectedCoin, value);
         }
         
+        public AbstractCoinSubscriber(IEventAggregator eventAggregator)
+        {
+            eventAggregator.Subscribe(this);
+        }
+        
         public void Handle(CoinSelectedEvent message)
         {
             SelectedCoin = message.Coin;
