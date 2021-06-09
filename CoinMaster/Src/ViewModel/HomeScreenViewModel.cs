@@ -34,6 +34,6 @@ namespace CoinMaster.ViewModel
             DashboardOverview = dashboardOverviewViewModel;
         }
 
-        public void NavigateToCoinOverview() => navigationController.NavigateToCoinOverview();
+        public void NavigateToCoinDetail() => navigationController.NavigateToCoinDetail();
     }
 }
