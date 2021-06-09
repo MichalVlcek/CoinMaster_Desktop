@@ -26,4 +26,22 @@
       <PackageReference Include="Stylet" Version="1.3.6" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Page Update="Resources\Theme\Buttons\BasicButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\BlueButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\MenuButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\RedButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\LightButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
 </Project>
