@@ -30,10 +30,10 @@ namespace CoinMaster.ViewModel
                 new Transaction
                 {
                     Type = TransactionType.BUY,
-                    Date = DateTime.Now.Date,
+                    Date = DateTime.Now,
                     CoinId = "bitcoin",
                     Amount = 0.125m,
-                    Cost = 520,
+                    CoinPrice = 52000,
                     Fee = 2,
                     Description = "ajaoa"
                 }

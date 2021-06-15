@@ -1,4 +1,5 @@
 ﻿using System;
+using CoinMaster.Utility;
 
 namespace CoinMaster.Model
 {
@@ -7,11 +8,16 @@ namespace CoinMaster.Model
         public TransactionType Type { get; init; }
         public string CoinId { get; init; }
         public DateTime Date { get; init; }
-        public decimal Cost { get; init; }
+        public decimal CoinPrice { get; init; }
         public decimal Amount { get; init; }
         public decimal Fee { get; init; }
         public string Description { get; init; }
 
-        public decimal TotalCost => Cost + Fee;
+        private decimal Cost => CoinPrice * Amount;
+        public string CostFormat => StringFormats.CurrencyFormat(Cost);
+        public string TotalCostFormat => StringFormats.CurrencyFormat(Cost + Fee);
+        public string DateFormat => Date.ToShortDateString();
+        public string CoinPriceFormat => StringFormats.CurrencyFormat(CoinPrice);
+        public string FeeFormat => StringFormats.CurrencyFormat(Fee);
     }
 }

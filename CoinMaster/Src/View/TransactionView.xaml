@@ -30,7 +30,7 @@
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="Type"
-                                        Width="50">
+                                        Width="60">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Type }"
@@ -41,22 +41,22 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Date"
-                                        Width="100">
+                                        Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
 
-                                    <TextBlock Text="{Binding Date}"
+                                    <TextBlock Text="{Binding DateFormat}"
                                                Foreground="White"
-                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
                                                FontSize="14" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Cost"
+                        <GridViewColumn Header="Coin Price"
                                         Width="95">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TotalCost}"
+                                    <TextBlock Text="{Binding CoinPriceFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -64,13 +64,30 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Amount"
-                                        Width="115">
+                                        Width="105">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Amount}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Total Cost"
+                                        Width="110">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding TotalCostFormat}"
+                                                   Foreground="White"
+                                                   FontSize="14"
+                                                   TextAlignment="Right" />
+                                        <TextBlock Text="{Binding FeeFormat}"
+                                                   Foreground="{StaticResource Grey}"
+                                                   FontSize="10"
+                                                   TextAlignment="Right" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
