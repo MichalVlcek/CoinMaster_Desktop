@@ -15,6 +15,12 @@
             <ColumnDefinition Width="10*" />
             <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
         <ScrollViewer Grid.Column="0"
                       Margin="10"
                       HorizontalContentAlignment="Stretch"
@@ -96,8 +102,26 @@
             </ListView>
         </ScrollViewer>
 
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <ContentControl Grid.Column="1">
+            <Button Grid.Column="0"
+                    Content="ADD NEW TRANSACTION"
+                    Margin="6,6,6,6"
+                    Style="{StaticResource BlueButtonTheme}" />
+            <Button Grid.Column="1"
+                    Content="DELETE SELECTED"
+                    Margin="6,6,6,6"
+                    Style="{StaticResource RedButtonTheme}" />
+        </Grid>
+
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.RowSpan="2">
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Setter Property="s:View.Model"
