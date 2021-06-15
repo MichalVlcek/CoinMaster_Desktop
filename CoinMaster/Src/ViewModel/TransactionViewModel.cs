@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
 
@@ -7,6 +8,8 @@ namespace CoinMaster.ViewModel
 {
     public class TransactionViewModel : AbstractCoinSubscriber
     {
+        private IEventAggregator eventAggregator;
+
         private BindingList<Transaction> _transactions;
 
         public BindingList<Transaction> Transactions
@@ -20,11 +23,17 @@ namespace CoinMaster.ViewModel
         public Transaction SelectedTransaction
         {
             get => _selectedTransaction;
-            set => SetAndNotify(ref _selectedTransaction, value);
+            set
+            {
+                SetAndNotify(ref _selectedTransaction, value);
+                eventAggregator.Publish(new ElementSelectedEvent<Transaction> {Element = _selectedTransaction});
+            }
         }
-        
+
         public TransactionViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
+            this.eventAggregator = eventAggregator;
+
             Transactions = new BindingList<Transaction>()
             {
                 new Transaction

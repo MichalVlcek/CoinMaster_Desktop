@@ -1,6 +1,6 @@
 ﻿namespace CoinMaster.Events
 {
-    public class SelectedElementEvent<T>
+    public class ElementSelectedEvent<T>
     {
         public T Element { get; init; }
     }
