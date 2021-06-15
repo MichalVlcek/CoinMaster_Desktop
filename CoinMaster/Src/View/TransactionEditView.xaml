@@ -95,6 +95,8 @@
                        Margin="20,0,0,0" />
 
             <TextBox FontSize="16"
+                     AcceptsReturn="True"
+                     Padding="5"
                      Foreground="{StaticResource White}"
                      Background="{StaticResource BackgroundLighter}"
                      BorderBrush="{StaticResource Orange}"
