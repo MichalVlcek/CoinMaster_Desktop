@@ -17,7 +17,7 @@ namespace CoinMaster.ViewModel
             set
             {
                 SetAndNotify(ref _selectedCoin, value);
-                events.Publish(new CoinSelectedEvent {Coin = SelectedCoin});
+                events.Publish(new SelectedElementEvent<Coin> {Element = SelectedCoin});
             }
         }
 
