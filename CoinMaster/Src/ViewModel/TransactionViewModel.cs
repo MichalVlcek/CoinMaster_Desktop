@@ -10,6 +10,8 @@ namespace CoinMaster.ViewModel
     {
         private IEventAggregator eventAggregator;
 
+        public TransactionEditViewModel TransactionEdit { get; }
+        
         private BindingList<Transaction> _transactions;
 
         public BindingList<Transaction> Transactions
@@ -30,9 +32,10 @@ namespace CoinMaster.ViewModel
             }
         }
 
-        public TransactionViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public TransactionViewModel(IEventAggregator eventAggregator, TransactionEditViewModel transactionEdit) : base(eventAggregator)
         {
             this.eventAggregator = eventAggregator;
+            TransactionEdit = transactionEdit;
 
             Transactions = new BindingList<Transaction>()
             {

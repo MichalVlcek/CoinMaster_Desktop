@@ -11,5 +11,101 @@
              d:DesignWidth="412">
     <Grid Background="{StaticResource BackgroundLight}">
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Text="Transaction Type:"
+                   Style="{StaticResource BasicLabel}"
+                   Margin="20,0,0,0" />
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Price Per Coin:"
+                   Style="{StaticResource BasicLabel}"
+                   Margin="20,0,0,0" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Amount:"
+                   Style="{StaticResource BasicLabel}"
+                   Margin="20,0,0,0" />
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Fee:"
+                   Style="{StaticResource BasicLabel}"
+                   Margin="20,0,0,0" />
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Date:"
+                   Style="{StaticResource BasicLabel}"
+                   Margin="20,0,0,0" />
+
+        <ComboBox Grid.Row="0"
+                  Grid.Column="1"
+                  Background="{StaticResource BackgroundDark}"
+                  Foreground="{StaticResource White}"
+                  Margin="10" />
+
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Style="{StaticResource BasicTextBox}"
+                 Text="0"
+                 Margin="10" />
+
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Style="{StaticResource BasicTextBox}"
+                 Text="0"
+                 Margin="10" />
+
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Style="{StaticResource BasicTextBox}"
+                 Text="0"
+                 Margin="10" />
+
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Style="{StaticResource BasicTextBox}"
+                 Text="0"
+                 Margin="10" />
+
+        <DockPanel Grid.Row="5"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+            <TextBlock DockPanel.Dock="Top"
+                       Text="Description:"
+                       Style="{StaticResource BasicLabel}"
+                       Margin="20,0,0,0" />
+
+            <TextBox FontSize="16"
+                     Foreground="{StaticResource White}"
+                     Background="{StaticResource BackgroundLighter}"
+                     BorderBrush="{StaticResource Orange}"
+                     Margin="20,10,20,10" />
+        </DockPanel>
+
+        <Button Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource BlueButtonTheme}"
+                Content="UPDATE TRANSACTION"
+                Margin="10" />
     </Grid>
 </UserControl>

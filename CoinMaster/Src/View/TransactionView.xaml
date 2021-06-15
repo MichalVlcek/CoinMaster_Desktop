@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="11*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
@@ -111,11 +111,11 @@
 
             <Button Grid.Column="0"
                     Content="ADD NEW TRANSACTION"
-                    Margin="6,6,6,6"
+                    Margin="8"
                     Style="{StaticResource BlueButtonTheme}" />
             <Button Grid.Column="1"
                     Content="DELETE SELECTED"
-                    Margin="6,6,6,6"
+                    Margin="8"
                     Style="{StaticResource RedButtonTheme}" />
         </Grid>
 
@@ -125,7 +125,7 @@
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Setter Property="s:View.Model"
-                            Value="{Binding TransactionEditPanel}" />
+                            Value="{Binding TransactionEdit}" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding SelectedTransaction }"
                                      Value="{x:Null}">
