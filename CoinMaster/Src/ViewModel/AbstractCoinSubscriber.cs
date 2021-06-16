@@ -4,7 +4,7 @@ using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class AbstractCoinSubscriber : Screen, IHandle<CoinSelectedEvent>
+    public class AbstractCoinSubscriber : Screen, IHandle<ElementSelectedEvent<Coin>>
     {
         private Coin _selectedCoin;
         public Coin SelectedCoin
@@ -18,9 +18,9 @@ namespace CoinMaster.ViewModel
             eventAggregator.Subscribe(this);
         }
         
-        public void Handle(CoinSelectedEvent message)
+        public void Handle(ElementSelectedEvent<Coin> message)
         {
-            SelectedCoin = message.Coin;
+            SelectedCoin = message.Element;
         }
     }
 }

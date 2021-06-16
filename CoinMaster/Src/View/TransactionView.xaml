@@ -11,6 +11,146 @@
              d:DesignHeight="720"
              d:DesignWidth="927">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="9*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Column="0"
+                      Margin="10"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto">
+            <ListView x:Name="TransactionList"
+                      Background="Transparent"
+                      BorderBrush="Transparent"
+                      SelectionMode="Single"
+                      ItemsSource="{Binding Transactions}"
+                      SelectedItem="{Binding SelectedTransaction}">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                        <GridViewColumn Header="Type"
+                                        Width="60">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Type }"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Date"
+                                        Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock Text="{Binding DateFormat}"
+                                               Foreground="White"
+                                               TextAlignment="Center"
+                                               FontSize="14" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Coin Price"
+                                        Width="95">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CoinPriceFormat}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Amount"
+                                        Width="105">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Amount}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Total Cost"
+                                        Width="110">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding TotalCostFormat}"
+                                                   Foreground="White"
+                                                   FontSize="14"
+                                                   TextAlignment="Right" />
+                                        <TextBlock Text="{Binding FeeFormat}"
+                                                   Foreground="{StaticResource Grey}"
+                                                   FontSize="10"
+                                                   TextAlignment="Right" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Content="ADD NEW TRANSACTION"
+                    Margin="8"
+                    Style="{StaticResource BlueButtonTheme}" 
+                    Command="{s:Action AddNewTransaction}"/>
+            <Button Grid.Column="1"
+                    Content="DELETE SELECTED"
+                    Margin="8"
+                    Style="{StaticResource RedButtonTheme}"
+                    Command="{s:Action DeleteTransactions}"/>
+        </Grid>
+
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.RowSpan="2">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="s:View.Model"
+                            Value="{Binding TransactionEdit}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedTransaction }"
+                                     Value="{x:Null}">
+                            <Setter Property="ContentControl.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch"
+                                              Background="{StaticResource BackgroundLight}">
+
+                                            <TextBlock TextAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="30"
+                                                       Foreground="{StaticResource White}"
+                                                       Text="No Transaction Selected." />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
     </Grid>
 </UserControl>

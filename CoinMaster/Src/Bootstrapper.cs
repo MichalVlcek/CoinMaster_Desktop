@@ -12,6 +12,7 @@ namespace CoinMaster
         {
             builder.AddModule(new NavigationModule());
             builder.AddModule(new SingletonModule());
+            builder.AddModule(new ValidationModule());
         }
 
         protected override void OnLaunch()

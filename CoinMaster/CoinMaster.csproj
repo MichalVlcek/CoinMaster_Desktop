@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="10.2.3" />
       <PackageReference Include="RestSharp" Version="106.11.7" />
       <PackageReference Include="Stylet" Version="1.3.6" />
     </ItemGroup>

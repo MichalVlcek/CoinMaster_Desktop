@@ -6,7 +6,8 @@ namespace CoinMaster.ViewModel
     public class CoinDetailViewModel : Screen
     {
         public CoinDetailTitleViewModel CoinTitle { get; }
-        public CoinOverviewViewModel CoinOverview { get; }
+        private CoinOverviewViewModel CoinOverview { get; }
+        private TransactionViewModel TransactionViewModel { get; }
 
         private readonly INavigationController navigationController;
 
@@ -20,16 +21,18 @@ namespace CoinMaster.ViewModel
 
         public CoinDetailViewModel(INavigationController navigationController, 
             CoinDetailTitleViewModel coinTitle,
-            CoinOverviewViewModel coinOverview)
+            CoinOverviewViewModel coinOverview,
+            TransactionViewModel transactionScreen)
         {
             CoinTitle = coinTitle;
             CoinOverview = coinOverview;
+            TransactionViewModel = transactionScreen;
             SelectedScreen = coinOverview;
             this.navigationController = navigationController;
         }
 
         public void ShowOverview() => SelectedScreen = CoinOverview;
-        public void ShowTransactions() => SelectedScreen = CoinOverview;
+        public void ShowTransactions() => SelectedScreen = TransactionViewModel;
 
         public void NavigateToHomeScreen() => navigationController.NavigateToHomeScreen();
     }
