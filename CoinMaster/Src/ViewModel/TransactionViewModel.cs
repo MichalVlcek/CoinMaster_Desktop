@@ -16,7 +16,11 @@ namespace CoinMaster.ViewModel
         public BindingList<Transaction> Transactions
         {
             get => _transactions;
-            set => SetAndNotify(ref _transactions, value);
+            set
+            {
+                SetAndNotify(ref _transactions, value);
+                NotifyOfPropertyChange(() => CanDelete);
+            }
         }
 
         private Transaction _selectedTransaction;
@@ -26,16 +30,20 @@ namespace CoinMaster.ViewModel
             set
             {
                 SetAndNotify(ref _selectedTransaction, value);
+                NotifyOfPropertyChange(() => CanDelete);
                 eventAggregator.Publish(new ElementSelectedEvent<Transaction> {Element = _selectedTransaction});
             }
         }
+
+        public bool CanDelete =>
+            SelectedTransaction is not null && !Transaction.IsEmptyTransaction(SelectedTransaction);
 
         public TransactionViewModel(IEventAggregator eventAggregator, TransactionEditViewModel transactionEdit)
             : base(eventAggregator)
         {
             this.eventAggregator = eventAggregator;
             TransactionEdit = transactionEdit;
-            
+
             TmpDatabase.Transactions.Add(
                 new Transaction
                 {
@@ -65,7 +73,7 @@ namespace CoinMaster.ViewModel
         public void AddNewTransaction() => SelectedTransaction = Transaction.EmptyTransaction;
 
         public void DeleteTransactions() => Transactions.Remove(SelectedTransaction);
-        
+
         public void Handle(TransactionsUpdatedEvent message)
         {
             Transactions = new BindingList<Transaction>(message.Transactions);

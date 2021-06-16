@@ -24,11 +24,18 @@ namespace CoinMaster.Model
         {
             Type = TransactionType.BUY,
             CoinId = "",
-            Date = DateTime.Now,
+            Date = DateTime.Now.Date,
             CoinPrice = 0,
             Amount = 0,
             Fee = 0,
             Description = ""
         };
+
+        public static bool IsEmptyTransaction(Transaction transaction) => transaction.CoinId == "" &&
+                                                                          transaction.Date == DateTime.Now.Date &&
+                                                                          transaction.CoinPrice == 0 &&
+                                                                          transaction.Amount == 0 &&
+                                                                          transaction.Fee == 0 &&
+                                                                          transaction.Description == "";
     }
 }
