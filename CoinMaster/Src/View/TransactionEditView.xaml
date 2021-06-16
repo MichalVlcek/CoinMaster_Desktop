@@ -59,7 +59,12 @@
 
         <ComboBox Grid.Row="0"
                   Grid.Column="1"
-                  Background="{StaticResource BackgroundDark}"
+                  ItemsSource="{Binding TransactionTypes}"
+                  SelectedItem="{Binding SelectedType}"
+                  VerticalContentAlignment="Center"
+                  VerticalAlignment="Center"
+                  Height="30"
+                  Style="{StaticResource ComboBoxTheme}"
                   Foreground="{StaticResource White}"
                   Margin="10" />
 

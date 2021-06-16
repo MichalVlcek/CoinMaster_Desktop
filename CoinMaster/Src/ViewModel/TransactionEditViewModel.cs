@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
@@ -8,12 +10,22 @@ namespace CoinMaster.ViewModel
     public class TransactionEditViewModel : AbstractCoinSubscriber, IHandle<ElementSelectedEvent<Transaction>>
     {
         private readonly IEventAggregator eventAggregator;
-        
+
         private Transaction _selectedTransaction;
-        public Transaction SelectedTransaction
+        private Transaction SelectedTransaction
         {
             get => _selectedTransaction;
             set => SetAndNotify(ref _selectedTransaction, value);
+        }
+
+        public BindingList<TransactionType> TransactionTypes { get; } =
+            new(Enum.GetValues(typeof(TransactionType)).Cast<TransactionType>().ToList());
+
+        private TransactionType _selectedType;
+        public TransactionType SelectedType
+        {
+            get => _selectedType;
+            set => SetAndNotify(ref _selectedType, value);
         }
 
         private decimal _coinPrice;
@@ -59,6 +71,7 @@ namespace CoinMaster.ViewModel
         public void Handle(ElementSelectedEvent<Transaction> message)
         {
             SelectedTransaction = message.Element;
+            SelectedType = SelectedTransaction.Type;
             CoinPriceText = SelectedTransaction.CoinPrice;
             AmountText = SelectedTransaction.Amount;
             FeeText = SelectedTransaction.Fee;
@@ -68,6 +81,7 @@ namespace CoinMaster.ViewModel
 
         public void UpdateTransaction()
         {
+            SelectedTransaction.Type = SelectedType;
             SelectedTransaction.CoinPrice = CoinPriceText;
             SelectedTransaction.Amount = AmountText;
             SelectedTransaction.Fee = FeeText;
@@ -77,7 +91,7 @@ namespace CoinMaster.ViewModel
             {
                 TmpDatabase.Transactions.Add(SelectedTransaction);
             }
-            
+
             eventAggregator.Publish(new TransactionsUpdatedEvent {Transactions = TmpDatabase.Transactions});
         }
     }
