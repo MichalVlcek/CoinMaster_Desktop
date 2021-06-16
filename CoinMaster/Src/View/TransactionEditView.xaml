@@ -119,6 +119,7 @@
                 Grid.ColumnSpan="2"
                 Style="{StaticResource BlueButtonTheme}"
                 Command="{s:Action UpdateTransaction}"
+                IsEnabled="{Binding CanSubmit}"
                 Content="UPDATE TRANSACTION"
                 Margin="10" />
     </Grid>

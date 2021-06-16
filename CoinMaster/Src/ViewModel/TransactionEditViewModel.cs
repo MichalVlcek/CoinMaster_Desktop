@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using CoinMaster.Events;
 using CoinMaster.Model;
@@ -7,15 +9,25 @@ using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class TransactionEditViewModel : AbstractCoinSubscriber, IHandle<ElementSelectedEvent<Transaction>>
+    public class TransactionEditViewModel : Screen,
+        IHandle<ElementSelectedEvent<Coin>>,
+        IHandle<ElementSelectedEvent<Transaction>>
     {
         private readonly IEventAggregator eventAggregator;
+        private IWindowManager windowManager;
 
         private Transaction _selectedTransaction;
         private Transaction SelectedTransaction
         {
             get => _selectedTransaction;
             set => SetAndNotify(ref _selectedTransaction, value);
+        }
+
+        private Coin _selectedCoin;
+        public Coin SelectedCoin
+        {
+            get => _selectedCoin;
+            private set => SetAndNotify(ref _selectedCoin, value);
         }
 
         public BindingList<TransactionType> TransactionTypes { get; } =
@@ -28,22 +40,22 @@ namespace CoinMaster.ViewModel
             set => SetAndNotify(ref _selectedType, value);
         }
 
-        private decimal _coinPrice;
-        public decimal CoinPriceText
+        private string _coinPrice;
+        public string CoinPriceText
         {
             get => _coinPrice;
             set => SetAndNotify(ref _coinPrice, value);
         }
 
-        private decimal _amount;
-        public decimal AmountText
+        private string _amount;
+        public string AmountText
         {
             get => _amount;
             set => SetAndNotify(ref _amount, value);
         }
 
-        private decimal _fee;
-        public decimal FeeText
+        private string _fee;
+        public string FeeText
         {
             get => _fee;
             set => SetAndNotify(ref _fee, value);
@@ -63,28 +75,41 @@ namespace CoinMaster.ViewModel
             set => SetAndNotify(ref _description, value);
         }
 
-        public TransactionEditViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public bool CanSubmit => !HasErrors || !AutoValidate;
+
+        public TransactionEditViewModel(IWindowManager windowManager,
+            IModelValidator<TransactionEditViewModel> validator, IEventAggregator eventAggregator) : base(validator)
         {
+            this.windowManager = windowManager;
             this.eventAggregator = eventAggregator;
+
+            eventAggregator.Subscribe(this);
         }
 
         public void Handle(ElementSelectedEvent<Transaction> message)
         {
             SelectedTransaction = message.Element;
             SelectedType = SelectedTransaction.Type;
-            CoinPriceText = SelectedTransaction.CoinPrice;
-            AmountText = SelectedTransaction.Amount;
-            FeeText = SelectedTransaction.Fee;
+            CoinPriceText = SelectedTransaction.CoinPrice.ToString(CultureInfo.InvariantCulture);
+            AmountText = SelectedTransaction.Amount.ToString(CultureInfo.InvariantCulture);
+            FeeText = SelectedTransaction.Fee.ToString(CultureInfo.InvariantCulture);
             DateText = SelectedTransaction.Date;
             DescriptionText = SelectedTransaction.Description;
+
+            Validate();
+        }
+        
+        public void Handle(ElementSelectedEvent<Coin> message)
+        {
+            SelectedCoin = message.Element;
         }
 
         public void UpdateTransaction()
         {
             SelectedTransaction.Type = SelectedType;
-            SelectedTransaction.CoinPrice = CoinPriceText;
-            SelectedTransaction.Amount = AmountText;
-            SelectedTransaction.Fee = FeeText;
+            SelectedTransaction.CoinPrice = Convert.ToDecimal(CoinPriceText, CultureInfo.InvariantCulture);
+            SelectedTransaction.Amount = Convert.ToDecimal(AmountText, CultureInfo.InvariantCulture);
+            SelectedTransaction.Fee = Convert.ToDecimal(FeeText, CultureInfo.InvariantCulture);
             SelectedTransaction.Date = DateText;
             SelectedTransaction.Description = DescriptionText;
             if (!TmpDatabase.Transactions.Contains(SelectedTransaction))
@@ -93,6 +118,12 @@ namespace CoinMaster.ViewModel
             }
 
             eventAggregator.Publish(new TransactionsUpdatedEvent {Transactions = TmpDatabase.Transactions});
+        }
+
+        protected override void OnValidationStateChanged(IEnumerable<string> changedProperties)
+        {
+            base.OnValidationStateChanged(changedProperties);
+            NotifyOfPropertyChange(() => CanSubmit);
         }
     }
 }
