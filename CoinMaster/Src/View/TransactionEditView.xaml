@@ -70,19 +70,19 @@
 
         <TextBox Grid.Row="1"
                  Grid.Column="1"
-                 Text="{Binding CoinPriceText}"
+                 Text="{Binding CoinPriceText, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BasicTextBox}"
                  Margin="10" />
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
-                 Text="{Binding AmountText}"
+                 Text="{Binding AmountText, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BasicTextBox}"
                  Margin="10" />
 
         <TextBox Grid.Row="3"
                  Grid.Column="1"
-                 Text="{Binding FeeText}"
+                 Text="{Binding FeeText, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BasicTextBox}"
                  Margin="10" />
 
