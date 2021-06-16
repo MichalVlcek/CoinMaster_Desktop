@@ -8,7 +8,6 @@ namespace CoinMaster.ViewModel
     public class TransactionEditViewModel : AbstractCoinSubscriber, IHandle<ElementSelectedEvent<Transaction>>
     {
         private Transaction _selectedTransaction;
-
         public Transaction SelectedTransaction
         {
             get => _selectedTransaction ?? Transaction.EmptyTransaction;
@@ -16,15 +15,13 @@ namespace CoinMaster.ViewModel
         }
 
         private decimal _coinPrice;
-
         public decimal CoinPriceText
         {
             get => _coinPrice;
             set => SetAndNotify(ref _coinPrice, value);
         }
-        
-        private decimal _amount;
 
+        private decimal _amount;
         public decimal AmountText
         {
             get => _amount;
@@ -32,7 +29,6 @@ namespace CoinMaster.ViewModel
         }
 
         private decimal _fee;
-
         public decimal FeeText
         {
             get => _fee;
@@ -40,15 +36,13 @@ namespace CoinMaster.ViewModel
         }
 
         private DateTime? _date;
-
         public DateTime? DateText
         {
             get => _date;
             set => SetAndNotify(ref _date, value);
         }
-        
-        private string _description;
 
+        private string _description;
         public string DescriptionText
         {
             get => _description;
