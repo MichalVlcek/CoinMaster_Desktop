@@ -24,10 +24,10 @@ namespace CoinMaster.ViewModel
         }
 
         private Coin _selectedCoin;
-        public Coin SelectedCoin
+        private Coin SelectedCoin
         {
             get => _selectedCoin;
-            private set => SetAndNotify(ref _selectedCoin, value);
+            set => SetAndNotify(ref _selectedCoin, value);
         }
 
         public BindingList<TransactionType> TransactionTypes { get; } =
@@ -41,35 +41,35 @@ namespace CoinMaster.ViewModel
         }
 
         private string _coinPrice;
-        public string CoinPriceText
+        public string CoinPrice
         {
             get => _coinPrice;
             set => SetAndNotify(ref _coinPrice, value);
         }
 
         private string _amount;
-        public string AmountText
+        public string Amount
         {
             get => _amount;
             set => SetAndNotify(ref _amount, value);
         }
 
         private string _fee;
-        public string FeeText
+        public string Fee
         {
             get => _fee;
             set => SetAndNotify(ref _fee, value);
         }
 
         private DateTime? _date;
-        public DateTime DateText
+        public DateTime Date
         {
             get => _date ?? DateTime.Now;
             set => SetAndNotify(ref _date, value);
         }
 
         private string _description;
-        public string DescriptionText
+        public string Description
         {
             get => _description;
             set => SetAndNotify(ref _description, value);
@@ -90,11 +90,11 @@ namespace CoinMaster.ViewModel
         {
             SelectedTransaction = message.Element;
             SelectedType = SelectedTransaction.Type;
-            CoinPriceText = SelectedTransaction.CoinPrice.ToString(CultureInfo.InvariantCulture);
-            AmountText = SelectedTransaction.Amount.ToString(CultureInfo.InvariantCulture);
-            FeeText = SelectedTransaction.Fee.ToString(CultureInfo.InvariantCulture);
-            DateText = SelectedTransaction.Date;
-            DescriptionText = SelectedTransaction.Description;
+            CoinPrice = SelectedTransaction.CoinPrice.ToString(CultureInfo.InvariantCulture);
+            Amount = SelectedTransaction.Amount.ToString(CultureInfo.InvariantCulture);
+            Fee = SelectedTransaction.Fee.ToString(CultureInfo.InvariantCulture);
+            Date = SelectedTransaction.Date;
+            Description = SelectedTransaction.Description;
 
             Validate();
         }
@@ -107,11 +107,11 @@ namespace CoinMaster.ViewModel
         public void UpdateTransaction()
         {
             SelectedTransaction.Type = SelectedType;
-            SelectedTransaction.CoinPrice = Convert.ToDecimal(CoinPriceText, CultureInfo.InvariantCulture);
-            SelectedTransaction.Amount = Convert.ToDecimal(AmountText, CultureInfo.InvariantCulture);
-            SelectedTransaction.Fee = Convert.ToDecimal(FeeText, CultureInfo.InvariantCulture);
-            SelectedTransaction.Date = DateText;
-            SelectedTransaction.Description = DescriptionText;
+            SelectedTransaction.CoinPrice = Convert.ToDecimal(CoinPrice, CultureInfo.InvariantCulture);
+            SelectedTransaction.Amount = Convert.ToDecimal(Amount, CultureInfo.InvariantCulture);
+            SelectedTransaction.Fee = Convert.ToDecimal(Fee, CultureInfo.InvariantCulture);
+            SelectedTransaction.Date = Date;
+            SelectedTransaction.Description = Description;
             if (!TmpDatabase.Transactions.Contains(SelectedTransaction))
             {
                 TmpDatabase.Transactions.Add(SelectedTransaction);

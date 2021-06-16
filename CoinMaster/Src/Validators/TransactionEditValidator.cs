@@ -9,13 +9,13 @@ namespace CoinMaster.Validators
 
         public TransactionEditValidator()
         {
-            RuleFor(x => x.CoinPriceText)
+            RuleFor(x => x.CoinPrice)
                 .NotEmpty().WithMessage("{PropertyName} can't be empty")
                 .Matches(NumberRegex).WithMessage("{PropertyName} must be number");
-            RuleFor(x => x.AmountText)
+            RuleFor(x => x.Amount)
                 .NotEmpty().WithMessage("{PropertyName} can't be empty")
                 .Matches(NumberRegex).WithMessage("{PropertyName} must be number");
-            RuleFor(x => x.FeeText)
+            RuleFor(x => x.Fee)
                 .NotEmpty().WithMessage("{PropertyName} can't be empty")
                 .Matches(NumberRegex).WithMessage("{PropertyName} must be number");
         }

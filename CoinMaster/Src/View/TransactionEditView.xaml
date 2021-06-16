@@ -70,19 +70,19 @@
 
         <TextBox Grid.Row="1"
                  Grid.Column="1"
-                 Text="{Binding CoinPriceText, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding CoinPrice, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BasicTextBox}"
                  Margin="10" />
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
-                 Text="{Binding AmountText, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BasicTextBox}"
                  Margin="10" />
 
         <TextBox Grid.Row="3"
                  Grid.Column="1"
-                 Text="{Binding FeeText, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Fee, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource BasicTextBox}"
                  Margin="10" />
 
@@ -91,7 +91,7 @@
                     VerticalAlignment="Center"
                     Focusable="False"
                     SelectedDate="{Binding
-                        Path=DateText,
+                        Path=Date,
                         Mode=TwoWay,
                         TargetNullValue={x:Static System:DateTime.Now}}"
                     Margin="10" />
@@ -107,7 +107,7 @@
             <TextBox FontSize="16"
                      AcceptsReturn="True"
                      Padding="5"
-                     Text="{Binding DescriptionText}"
+                     Text="{Binding Description}"
                      Foreground="{StaticResource White}"
                      Background="{StaticResource BackgroundLighter}"
                      BorderBrush="{StaticResource Orange}"
