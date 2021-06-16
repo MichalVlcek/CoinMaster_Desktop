@@ -19,5 +19,16 @@ namespace CoinMaster.Model
         public string DateFormat => Date.ToShortDateString();
         public string CoinPriceFormat => StringFormats.CurrencyFormat(CoinPrice);
         public string FeeFormat => StringFormats.CurrencyFormat(Fee);
+
+        public static Transaction EmptyTransaction => new Transaction
+        {
+            Type = TransactionType.BUY,
+            CoinId = "",
+            Date = DateTime.Now,
+            CoinPrice = 0,
+            Amount = 0,
+            Fee = 0,
+            Description = ""
+        };
     }
 }

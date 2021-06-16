@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="CoinMaster.View.TransactionEditView"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -64,27 +65,31 @@
 
         <TextBox Grid.Row="1"
                  Grid.Column="1"
+                 Text="{Binding CoinPriceText}"
                  Style="{StaticResource BasicTextBox}"
-                 Text="0"
                  Margin="10" />
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
+                 Text="{Binding AmountText}"
                  Style="{StaticResource BasicTextBox}"
-                 Text="0"
                  Margin="10" />
 
         <TextBox Grid.Row="3"
                  Grid.Column="1"
+                 Text="{Binding FeeText}"
                  Style="{StaticResource BasicTextBox}"
-                 Text="0"
                  Margin="10" />
 
-        <TextBox Grid.Row="4"
-                 Grid.Column="1"
-                 Style="{StaticResource BasicTextBox}"
-                 Text="0"
-                 Margin="10" />
+        <DatePicker Grid.Row="4"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Focusable="False"
+                    SelectedDate="{Binding
+                        Path=DateText,
+                        Mode=TwoWay,
+                        TargetNullValue={x:Static System:DateTime.Now}}"
+                    Margin="10" />
 
         <DockPanel Grid.Row="5"
                    Grid.Column="0"
@@ -97,6 +102,7 @@
             <TextBox FontSize="16"
                      AcceptsReturn="True"
                      Padding="5"
+                     Text="{Binding DescriptionText}"
                      Foreground="{StaticResource White}"
                      Background="{StaticResource BackgroundLighter}"
                      BorderBrush="{StaticResource Orange}"
@@ -107,6 +113,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Style="{StaticResource BlueButtonTheme}"
+                Command="{s:Action AddTransaction}"
                 Content="UPDATE TRANSACTION"
                 Margin="10" />
     </Grid>
