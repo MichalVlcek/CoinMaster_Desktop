@@ -7,6 +7,8 @@ namespace CoinMaster.ViewModel
 {
     public class TransactionEditViewModel : AbstractCoinSubscriber, IHandle<ElementSelectedEvent<Transaction>>
     {
+        private readonly IEventAggregator eventAggregator;
+        
         private Transaction _selectedTransaction;
         public Transaction SelectedTransaction
         {
@@ -36,9 +38,9 @@ namespace CoinMaster.ViewModel
         }
 
         private DateTime? _date;
-        public DateTime? DateText
+        public DateTime DateText
         {
-            get => _date;
+            get => _date ?? DateTime.Now;
             set => SetAndNotify(ref _date, value);
         }
 
@@ -51,6 +53,7 @@ namespace CoinMaster.ViewModel
 
         public TransactionEditViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
+            this.eventAggregator = eventAggregator;
         }
 
         public void Handle(ElementSelectedEvent<Transaction> message)
@@ -63,9 +66,19 @@ namespace CoinMaster.ViewModel
             DescriptionText = SelectedTransaction.Description;
         }
 
-        public void AddTransaction()
+        public void UpdateTransaction()
         {
-            Console.WriteLine("ajajaj");
+            SelectedTransaction.CoinPrice = CoinPriceText;
+            SelectedTransaction.Amount = AmountText;
+            SelectedTransaction.Fee = FeeText;
+            SelectedTransaction.Date = DateText;
+            SelectedTransaction.Description = DescriptionText;
+            if (!TmpDatabase.Transactions.Contains(SelectedTransaction))
+            {
+                TmpDatabase.Transactions.Add(SelectedTransaction);
+            }
+            
+            eventAggregator.Publish(new TransactionsUpdatedEvent {Transactions = TmpDatabase.Transactions});
         }
     }
 }

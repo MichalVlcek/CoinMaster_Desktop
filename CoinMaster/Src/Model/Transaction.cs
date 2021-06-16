@@ -5,13 +5,13 @@ namespace CoinMaster.Model
 {
     public class Transaction
     {
-        public TransactionType Type { get; init; }
+        public TransactionType Type { get; set; }
         public string CoinId { get; init; }
-        public DateTime Date { get; init; }
-        public decimal CoinPrice { get; init; }
-        public decimal Amount { get; init; }
-        public decimal Fee { get; init; }
-        public string Description { get; init; }
+        public DateTime Date { get; set; }
+        public decimal CoinPrice { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Fee { get; set; }
+        public string Description { get; set; }
 
         private decimal Cost => CoinPrice * Amount;
         public string CostFormat => StringFormats.CurrencyFormat(Cost);

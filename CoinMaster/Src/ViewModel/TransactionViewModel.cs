@@ -6,9 +6,9 @@ using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class TransactionViewModel : AbstractCoinSubscriber
+    public class TransactionViewModel : AbstractCoinSubscriber, IHandle<TransactionsUpdatedEvent>
     {
-        private IEventAggregator eventAggregator;
+        private readonly IEventAggregator eventAggregator;
 
         public TransactionEditViewModel TransactionEdit { get; }
 
@@ -35,34 +35,40 @@ namespace CoinMaster.ViewModel
         {
             this.eventAggregator = eventAggregator;
             TransactionEdit = transactionEdit;
+            
+            TmpDatabase.Transactions.Add(
+                new Transaction
+                {
+                    Type = TransactionType.BUY,
+                    Date = DateTime.Now,
+                    CoinId = "bitcoin",
+                    Amount = 0.125m,
+                    CoinPrice = 52000,
+                    Fee = 2,
+                    Description = "ajaoa"
+                });
+            TmpDatabase.Transactions.Add(
+                new Transaction
+                {
+                    Type = TransactionType.BUY,
+                    Date = DateTime.Now,
+                    CoinId = "bitcoin",
+                    Amount = 0.125m,
+                    CoinPrice = 52000,
+                    Fee = 2,
+                    Description = "ajaoa"
+                });
 
-            Transactions = new BindingList<Transaction>()
-            {
-                new Transaction
-                {
-                    Type = TransactionType.BUY,
-                    Date = DateTime.Now,
-                    CoinId = "bitcoin",
-                    Amount = 0.125m,
-                    CoinPrice = 52000,
-                    Fee = 2,
-                    Description = "ajaoa"
-                },
-                new Transaction
-                {
-                    Type = TransactionType.BUY,
-                    Date = DateTime.Now,
-                    CoinId = "bitcoin",
-                    Amount = 0.125m,
-                    CoinPrice = 52000,
-                    Fee = 2,
-                    Description = "ajaoa"
-                }
-            };
+            Transactions = new BindingList<Transaction>(TmpDatabase.Transactions);
         }
 
         public void AddNewTransaction() => SelectedTransaction = Transaction.EmptyTransaction;
 
         public void DeleteTransactions() => Transactions.Remove(SelectedTransaction);
+        
+        public void Handle(TransactionsUpdatedEvent message)
+        {
+            Transactions = new BindingList<Transaction>(message.Transactions);
+        }
     }
 }

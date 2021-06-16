@@ -113,7 +113,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Style="{StaticResource BlueButtonTheme}"
-                Command="{s:Action AddTransaction}"
+                Command="{s:Action UpdateTransaction}"
                 Content="UPDATE TRANSACTION"
                 Margin="10" />
     </Grid>
