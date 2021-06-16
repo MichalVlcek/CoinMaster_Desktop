@@ -10,7 +10,7 @@ namespace CoinMaster.ViewModel
         private Transaction _selectedTransaction;
         public Transaction SelectedTransaction
         {
-            get => _selectedTransaction ?? Transaction.EmptyTransaction;
+            get => _selectedTransaction;
             set => SetAndNotify(ref _selectedTransaction, value);
         }
 
@@ -56,6 +56,11 @@ namespace CoinMaster.ViewModel
         public void Handle(ElementSelectedEvent<Transaction> message)
         {
             SelectedTransaction = message.Element;
+            CoinPriceText = SelectedTransaction.CoinPrice;
+            AmountText = SelectedTransaction.Amount;
+            FeeText = SelectedTransaction.Fee;
+            DateText = SelectedTransaction.Date;
+            DescriptionText = SelectedTransaction.Description;
         }
 
         public void AddTransaction()
