@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Windows;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
@@ -14,7 +15,7 @@ namespace CoinMaster.ViewModel
         IHandle<ElementSelectedEvent<Transaction>>
     {
         private readonly IEventAggregator eventAggregator;
-        private IWindowManager windowManager;
+        private readonly IWindowManager windowManager;
 
         private Transaction _selectedTransaction;
         private Transaction SelectedTransaction
@@ -98,7 +99,7 @@ namespace CoinMaster.ViewModel
 
             Validate();
         }
-        
+
         public void Handle(ElementSelectedEvent<Coin> message)
         {
             SelectedCoin = message.Element;
@@ -106,18 +107,34 @@ namespace CoinMaster.ViewModel
 
         public void UpdateTransaction()
         {
-            SelectedTransaction.Type = SelectedType;
-            SelectedTransaction.CoinPrice = Convert.ToDecimal(CoinPrice, CultureInfo.InvariantCulture);
-            SelectedTransaction.Amount = Convert.ToDecimal(Amount, CultureInfo.InvariantCulture);
-            SelectedTransaction.Fee = Convert.ToDecimal(Fee, CultureInfo.InvariantCulture);
-            SelectedTransaction.Date = Date;
-            SelectedTransaction.Description = Description;
-            if (!TmpDatabase.Transactions.Contains(SelectedTransaction))
+            if (HasErrors) // This shouldn't happen but if it would, the app will not crash
             {
-                TmpDatabase.Transactions.Add(SelectedTransaction);
+                windowManager.ShowMessageBox("Fields were not filled correctly, check for errors.", "Error",
+                    icon: MessageBoxImage.Error);
+                return;
             }
 
-            eventAggregator.Publish(new TransactionsUpdatedEvent {Transactions = TmpDatabase.Transactions});
+            try
+            {
+                SelectedTransaction.Type = SelectedType;
+                SelectedTransaction.CoinPrice = Convert.ToDecimal(CoinPrice, CultureInfo.InvariantCulture);
+                SelectedTransaction.Amount = Convert.ToDecimal(Amount, CultureInfo.InvariantCulture);
+                SelectedTransaction.Fee = Convert.ToDecimal(Fee, CultureInfo.InvariantCulture);
+                SelectedTransaction.Date = Date;
+                SelectedTransaction.Description = Description;
+
+                if (!TmpDatabase.Transactions.Contains(SelectedTransaction))
+                {
+                    TmpDatabase.Transactions.Add(SelectedTransaction);
+                }
+
+                eventAggregator.Publish(new TransactionsUpdatedEvent {Transactions = TmpDatabase.Transactions});
+            }
+            catch (Exception e)
+            {
+                windowManager.ShowMessageBox("Something bad happened during transaction creation. Try again.", "Error",
+                    icon: MessageBoxImage.Error);
+            }
         }
 
         protected override void OnValidationStateChanged(IEnumerable<string> changedProperties)
