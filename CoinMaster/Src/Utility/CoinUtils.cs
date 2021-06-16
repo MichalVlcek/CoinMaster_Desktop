@@ -24,8 +24,7 @@ namespace CoinMaster.Utility
             var receiveTransactions = SumOfCoinAmount(GetTransactionsByType(transactions, TransactionType.RECEIVE));
             var sendTransactions = SumOfCoinAmount(GetTransactionsByType(transactions, TransactionType.SEND));
 
-            return buyTransactions + receiveTransactions - sellTransactions - sendTransactions -
-                   SumOfFees(transactions);
+            return buyTransactions + receiveTransactions - sellTransactions - sendTransactions;
         }
 
         /// <summary>
@@ -67,8 +66,8 @@ namespace CoinMaster.Utility
         /// </summary>
         public static decimal CountTotalCost(IEnumerable<Transaction> transactions)
         {
-            var buyTransactions = SumOfCoinAmount(GetTransactionsByType(transactions, TransactionType.BUY));
-            var sellTransactions = SumOfCoinAmount(GetTransactionsByType(transactions, TransactionType.SELL));
+            var buyTransactions = SumOfCosts(GetTransactionsByType(transactions, TransactionType.BUY));
+            var sellTransactions = SumOfCosts(GetTransactionsByType(transactions, TransactionType.SELL));
 
             return buyTransactions - sellTransactions + SumOfFees(transactions);
         }
@@ -78,7 +77,7 @@ namespace CoinMaster.Utility
         /// Formula: Sum of all coin prices / count of transactions
         /// </summary>
         public static decimal CountAverageCost(IEnumerable<Transaction> transactions) =>
-            transactions.Count() > 0 ? transactions.Select(t => t.CoinPrice).Sum() / transactions.Count() : 0;
+            transactions.Any() ? transactions.Select(t => t.CoinPrice).Sum() / transactions.Count() : 0;
 
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace CoinMaster.Utility
 
         /// <summary>
         /// Counts the percentage difference between value of current holdings and total cost
-        /// Formula: Current holdings value / Total Cost - 1
+        /// Formula: Current holdings value / Total Cost 
         /// </summary>
         public static double CountPercentChange(IEnumerable<Transaction> transactions, decimal coinPrice)
         {
@@ -100,12 +99,12 @@ namespace CoinMaster.Utility
                 return 0;
             }
 
-            return (double) CountHoldingsValue(transactions, coinPrice) / totalCost - 1;
+            return ((double) CountHoldingsValue(transactions, coinPrice) / totalCost - 1) * 100;
         }
 
         /// <summary>
         /// Counts the percentage difference between value of current holdings and total cost
-        /// Formula: Current holdings value / Total Cost - 1
+        /// Formula: Current holdings value / Total Cost 
         /// </summary>
         public static decimal CountPercentageChangeForAll(decimal totalHoldings, decimal holdingsHistorical)
         {
@@ -114,7 +113,7 @@ namespace CoinMaster.Utility
                 return 0;
             }
 
-            return totalHoldings / holdingsHistorical - 1;
+            return totalHoldings / holdingsHistorical * 100;
         }
 
         private static IEnumerable<Transaction> GetTransactionsByType(
