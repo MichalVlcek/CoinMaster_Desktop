@@ -112,13 +112,14 @@
             <Button Grid.Column="0"
                     Content="ADD NEW TRANSACTION"
                     Margin="8"
-                    Style="{StaticResource BlueButtonTheme}" 
-                    Command="{s:Action AddNewTransaction}"/>
+                    Style="{StaticResource BlueButtonTheme}"
+                    Command="{s:Action AddNewTransaction}" />
             <Button Grid.Column="1"
                     Content="DELETE SELECTED"
                     Margin="8"
                     Style="{StaticResource RedButtonTheme}"
-                    Command="{s:Action DeleteTransactions}"/>
+                    IsEnabled="{Binding CanDelete}"
+                    Command="{s:Action DeleteTransactions}" />
         </Grid>
 
         <ContentControl Grid.Row="0"
