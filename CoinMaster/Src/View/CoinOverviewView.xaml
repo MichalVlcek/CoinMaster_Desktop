@@ -50,7 +50,7 @@
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="0.023 BTC"
+                               Text="{Binding CoinHoldings}"
                                HorizontalAlignment="Center"
                                FontSize="26" />
                 </StackPanel>
@@ -66,7 +66,7 @@
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="0.023 BTC"
+                               Text="{Binding HoldingsValue}"
                                HorizontalAlignment="Center"
                                FontSize="26" />
                 </StackPanel>
@@ -82,7 +82,7 @@
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="0.023 BTC"
+                               Text="{Binding ProfitLoss}"
                                HorizontalAlignment="Center"
                                FontSize="26" />
                 </StackPanel>
@@ -94,11 +94,11 @@
                     BorderThickness="5,3,3,5">
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="Average Buy Price"
+                               Text="Average Cost"
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="0.023 BTC"
+                               Text="{Binding AverageCost}"
                                HorizontalAlignment="Center"
                                FontSize="26" />
                 </StackPanel>
@@ -114,7 +114,7 @@
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="0.023 BTC"
+                               Text="{Binding Deposit}"
                                HorizontalAlignment="Center"
                                FontSize="26" />
                 </StackPanel>
@@ -130,7 +130,7 @@
                                HorizontalAlignment="Center"
                                Foreground="{StaticResource Grey}" />
                     <TextBlock Style="{StaticResource BasicLabel}"
-                               Text="0.023 BTC"
+                               Text="{Binding PercentChange}"
                                HorizontalAlignment="Center"
                                FontSize="26" />
                 </StackPanel>
