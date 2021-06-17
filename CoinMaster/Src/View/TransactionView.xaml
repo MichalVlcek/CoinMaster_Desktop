@@ -1,13 +1,12 @@
-﻿<UserControl x:Class="CoinMaster.View.AddCoinView"
+﻿<UserControl x:Class="CoinMaster.View.TransactionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:s="https://github.com/canton7/Stylet"
              xmlns:local="clr-namespace:CoinMaster.View"
-             xmlns:m="clr-namespace:CoinMaster.Model"
+             xmlns:s="https://github.com/canton7/Stylet"
              xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
-             d:DataContext="{d:DesignInstance viewModel:AddCoinViewModel}"
+             d:DataContext="{d:DesignInstance viewModel:TransactionViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">
@@ -16,87 +15,85 @@
             <ColumnDefinition Width="10*" />
             <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="11*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Column="0"
-                 Grid.Row="0"
-                 VerticalContentAlignment="Center"
-                 HorizontalAlignment="Stretch"
-                 Margin="10"
-                 Style="{StaticResource TextBoxTheme}" />
-
-        <ScrollViewer Grid.Row="1"
-                      Grid.Column="0"
+        <ScrollViewer Grid.Column="0"
                       Margin="10"
                       HorizontalContentAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       HorizontalScrollBarVisibility="Hidden"
                       VerticalScrollBarVisibility="Auto">
-            <ListView x:Name="AddCoinList"
+            <ListView x:Name="TransactionList"
                       Background="Transparent"
                       BorderBrush="Transparent"
                       SelectionMode="Single"
-                      ItemsSource="{Binding Coins}"
-                      SelectedItem="{Binding SelectedCoin}">
+                      ItemsSource="{Binding Transactions}"
+                      SelectedItem="{Binding SelectedTransaction}">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                        <GridViewColumn Header="Rank"
-                                        Width="50">
+                        <GridViewColumn Header="Type"
+                                        Width="60">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Rank }"
+                                    <TextBlock Text="{Binding Type }"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Coin"
-                                        Width="170">
+                        <GridViewColumn Header="Date"
+                                        Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal"
-                                                Width="170"
-                                                HorizontalAlignment="Stretch"
-                                                VerticalAlignment="Center">
-                                        <Image x:Name="CoinIcon"
-                                               Source="{Binding Icon}"
-                                               RenderOptions.BitmapScalingMode="HighQuality"
-                                               Width="30"
-                                               Height="30"
-                                               HorizontalAlignment="Left"
-                                               Margin="0,0,10,0" />
 
-                                        <TextBlock Text="{Binding Title}"
-                                                   Foreground="White"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="14" />
-                                    </StackPanel>
+                                    <TextBlock Text="{Binding DateFormat}"
+                                               Foreground="White"
+                                               TextAlignment="Center"
+                                               FontSize="14" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Price"
+                        <GridViewColumn Header="Coin Price"
                                         Width="95">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding PriceFormat}"
+                                    <TextBlock Text="{Binding CoinPriceFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Market Cap"
-                                        Width="115">
+                        <GridViewColumn Header="Amount"
+                                        Width="105">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding MarketCapFormat}"
+                                    <TextBlock Text="{Binding Amount}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Total Cost"
+                                        Width="110">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding TotalCostFormat}"
+                                                   Foreground="White"
+                                                   FontSize="14"
+                                                   TextAlignment="Right" />
+                                        <TextBlock Text="{Binding FeeFormat}"
+                                                   Foreground="{StaticResource Grey}"
+                                                   FontSize="10"
+                                                   TextAlignment="Right" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -105,6 +102,25 @@
             </ListView>
         </ScrollViewer>
 
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Content="ADD NEW TRANSACTION"
+                    Margin="8"
+                    Style="{StaticResource BlueButtonTheme}"
+                    Command="{s:Action AddNewTransaction}" />
+            <Button Grid.Column="1"
+                    Content="DELETE SELECTED"
+                    Margin="8"
+                    Style="{StaticResource RedButtonTheme}"
+                    IsEnabled="{Binding CanDelete}"
+                    Command="{s:Action DeleteTransactions}" />
+        </Grid>
 
         <ContentControl Grid.Row="0"
                         Grid.Column="1"
@@ -112,9 +128,9 @@
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Setter Property="s:View.Model"
-                            Value="{Binding AddCoinPanel}" />
+                            Value="{Binding TransactionEdit}" />
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedCoin }"
+                        <DataTrigger Binding="{Binding SelectedTransaction }"
                                      Value="{x:Null}">
                             <Setter Property="ContentControl.Template">
                                 <Setter.Value>
@@ -127,7 +143,7 @@
                                                        VerticalAlignment="Center"
                                                        FontSize="30"
                                                        Foreground="{StaticResource White}"
-                                                       Text="No Coin Selected." />
+                                                       Text="No Transaction Selected." />
                                         </Grid>
                                     </ControlTemplate>
                                 </Setter.Value>

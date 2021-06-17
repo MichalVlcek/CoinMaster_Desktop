@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="10.2.3" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -32,6 +33,24 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
       <PackageReference Include="RestSharp" Version="106.11.7" />
       <PackageReference Include="Stylet" Version="1.3.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Resources\Theme\Buttons\BasicButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\BlueButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\MenuButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\RedButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Resources\Theme\Buttons\LightButtonTheme.xaml">
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ namespace CoinMaster.ViewModel
     {
         public AddCoinPanelViewModel AddCoinPanel { get; set; }
 
-        private IEventAggregator events;
+        private readonly IEventAggregator events;
 
         private BindingList<Coin> _coins;
         public BindingList<Coin> Coins
@@ -26,7 +26,7 @@ namespace CoinMaster.ViewModel
             set
             {
                 SetAndNotify(ref _selectedCoin, value);
-                events.Publish(new CoinSelectedEvent {Coin = SelectedCoin});
+                events.Publish(new ElementSelectedEvent<Coin> {Element = SelectedCoin});
             }
         }
 

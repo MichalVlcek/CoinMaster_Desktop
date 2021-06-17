@@ -4,5 +4,6 @@
     {
         void NavigateToAddCoinsScreen();
         void NavigateToHomeScreen();
+        void NavigateToCoinDetail();
     }
 }

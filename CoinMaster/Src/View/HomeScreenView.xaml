@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModel1="clr-namespace:CoinMaster.ViewModel"
              xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
+             d:DataContext="{d:DesignInstance viewModel:HomeScreenViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">
@@ -12,19 +13,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
             <RowDefinition Height="6*" />
-            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="0.9*" />
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="0"
-                Grid.Row="0"
-                Background="{StaticResource BackgroundLight}"
-                BorderBrush="{StaticResource Orange}"
-                BorderThickness="2,2,2,2"
-                Margin="0,0,0,10"
-                CornerRadius="25">
-
-            <!--Add some info here-->
-        </Border>
+        <ContentControl Grid.Row="0"
+                        s:View.Model="{Binding DashboardOverview }" />
 
         <ScrollViewer Grid.Row="1"
                       HorizontalContentAlignment="Stretch"
@@ -33,17 +26,32 @@
                       VerticalScrollBarVisibility="Auto">
             <ListView x:Name="CoinList"
                       Background="Transparent"
-                      BorderBrush="Transparent">
+                      BorderBrush="Transparent"
+                      ItemsSource="{Binding Coins}"
+                      SelectedItem="{Binding SelectedCoin}">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="{StaticResource Coin}"
                                         Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
-                                               Foreground="White"
-                                               FontSize="14"
-                                               TextAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Width="170"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center">
+                                        <Image x:Name="CoinIcon"
+                                               Source="{Binding Icon}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="30"
+                                               Height="30"
+                                               HorizontalAlignment="Left"
+                                               Margin="0,0,10,0" />
+
+                                        <TextBlock Text="{Binding Title}"
+                                                   Foreground="White"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="14" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -51,7 +59,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding PriceFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -62,7 +70,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding PriceFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -73,7 +81,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding PriceChangePercent24HFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -84,7 +92,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding PriceChangePercent7DFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -95,7 +103,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding PriceFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -104,9 +112,6 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-                <ListItem />
-                <ListItem />
-                <ListItem />
             </ListView>
         </ScrollViewer>
 
@@ -119,12 +124,13 @@
             <Button Grid.Column="0"
                     x:Name="EditButton"
                     Content="EDIT SELECTED"
-                    Margin="8"
-                    Style="{StaticResource BlueButtonTheme}" />
+                    Margin="0,6,6,6"
+                    Style="{StaticResource BlueButtonTheme}" 
+                    Command="{s:Action NavigateToCoinDetail}"/>
             <Button Grid.Column="1"
                     x:Name="DeleteButton"
                     Content="DELETE SELECTED"
-                    Margin="8"
+                    Margin="6,6,0,6"
                     Style="{StaticResource RedButtonTheme}" />
         </Grid>
     </Grid>

@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="CoinMaster.View.CoinDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CoinMaster.View"
+             xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
+             d:DataContext="{d:DesignInstance viewModel:CoinDetailViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="927">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="12*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Button Grid.Column="0"
+                Grid.Row="0"
+                Content="Back"
+                Margin="10"
+                Command="{s:Action NavigateToHomeScreen}"
+                Style="{StaticResource LightButtonTheme}" />
+
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        s:View.Model="{Binding CoinTitle}" />
+
+        <RadioButton Grid.Row="0"
+                     Grid.Column="2"
+                     Style="{StaticResource TopbarButtonTheme}"
+                     Command="{s:Action ShowOverview}"
+                     IsChecked="True"
+                     GroupName="Menu"
+                     Content="Overview" />
+
+        <RadioButton Grid.Row="0"
+                     Grid.Column="3"
+                     Style="{StaticResource TopbarButtonTheme}"
+                     Command="{s:Action ShowTransactions}"
+                     GroupName="Menu"
+                     Content="Transactions" />
+
+        <ContentControl Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="4"
+                        s:View.Model="{Binding SelectedScreen}" />
+    </Grid>
+</UserControl>
