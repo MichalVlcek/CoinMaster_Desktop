@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using CoinMaster.Utility;
@@ -33,6 +34,8 @@ namespace CoinMaster.Model
 
         [JsonPropertyName("price_change_percentage_7d_in_currency")]
         public double? PriceChangePercent7D { get; set; }
+        
+        public List<Transaction> Transactions { get; set; }
 
         public Coin(string id, string icon, int rank, string name, string symbol, decimal price, decimal marketCap,
             decimal circulatingSupply, decimal? maxSupply, decimal ath, double athPercentChange, decimal atl,

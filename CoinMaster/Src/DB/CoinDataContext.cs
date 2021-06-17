@@ -7,6 +7,7 @@ namespace CoinMaster.DB
     public class CoinDataContext : DbContext
     {
         public DbSet<Coin> Coins { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

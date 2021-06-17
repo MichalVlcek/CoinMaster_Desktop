@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using CoinMaster.Data;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
@@ -10,6 +12,7 @@ namespace CoinMaster.ViewModel
     {
         private readonly IEventAggregator eventAggregator;
 
+        private readonly TransactionRepository transactionRepository;
         public TransactionEditViewModel TransactionEdit { get; }
 
         private BindingList<Transaction> _transactions;
@@ -38,45 +41,46 @@ namespace CoinMaster.ViewModel
         public bool CanDelete =>
             SelectedTransaction is not null && !Transaction.IsEmptyTransaction(SelectedTransaction);
 
-        public TransactionViewModel(IEventAggregator eventAggregator, TransactionEditViewModel transactionEdit)
+        public TransactionViewModel(
+            TransactionRepository transactionRepository,
+            IEventAggregator eventAggregator,
+            TransactionEditViewModel transactionEdit)
             : base(eventAggregator)
         {
+            this.transactionRepository = transactionRepository;
             this.eventAggregator = eventAggregator;
             TransactionEdit = transactionEdit;
-
-            TmpDatabase.Transactions.Add(
-                new Transaction
-                {
-                    Type = TransactionType.BUY,
-                    Date = DateTime.Now,
-                    CoinId = "bitcoin",
-                    Amount = 0.125m,
-                    CoinPrice = 52000,
-                    Fee = 2,
-                    Description = "ajaoa"
-                });
-            TmpDatabase.Transactions.Add(
-                new Transaction
-                {
-                    Type = TransactionType.BUY,
-                    Date = DateTime.Now,
-                    CoinId = "bitcoin",
-                    Amount = 0.125m,
-                    CoinPrice = 52000,
-                    Fee = 2,
-                    Description = "ajaoa"
-                });
-
-            Transactions = new BindingList<Transaction>(TmpDatabase.Transactions);
         }
 
-        public void AddNewTransaction() => SelectedTransaction = Transaction.EmptyTransaction;
+        public void AddNewTransaction() => SelectedTransaction = Transaction.EmptyTransaction(SelectedCoin);
 
-        public void DeleteTransactions() => Transactions.Remove(SelectedTransaction);
-
-        public void Handle(TransactionsUpdatedEvent message)
+        public async void DeleteTransactions()
         {
-            Transactions = new BindingList<Transaction>(message.Transactions);
+            await transactionRepository.DeleteTransaction(SelectedTransaction);
+            Transactions.Remove(SelectedTransaction);
         }
+
+        public async void Handle(TransactionsUpdatedEvent message)
+        {
+            if (Transactions.Contains(SelectedTransaction))
+            {
+                await transactionRepository.UpdateTransaction(message.Transaction);
+            }
+            else
+            {
+                await transactionRepository.InsertTransaction(message.Transaction);
+            }
+
+            await LoadTransactions();
+        }
+
+        protected override async void OnViewLoaded()
+        {
+            base.OnViewLoaded();
+            await LoadTransactions();
+        }
+        
+        private async Task LoadTransactions() => 
+            Transactions = new BindingList<Transaction>(await transactionRepository.GetTransactionsForCoin(SelectedCoin));
     }
 }

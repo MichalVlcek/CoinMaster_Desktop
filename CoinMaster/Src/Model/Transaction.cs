@@ -5,8 +5,10 @@ namespace CoinMaster.Model
 {
     public class Transaction
     {
+        public int Id { get; set; }
+        public string CoinId { get; set; }
+        public Coin Coin { get; set; }
         public TransactionType Type { get; set; }
-        public string CoinId { get; init; }
         public DateTime Date { get; set; }
         public decimal CoinPrice { get; set; }
         public decimal Amount { get; set; }
@@ -17,13 +19,16 @@ namespace CoinMaster.Model
         public string CostFormat => StringFormats.CurrencyFormat(Cost);
         public string TotalCostFormat => StringFormats.CurrencyFormat(Cost + Fee);
         public string DateFormat => Date.ToShortDateString();
+
         public string CoinPriceFormat => StringFormats.CurrencyFormat(CoinPrice);
+
         public string FeeFormat => StringFormats.CurrencyFormat(Fee);
 
-        public static Transaction EmptyTransaction => new Transaction
+        public static Transaction EmptyTransaction(Coin coin) => new Transaction
         {
+            CoinId = coin.Id,
+            Coin = coin,
             Type = TransactionType.BUY,
-            CoinId = "",
             Date = DateTime.Now.Date,
             CoinPrice = 0,
             Amount = 0,
@@ -31,8 +36,7 @@ namespace CoinMaster.Model
             Description = ""
         };
 
-        public static bool IsEmptyTransaction(Transaction transaction) => transaction.CoinId == "" &&
-                                                                          transaction.Date == DateTime.Now.Date &&
+        public static bool IsEmptyTransaction(Transaction transaction) => transaction.Date == DateTime.Now.Date &&
                                                                           transaction.CoinPrice == 0 &&
                                                                           transaction.Amount == 0 &&
                                                                           transaction.Fee == 0 &&
