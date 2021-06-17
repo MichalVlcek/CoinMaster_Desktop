@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using CoinMaster.Api;
 using CoinMaster.Events;
 using CoinMaster.Model;
@@ -39,7 +40,7 @@ namespace CoinMaster.ViewModel
         protected override async void OnActivate()
         {
             base.OnActivate();
-            Coins = await ApiService.LoadCoins();
+            await Task.Run(async () => { Coins = await ApiService.LoadCoins(); });
         }
     }
 }
