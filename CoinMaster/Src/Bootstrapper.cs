@@ -1,4 +1,5 @@
 ﻿using CoinMaster.Core;
+using CoinMaster.Data;
 using CoinMaster.DB;
 using CoinMaster.Modules;
 using CoinMaster.ViewModel;
@@ -16,6 +17,7 @@ namespace CoinMaster
             builder.AddModule(new ValidationModule());
 
             builder.Bind<CoinDataContext>().ToSelf().InSingletonScope();
+            builder.Bind<CoinRepository>().ToSelf().InSingletonScope();
         }
 
         protected override void OnLaunch()
@@ -29,6 +31,7 @@ namespace CoinMaster
             var coinTitle = Container.Get<CoinDetailTitleViewModel>();
             var transactionView = Container.Get<TransactionViewModel>();
             var dataContext = Container.Get<CoinDataContext>();
+            var coinRepository = Container.Get<CoinRepository>();
         }
     }
 }

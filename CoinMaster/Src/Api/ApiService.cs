@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CoinMaster.Model;
@@ -26,16 +27,15 @@ namespace CoinMaster.Api
                 .AddOrUpdateParameter("price_change_percentage", "24h,7d");
         }
 
-        public static async Task<BindingList<Coin>> LoadCoins()
+        public static async Task<List<Coin>> LoadCoins(params Coin[] coins)
         {
             //TODO exception handling
+            var joinedCoins = string.Join(',', coins.Select(c => c.Id));
+            CoinsMarketsRequest.AddOrUpdateParameter("ids", joinedCoins);
             var response = await Client.ExecuteAsync(CoinsMarketsRequest);
 
-            var convertedContent =
-                JsonSerializer.Deserialize<List<Coin>>(response.Content)
-                ?? new List<Coin> { };
-
-            return new BindingList<Coin>(convertedContent);
+            return JsonSerializer.Deserialize<List<Coin>>(response.Content)
+                   ?? new List<Coin> { };
         }
     }
 }
