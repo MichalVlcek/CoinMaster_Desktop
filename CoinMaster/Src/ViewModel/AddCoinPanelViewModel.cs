@@ -1,26 +1,29 @@
+using System.Threading.Tasks;
 using CoinMaster.Model;
 using CoinMaster.DB;
-using CoinMaster.Events;
 using Stylet;
 
 namespace CoinMaster.ViewModel
 {
     public class AddCoinPanelViewModel : AbstractCoinSubscriber
     {
-        public AddCoinPanelViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        private CoinDataContext dataContext;
+
+        public AddCoinPanelViewModel(CoinDataContext dataContext, IEventAggregator eventAggregator) :
+            base(eventAggregator)
         {
+            this.dataContext = dataContext;
         }
 
-        public void AddCoin()
+        public async Task AddCoin()
         {
+            await Task.Run(async () =>
+            {
+                await dataContext.AddAsync(SelectedCoin);
+                await dataContext.SaveChangesAsync();
+            });
+
             TmpDatabase.Coins.Add(SelectedCoin);
-        }
-
-        public void SaveToDb()
-        {
-            // using var db = new Pes();
-            // db.Add(SelectedCoin);
-            // db.SaveChanges();
         }
     }
 }
