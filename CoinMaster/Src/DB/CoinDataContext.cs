@@ -1,19 +1,19 @@
 ﻿using CoinMaster.Model;
 using Microsoft.EntityFrameworkCore;
-
-#nullable disable
+using Microsoft.Extensions.Configuration;
 
 namespace CoinMaster.DB
 {
-    public partial class CoinDataContext : DbContext
+    public class CoinDataContext : DbContext
     {
-        private const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB; Integrated Security=true; Database=CoinDB";
-            
         public DbSet<Coin> Coins { get; set; }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer(ConnectionString);
-        
+        {
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
