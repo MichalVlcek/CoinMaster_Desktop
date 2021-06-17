@@ -13,7 +13,7 @@ namespace CoinMaster.Model
         public decimal Fee { get; set; }
         public string Description { get; set; }
 
-        private decimal Cost => CoinPrice * Amount;
+        public decimal Cost => CoinPrice * Amount;
         public string CostFormat => StringFormats.CurrencyFormat(Cost);
         public string TotalCostFormat => StringFormats.CurrencyFormat(Cost + Fee);
         public string DateFormat => Date.ToShortDateString();
