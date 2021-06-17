@@ -10,7 +10,7 @@ namespace CoinMaster.Model
         [JsonPropertyName("image")] public string Icon { get; set; }
         [JsonPropertyName("market_cap_rank")] public int Rank { get; set; }
         [JsonPropertyName("name")] public string Name { get; set; }
-        [JsonPropertyName("symbol")] public string Symbol { get; }
+        [JsonPropertyName("symbol")] public string Symbol { get; set;  }
         [JsonPropertyName("current_price")] public decimal Price { get; set; }
         [JsonPropertyName("market_cap")] public decimal MarketCap { get; set; }
 
