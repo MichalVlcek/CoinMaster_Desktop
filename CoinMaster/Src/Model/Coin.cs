@@ -36,7 +36,7 @@ namespace CoinMaster.Model
         [JsonPropertyName("price_change_percentage_7d_in_currency")]
         public double? PriceChangePercent7D { get; set; }
 
-        public ICollection<Transaction> Transaction { get; set; }
+        public ICollection<Transaction> Transaction { get; set; } = new List<Transaction>();
 
         public Coin(string id, string icon, int rank, string name, string symbol, decimal price, decimal marketCap,
             decimal circulatingSupply, decimal? maxSupply, decimal ath, double athPercentChange, decimal atl,
