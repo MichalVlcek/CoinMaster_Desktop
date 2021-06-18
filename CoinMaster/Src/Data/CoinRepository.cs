@@ -68,6 +68,7 @@ namespace CoinMaster.Data
             {
             }
 
+            await dataContext.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
             return coins;
         }
 

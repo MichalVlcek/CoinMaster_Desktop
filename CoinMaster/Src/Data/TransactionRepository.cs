@@ -47,8 +47,9 @@ namespace CoinMaster.Data
             }
         }
 
-        // public async Task GetTransactionsAll(Transaction transaction)
-        // {
-        // } 
+        public async Task<List<Transaction>> GetTransactionsAll()
+        {
+            return await dataContext.Transactions.ToListAsync();
+        } 
     }
 }
