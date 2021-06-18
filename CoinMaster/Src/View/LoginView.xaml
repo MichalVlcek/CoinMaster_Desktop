@@ -13,7 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -49,6 +49,7 @@
                        HorizontalAlignment="Left"
                        Margin="10" />
             <TextBox Style="{StaticResource BasicTextBox}"
+                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                      HorizontalAlignment="Center"
                      HorizontalContentAlignment="Left"
                      VerticalContentAlignment="Center"
@@ -65,17 +66,20 @@
                        Text="Password:"
                        HorizontalAlignment="Left"
                        Margin="10" />
-            <TextBox Style="{StaticResource BasicTextBox}"
-                     HorizontalAlignment="Center"
-                     HorizontalContentAlignment="Left"
-                     VerticalContentAlignment="Center"
-                     Width="300"
-                     Height="40" />
+            <PasswordBox x:Name="PasswordBox"
+                         Style="{StaticResource BasicTextBox}"
+                         HorizontalAlignment="Center"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         Width="300"
+                         Height="40" />
         </StackPanel>
 
         <Button Grid.Row="4"
                 Style="{StaticResource BlueButtonTheme}"
-                Command="{s:Action NavigateToMain}"
+                Command="{s:Action Login}"
+                CommandParameter="{Binding ElementName=PasswordBox}"
+                IsEnabled="{Binding CanAuthenticate}"
                 Content="Sing In"
                 Width="300"
                 Height="40" />

@@ -1,19 +1,34 @@
-﻿using CoinMaster.Interfaces;
+﻿using System.Windows;
+using System.Windows.Controls;
+using CoinMaster.Interfaces;
 using Stylet;
 
 namespace CoinMaster.ViewModel
 {
-    public class RegisterViewModel : Screen
+    public class RegisterViewModel : AbstractAuthenticationViewModel
     {
-        private readonly INavigationControllerAuthentication navigationController;
 
         public RegisterViewModel(
-            INavigationControllerAuthentication navigationController)
+            IWindowManager windowManager, 
+            INavigationControllerAuthentication navigationController, 
+            IModelValidator<AbstractAuthenticationViewModel> validator) 
+            : base(windowManager, navigationController, validator)
         {
-            this.navigationController = navigationController;
+        }
+
+        public void Register(PasswordBox passwordBox)
+        {
+            Password = passwordBox.Password;
+            if (Password == string.Empty)
+            {
+                WindowManager.ShowMessageBox("Password can't be empty", "Empty Password", icon: MessageBoxImage.Error);
+                return;;
+            }
+            
+            NavigateToMain();
         }
         
-        public void NavigateToMain() => navigationController.NavigateToMain();
-        public void NavigateToLogin() => navigationController.NavigateToLogin();
+        public void NavigateToMain() => NavigationController.NavigateToMain();
+        public void NavigateToLogin() => NavigationController.NavigateToLogin();
     }
 }
