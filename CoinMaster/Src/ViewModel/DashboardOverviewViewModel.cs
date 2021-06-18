@@ -33,19 +33,22 @@ namespace CoinMaster.ViewModel
         public string PercentChange =>
             StringFormats.PercentFormat(CoinUtils.CountPercentChange(Transactions, Coins));
 
-        protected override async void OnViewLoaded()
+        public async Task LoadData()
         {
-            base.OnViewLoaded();
-            
             await Task.Run(async () =>
             {
                 Transactions = await transactionRepository.GetTransactionsAll();
                 Coins = await coinRepository.GetAllFromDatabase();
             });
-            NotifyOfPropertyChange(() => HoldingsValue);
-            NotifyOfPropertyChange(() => TotalSpent);
-            NotifyOfPropertyChange(() => ProfitLoss);
-            NotifyOfPropertyChange(() => PercentChange);
+            
+            Refresh();
+        }
+        
+        protected override async void OnViewLoaded()
+        {
+            base.OnViewLoaded();
+
+            await LoadData();
         }
     }
 }
