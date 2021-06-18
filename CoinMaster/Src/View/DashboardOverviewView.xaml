@@ -55,7 +55,7 @@
                                        HorizontalAlignment="Center"
                                        Foreground="{StaticResource Grey}" />
                             <TextBlock Style="{StaticResource BasicLabel}"
-                                       Text="$520,123.342"
+                                       Text="{Binding HoldingsValue}"
                                        HorizontalAlignment="Center"
                                        FontSize="26" />
                         </StackPanel>

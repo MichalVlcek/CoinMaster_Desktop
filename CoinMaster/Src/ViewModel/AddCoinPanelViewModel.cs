@@ -1,16 +1,23 @@
-﻿using CoinMaster.Model;
+using System.Threading.Tasks;
+using CoinMaster.Data;
+using CoinMaster.Model;
 using Stylet;
 
 namespace CoinMaster.ViewModel
 {
     public class AddCoinPanelViewModel : AbstractCoinSubscriber
     {
-        public AddCoinPanelViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        private CoinRepository coinRepository;
+        
+        public AddCoinPanelViewModel(CoinRepository coinRepository, IEventAggregator eventAggregator) :
+            base(eventAggregator)
         {
+            this.coinRepository = coinRepository;
         }
 
-        public void AddCoin()
+        public async Task AddCoin()
         {
+            await coinRepository.InsertCoin(SelectedCoin);
             TmpDatabase.Coins.Add(SelectedCoin);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CoinMaster.Data;
 using CoinMaster.Model;
 using CoinMaster.Utility;
 using Stylet;
@@ -7,7 +8,9 @@ namespace CoinMaster.ViewModel
 {
     public class CoinOverviewViewModel : AbstractCoinSubscriber
     {
-        private List<Transaction> Transactions => TmpDatabase.Transactions;
+        private readonly TransactionRepository transactionRepository;
+
+        private List<Transaction> Transactions { get; set; }
 
         public string CoinHoldings =>
             StringFormats.CurrencyFormat(CoinUtils.CountHoldings(Transactions), SelectedCoin.Symbol);
@@ -24,14 +27,17 @@ namespace CoinMaster.ViewModel
         public string PercentChange =>
             StringFormats.PercentFormat(CoinUtils.CountPercentChange(Transactions, SelectedCoin.Price));
 
-        public CoinOverviewViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public CoinOverviewViewModel(TransactionRepository transactionRepository, IEventAggregator eventAggregator) :
+            base(eventAggregator)
         {
+            this.transactionRepository = transactionRepository;
         }
 
-        protected override void OnViewLoaded()
+        protected override async void OnViewLoaded()
         {
             base.OnViewLoaded();
-            
+
+            Transactions = await transactionRepository.GetTransactionsForCoin(SelectedCoin);
             NotifyOfPropertyChange(() => CoinHoldings);
             NotifyOfPropertyChange(() => HoldingsValue);
             NotifyOfPropertyChange(() => ProfitLoss);

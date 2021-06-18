@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using CoinMaster.Api;
+using CoinMaster.Data;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
@@ -11,6 +13,8 @@ namespace CoinMaster.ViewModel
         public AddCoinPanelViewModel AddCoinPanel { get; set; }
 
         private readonly IEventAggregator events;
+
+        private readonly CoinRepository coinRepository;
 
         private BindingList<Coin> _coins;
         public BindingList<Coin> Coins
@@ -30,16 +34,17 @@ namespace CoinMaster.ViewModel
             }
         }
 
-        public AddCoinViewModel(AddCoinPanelViewModel addCoinPanel, IEventAggregator events)
+        public AddCoinViewModel(CoinRepository coinRepository, AddCoinPanelViewModel addCoinPanel, IEventAggregator events)
         {
             this.events = events;
+            this.coinRepository = coinRepository;
             AddCoinPanel = addCoinPanel;
         }
 
         protected override async void OnActivate()
         {
             base.OnActivate();
-            Coins = await ApiService.LoadCoins();
+            await Task.Run(async () => { Coins = new BindingList<Coin>(await coinRepository.LoadAllCoins()); });
         }
     }
 }

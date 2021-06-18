@@ -1,4 +1,7 @@
-﻿using CoinMaster.Core;
+﻿using System;
+using CoinMaster.Core;
+using CoinMaster.Data;
+using CoinMaster.DB;
 using CoinMaster.Modules;
 using CoinMaster.ViewModel;
 using Stylet;
@@ -13,6 +16,11 @@ namespace CoinMaster
             builder.AddModule(new NavigationModule());
             builder.AddModule(new SingletonModule());
             builder.AddModule(new ValidationModule());
+
+            builder.Bind<Func<CoinDataContext>>().ToFactory<Func<CoinDataContext>>(c => () => c.Get<CoinDataContext>());
+            builder.Bind<CoinDataContext>().ToSelf();
+            builder.Bind<CoinRepository>().ToSelf().InSingletonScope();
+            builder.Bind<TransactionRepository>().ToSelf().InSingletonScope();
         }
 
         protected override void OnLaunch()
@@ -25,6 +33,8 @@ namespace CoinMaster
             var coinOverview = Container.Get<CoinOverviewViewModel>();
             var coinTitle = Container.Get<CoinDetailTitleViewModel>();
             var transactionView = Container.Get<TransactionViewModel>();
+            var coinRepository = Container.Get<CoinRepository>();
+            var transactionRepository = Container.Get<TransactionRepository>();
         }
     }
 }

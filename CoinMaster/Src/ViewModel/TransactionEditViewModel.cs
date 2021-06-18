@@ -11,7 +11,6 @@ using Stylet;
 namespace CoinMaster.ViewModel
 {
     public class TransactionEditViewModel : Screen,
-        IHandle<ElementSelectedEvent<Coin>>,
         IHandle<ElementSelectedEvent<Transaction>>
     {
         private readonly IEventAggregator eventAggregator;
@@ -78,8 +77,10 @@ namespace CoinMaster.ViewModel
 
         public bool CanSubmit => !HasErrors || !AutoValidate;
 
-        public TransactionEditViewModel(IWindowManager windowManager,
-            IModelValidator<TransactionEditViewModel> validator, IEventAggregator eventAggregator) : base(validator)
+        public TransactionEditViewModel(
+            IWindowManager windowManager,
+            IModelValidator<TransactionEditViewModel> validator, 
+            IEventAggregator eventAggregator) : base(validator)
         {
             this.windowManager = windowManager;
             this.eventAggregator = eventAggregator;
@@ -100,12 +101,7 @@ namespace CoinMaster.ViewModel
             Validate();
         }
 
-        public void Handle(ElementSelectedEvent<Coin> message)
-        {
-            SelectedCoin = message.Element;
-        }
-
-        public void UpdateTransaction()
+        public async void UpdateTransaction()
         {
             if (HasErrors) // This shouldn't happen but if it would, the app will not crash
             {
@@ -122,13 +118,8 @@ namespace CoinMaster.ViewModel
                 SelectedTransaction.Fee = Convert.ToDecimal(Fee, CultureInfo.InvariantCulture);
                 SelectedTransaction.Date = Date;
                 SelectedTransaction.Description = Description;
-
-                if (!TmpDatabase.Transactions.Contains(SelectedTransaction))
-                {
-                    TmpDatabase.Transactions.Add(SelectedTransaction);
-                }
-
-                eventAggregator.Publish(new TransactionsUpdatedEvent {Transactions = TmpDatabase.Transactions});
+                
+                eventAggregator.Publish(new TransactionsUpdatedEvent {Transaction = SelectedTransaction});
             }
             catch (Exception e)
             {

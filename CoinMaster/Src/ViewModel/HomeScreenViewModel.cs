@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
+using CoinMaster.Data;
 using CoinMaster.Events;
 using CoinMaster.Interfaces;
 using CoinMaster.Model;
@@ -8,7 +10,12 @@ namespace CoinMaster.ViewModel
 {
     public class HomeScreenViewModel : Screen
     {
-        public List<Coin> Coins => TmpDatabase.Coins;
+        private BindingList<Coin> _coins;
+        public BindingList<Coin> Coins
+        {
+            get => _coins;
+            set => SetAndNotify(ref _coins, value);
+        }
 
         private Coin _selectedCoin;
         public Coin SelectedCoin
@@ -25,15 +32,27 @@ namespace CoinMaster.ViewModel
 
         private readonly INavigationController navigationController;
         private readonly IEventAggregator events;
+        private readonly CoinRepository coinRepository;
 
-        public HomeScreenViewModel(INavigationController navigationController, IEventAggregator events,
+        public HomeScreenViewModel(
+            CoinRepository coinRepository,
+            INavigationController navigationController,
+            IEventAggregator events,
             DashboardOverviewViewModel dashboardOverviewViewModel)
         {
+            this.coinRepository = coinRepository;
             this.navigationController = navigationController;
             this.events = events;
             DashboardOverview = dashboardOverviewViewModel;
         }
 
         public void NavigateToCoinDetail() => navigationController.NavigateToCoinDetail();
+
+        protected override async void OnActivate()
+        {
+            base.OnActivate();
+
+            await Task.Run(async () => Coins = new BindingList<Coin>(await coinRepository.LoadWatchedCoins()));
+        }
     }
 }
