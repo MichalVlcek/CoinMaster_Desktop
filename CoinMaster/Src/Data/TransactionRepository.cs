@@ -10,36 +10,45 @@ namespace CoinMaster.Data
 {
     public class TransactionRepository
     {
-        private readonly CoinDataContext dataContext;
+        private readonly Func<CoinDataContext> dataContext;
 
-        public TransactionRepository(CoinDataContext dataContext)
+        public TransactionRepository(Func<CoinDataContext> dataContext)
         {
             this.dataContext = dataContext;
         }
 
         public async Task InsertTransaction(Transaction transaction)
         {
-            await dataContext.AddAsync(transaction);
-            await dataContext.SaveChangesAsync();
+            await using var context = dataContext();
+
+            context.Entry(transaction.Coin).State = EntityState.Unchanged;
+            await context.Transactions.AddAsync(transaction);
+            await context.SaveChangesAsync();
         }
 
         public async Task UpdateTransaction(Transaction transaction)
         {
-            dataContext.Update(transaction);
-            await dataContext.SaveChangesAsync();
+            await using var context = dataContext();
+
+            context.Transactions.Update(transaction);
+            await context.SaveChangesAsync();
         }
         
         public async Task DeleteTransaction(Transaction transaction)
         {
-            dataContext.Remove(transaction);
-            await dataContext.SaveChangesAsync();
+            await using var context = dataContext();
+
+            context.Remove(transaction);
+            await context.SaveChangesAsync();
         }
 
         public async Task<List<Transaction>> GetTransactionsForCoin(Coin coin)
         {
+            await using var context = dataContext();
+
             try
             {
-                return await dataContext.Transactions.Where(t => t.CoinId == coin.Id).ToListAsync();
+                return await context.Transactions.Where(t => t.CoinId == coin.Id).ToListAsync();
             }
             catch (Exception e)
             {
@@ -49,7 +58,9 @@ namespace CoinMaster.Data
 
         public async Task<List<Transaction>> GetTransactionsAll()
         {
-            return await dataContext.Transactions.ToListAsync();
+            await using var context = dataContext();
+
+            return await context.Transactions.ToListAsync();
         } 
     }
 }

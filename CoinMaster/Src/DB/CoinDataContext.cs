@@ -20,6 +20,11 @@ namespace CoinMaster.DB
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Coin>()
                 .HasKey(c => c.Id);
+            
+            modelBuilder.Entity<Transaction>()
+                .HasOne<Coin>(t => t.Coin)
+                .WithMany(c => c.Transaction)
+                .HasForeignKey(t => t.CoinId);
         }
     }
 }

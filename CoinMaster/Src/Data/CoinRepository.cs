@@ -11,9 +11,9 @@ namespace CoinMaster.Data
 {
     public class CoinRepository
     {
-        private readonly CoinDataContext dataContext;
+        private readonly Func<CoinDataContext> dataContext;
 
-        public CoinRepository(CoinDataContext dataContext)
+        public CoinRepository(Func<CoinDataContext> dataContext)
         {
             this.dataContext = dataContext;
         }
@@ -22,16 +22,17 @@ namespace CoinMaster.Data
         {
             await Task.Run(async () =>
             {
-                if (dataContext.Coins.Contains(coin))
+                await using var context = dataContext();
+                if (context.Coins.Contains(coin))
                 {
                     await UpdateCoin(coin);
                 }
                 else
                 {
-                    await dataContext.AddAsync(coin);
+                    await context.AddAsync(coin);
                 }
 
-                await dataContext.SaveChangesAsync();
+                await context.SaveChangesAsync();
             });
         }
 
@@ -39,14 +40,19 @@ namespace CoinMaster.Data
         {
             await Task.Run(async () =>
             {
-                dataContext.Coins.Remove(coin);
-                await dataContext.SaveChangesAsync();
+                await using var context = dataContext();
+
+                context.Coins.Remove(coin);
+                await context.SaveChangesAsync();
             });
         }
 
         public async Task<List<Coin>> GetAllFromDatabase()
         {
-            return await dataContext.Coins.ToListAsync();
+            await using var context = dataContext();
+
+            await context.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
+            return await context.Coins.ToListAsync();
         }
 
         public async Task<List<Coin>> LoadAllCoins()
@@ -56,7 +62,9 @@ namespace CoinMaster.Data
 
         public async Task<List<Coin>> LoadWatchedCoins()
         {
-            var coins = await dataContext.Coins.ToListAsync();
+            await using var context = dataContext();
+
+            var coins = await context.Coins.ToListAsync();
             if (!coins.Any()) return coins; // Needs to return when coins are empty, otherwise api would load all coins
 
             try
@@ -68,19 +76,22 @@ namespace CoinMaster.Data
             {
             }
 
-            await dataContext.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
+            await context.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
+            coins = await context.Coins.ToListAsync();
             return coins;
         }
 
         private async Task UpdateCoin(Coin coin)
         {
-            var entity = await dataContext.Coins.FindAsync(coin.Id);
+            await using var context = dataContext();
+
+            var entity = await context.Coins.FindAsync(coin.Id);
             if (entity != null)
             {
-                dataContext.Entry(entity).State = EntityState.Detached;
+                context.Entry(entity).State = EntityState.Detached;
             }
 
-            dataContext.Coins.Update(coin);
+            context.Coins.Update(coin);
         }
 
         private void UpdateCoins(List<Coin> coins) => coins.ForEach(async c => await UpdateCoin(c));
