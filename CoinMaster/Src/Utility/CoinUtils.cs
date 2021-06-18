@@ -113,7 +113,7 @@ namespace CoinMaster.Utility
                 return 0;
             }
         
-            return totalHoldings / totalCost * 100;
+            return (totalHoldings / totalCost - 1) * 100;
         }
         
         private static IEnumerable<Transaction> GetTransactionsByType(
