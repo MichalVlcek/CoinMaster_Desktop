@@ -82,6 +82,9 @@ namespace CoinMaster.Utility
         /// </summary>
         public static decimal CountProfitOrLoss(IEnumerable<Transaction> transactions, decimal coinPrice) =>
             CountHoldingsValue(transactions, coinPrice) - CountTotalCost(transactions);
+        
+        public static decimal CountProfitOrLoss(IEnumerable<Transaction> transactions, IEnumerable<Coin> coins) =>
+            CountHoldingsValue(coins) - CountTotalCost(transactions);
 
         /// <summary>
         /// Counts the percentage difference between value of current holdings and total cost
@@ -98,20 +101,21 @@ namespace CoinMaster.Utility
             return ((double) CountHoldingsValue(transactions, coinPrice) / totalCost - 1) * 100;
         }
 
-        /// <summary>
-        /// Counts the percentage difference between value of current holdings and total cost
-        /// Formula: Current holdings value / Total Cost 
-        /// </summary>
-        public static decimal CountPercentageChangeForAll(decimal totalHoldings, decimal holdingsHistorical)
+        // /// <summary>
+        // /// Counts the percentage difference for all coinss
+        // /// </summary>
+        public static double CountPercentChange(IEnumerable<Transaction> transactions, IEnumerable<Coin> coins)
         {
-            if ((totalHoldings == 0 && holdingsHistorical == 0) || holdingsHistorical == 0)
+            var totalHoldings = (double) CountHoldingsValue(coins);
+            var totalCost = (double) CountTotalCost(transactions);
+            if ((totalHoldings == 0 && totalCost == 0) || totalCost == 0)
             {
                 return 0;
             }
-
-            return totalHoldings / holdingsHistorical * 100;
+        
+            return totalHoldings / totalCost * 100;
         }
-
+        
         private static IEnumerable<Transaction> GetTransactionsByType(
             IEnumerable<Transaction> transactions,
             TransactionType type) =>
