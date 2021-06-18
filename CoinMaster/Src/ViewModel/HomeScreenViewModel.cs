@@ -24,10 +24,13 @@ namespace CoinMaster.ViewModel
             set
             {
                 SetAndNotify(ref _selectedCoin, value);
+                NotifyOfPropertyChange(() => EnableButtons);
                 events.Publish(new ElementSelectedEvent<Coin> {Element = SelectedCoin});
             }
         }
 
+        public bool EnableButtons => SelectedCoin is not null;
+        
         public DashboardOverviewViewModel DashboardOverview { get; }
 
         private readonly INavigationController navigationController;
@@ -47,12 +50,19 @@ namespace CoinMaster.ViewModel
         }
 
         public void NavigateToCoinDetail() => navigationController.NavigateToCoinDetail();
-
+        
         protected override async void OnActivate()
         {
             base.OnActivate();
 
             await Task.Run(async () => Coins = new BindingList<Coin>(await coinRepository.LoadWatchedCoins()));
+        }
+
+        public async Task DeleteCoin()
+        {
+            await coinRepository.DeleteCoin(SelectedCoin);
+            await DashboardOverview.LoadData();
+            Coins.Remove(SelectedCoin);
         }
     }
 }

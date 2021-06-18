@@ -72,7 +72,7 @@
                                        HorizontalAlignment="Center"
                                        Foreground="{StaticResource Grey}" />
                             <TextBlock Style="{StaticResource BasicLabel}"
-                                       Text="$120,123.342"
+                                       Text="{Binding TotalSpent}"
                                        HorizontalAlignment="Center"
                                        FontSize="26" />
                         </StackPanel>
@@ -91,7 +91,7 @@
                                        FontSize="14" />
 
                             <TextBlock Style="{StaticResource BasicLabel}"
-                                       Text="$120,123.342"
+                                       Text="{Binding ProfitLoss}"
                                        HorizontalAlignment="Center"
                                        FontSize="22" />
                         </StackPanel>
@@ -110,7 +110,7 @@
                                        FontSize="14" />
 
                             <TextBlock Style="{StaticResource BasicLabel}"
-                                       Text="+250.35%"
+                                       Text="{Binding PercentChange}"
                                        HorizontalAlignment="Center"
                                        FontSize="22" />
                         </StackPanel>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using CoinMaster.Utility;
 
 namespace CoinMaster.Model
@@ -16,6 +17,7 @@ namespace CoinMaster.Model
         public string Description { get; set; }
 
         public decimal Cost => CoinPrice * Amount;
+        public string AmountFormat => StringFormats.DecimalFormat(Amount);
         public string CostFormat => StringFormats.CurrencyFormat(Cost);
         public string TotalCostFormat => StringFormats.CurrencyFormat(Cost + Fee);
         public string DateFormat => Date.ToShortDateString();

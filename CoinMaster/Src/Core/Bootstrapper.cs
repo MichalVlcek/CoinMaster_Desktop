@@ -18,7 +18,6 @@ namespace CoinMaster
             builder.AddModule(new ValidationModule());
 
             builder.Bind<Func<CoinDataContext>>().ToFactory<Func<CoinDataContext>>(c => () => c.Get<CoinDataContext>());
-            builder.Bind<CoinDataContext>().ToSelf();
             builder.Bind<CoinRepository>().ToSelf().InSingletonScope();
             builder.Bind<TransactionRepository>().ToSelf().InSingletonScope();
         }

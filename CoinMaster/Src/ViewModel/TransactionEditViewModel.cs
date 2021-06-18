@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using CoinMaster.Events;
 using CoinMaster.Model;
+using CoinMaster.Utility;
 using Stylet;
 
 namespace CoinMaster.ViewModel
@@ -79,7 +80,7 @@ namespace CoinMaster.ViewModel
 
         public TransactionEditViewModel(
             IWindowManager windowManager,
-            IModelValidator<TransactionEditViewModel> validator, 
+            IModelValidator<TransactionEditViewModel> validator,
             IEventAggregator eventAggregator) : base(validator)
         {
             this.windowManager = windowManager;
@@ -90,11 +91,13 @@ namespace CoinMaster.ViewModel
 
         public void Handle(ElementSelectedEvent<Transaction> message)
         {
+            if (message.Element == null) return;
+            
             SelectedTransaction = message.Element;
             SelectedType = SelectedTransaction.Type;
-            CoinPrice = SelectedTransaction.CoinPrice.ToString(CultureInfo.InvariantCulture);
-            Amount = SelectedTransaction.Amount.ToString(CultureInfo.InvariantCulture);
-            Fee = SelectedTransaction.Fee.ToString(CultureInfo.InvariantCulture);
+            CoinPrice = StringFormats.DecimalFormat(SelectedTransaction.CoinPrice);
+            Amount = StringFormats.DecimalFormat(SelectedTransaction.Amount);
+            Fee = StringFormats.DecimalFormat(SelectedTransaction.Fee);
             Date = SelectedTransaction.Date;
             Description = SelectedTransaction.Description;
 
@@ -118,7 +121,7 @@ namespace CoinMaster.ViewModel
                 SelectedTransaction.Fee = Convert.ToDecimal(Fee, CultureInfo.InvariantCulture);
                 SelectedTransaction.Date = Date;
                 SelectedTransaction.Description = Description;
-                
+
                 eventAggregator.Publish(new TransactionsUpdatedEvent {Transaction = SelectedTransaction});
             }
             catch (Exception e)

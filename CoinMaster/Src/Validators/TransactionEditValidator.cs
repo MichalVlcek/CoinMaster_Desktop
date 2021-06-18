@@ -5,7 +5,7 @@ namespace CoinMaster.Validators
 {
     public class TransactionEditValidator : AbstractValidator<TransactionEditViewModel>
     {
-        private const string NumberRegex = "^[0-9][0-9.]*$";
+        private const string NumberRegex = @"^\d+\.?\d*$";
 
         public TransactionEditValidator()
         {

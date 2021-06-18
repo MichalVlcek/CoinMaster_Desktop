@@ -59,8 +59,10 @@ namespace CoinMaster.Model
             PriceChangePercent7D = priceChangePercent7D;
         }
 
-        public string HeldValue => StringFormats.CurrencyFormat(CoinUtils.CountHoldingsValue(Transaction, Price));
-        public string HeldAmount => StringFormats.CurrencyFormat(Transaction.Select(t => t.Amount).Sum(), Symbol);
+        public decimal HeldValue => CoinUtils.CountHoldingsValue(Transaction, Price);
+        public string HeldValueFormat => StringFormats.CurrencyFormat(HeldValue);
+        public decimal HeldAmount => Transaction.Select(t => t.Amount).Sum();
+        public string HeldAmountFormat => StringFormats.CurrencyFormat(HeldAmount, Symbol);
         public string Title => $"{Name} - {Symbol.ToUpper()}";
         public string RankFormat => StringFormats.RankFormat(Rank);
         public string PriceFormat => StringFormats.CurrencyFormat(Price);

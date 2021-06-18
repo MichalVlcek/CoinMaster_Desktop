@@ -16,6 +16,9 @@ namespace CoinMaster.Utility
         public static string CurrencyFormat(decimal price, string symbol) =>
             $"{FormatPrice(price, "N")} {symbol.ToUpper()}";
 
+        public static string DecimalFormat(decimal number) =>
+            number.ToString("0.#########", CultureInfo.InvariantCulture);
+
         private static string PlusWhenPositive(double num) => num > 0 ? "+" : "";
 
         private static string FormatPrice(decimal price, string format) =>

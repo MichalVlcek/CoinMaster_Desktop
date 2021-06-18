@@ -24,13 +24,31 @@ namespace CoinMaster.ViewModel
         public string HoldingsValue =>
             StringFormats.CurrencyFormat(CoinUtils.CountHoldingsValue(Coins));
 
+        public string TotalSpent =>
+            StringFormats.CurrencyFormat(CoinUtils.CountTotalCost(Transactions));
+
+        public string ProfitLoss =>
+            StringFormats.CurrencyFormat(CoinUtils.CountProfitOrLoss(Transactions, Coins));
+
+        public string PercentChange =>
+            StringFormats.PercentFormat(CoinUtils.CountPercentChange(Transactions, Coins));
+
+        public async Task LoadData()
+        {
+            await Task.Run(async () =>
+            {
+                Transactions = await transactionRepository.GetTransactionsAll();
+                Coins = await coinRepository.GetAllFromDatabase();
+            });
+            
+            Refresh();
+        }
+        
         protected override async void OnViewLoaded()
         {
             base.OnViewLoaded();
-            
-            // Transactions = await transactionRepository.GetTransactionsAll();
-            await Task.Run( async () => Coins = await coinRepository.GetAllFromDatabase());
-            NotifyOfPropertyChange(() => HoldingsValue);
+
+            await LoadData();
         }
     }
 }

@@ -73,7 +73,7 @@
                                         Width="105">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Amount}"
+                                    <TextBlock Text="{Binding AmountFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />

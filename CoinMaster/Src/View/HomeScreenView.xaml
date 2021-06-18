@@ -59,7 +59,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding HeldValue}"
+                                    <TextBlock Text="{Binding HeldValueFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -70,7 +70,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding HeldAmount}"
+                                    <TextBlock Text="{Binding HeldAmountFormat}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -126,12 +126,15 @@
                     Content="EDIT SELECTED"
                     Margin="0,6,6,6"
                     Style="{StaticResource BlueButtonTheme}" 
-                    Command="{s:Action NavigateToCoinDetail}"/>
+                    Command="{s:Action NavigateToCoinDetail}"
+                    IsEnabled="{Binding EnableButtons}"/>
             <Button Grid.Column="1"
                     x:Name="DeleteButton"
                     Content="DELETE SELECTED"
                     Margin="6,6,0,6"
-                    Style="{StaticResource RedButtonTheme}" />
+                    Style="{StaticResource RedButtonTheme}" 
+                    Command="{s:Action DeleteCoin}"
+                    IsEnabled="{Binding EnableButtons}"/>
         </Grid>
     </Grid>
 </UserControl>
