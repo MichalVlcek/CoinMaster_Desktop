@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Json.Serialization;
 using CoinMaster.Utility;
 
@@ -34,8 +35,8 @@ namespace CoinMaster.Model
 
         [JsonPropertyName("price_change_percentage_7d_in_currency")]
         public double? PriceChangePercent7D { get; set; }
-        
-        public List<Transaction> Transactions { get; set; }
+
+        public ICollection<Transaction> Transaction { get; set; }
 
         public Coin(string id, string icon, int rank, string name, string symbol, decimal price, decimal marketCap,
             decimal circulatingSupply, decimal? maxSupply, decimal ath, double athPercentChange, decimal atl,
@@ -58,6 +59,8 @@ namespace CoinMaster.Model
             PriceChangePercent7D = priceChangePercent7D;
         }
 
+        public string HeldValue => StringFormats.CurrencyFormat(CoinUtils.CountHoldingsValue(Transaction, Price));
+        public string HeldAmount => StringFormats.CurrencyFormat(Transaction.Select(t => t.Amount).Sum(), Symbol);
         public string Title => $"{Name} - {Symbol.ToUpper()}";
         public string RankFormat => StringFormats.RankFormat(Rank);
         public string PriceFormat => StringFormats.CurrencyFormat(Price);
