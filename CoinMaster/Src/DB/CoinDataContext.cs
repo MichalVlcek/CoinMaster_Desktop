@@ -21,10 +21,34 @@ namespace CoinMaster.DB
             modelBuilder.Entity<Coin>()
                 .HasKey(c => c.Id);
             
+            modelBuilder.Entity<Coin>()
+                .Property(t => t.Price)
+                .HasPrecision(20, 9);
+            
+            modelBuilder.Entity<Coin>()
+                .Property(t => t.Ath)
+                .HasPrecision(20, 9);
+            
+            modelBuilder.Entity<Coin>()
+                .Property(t => t.Atl)
+                .HasPrecision(20, 9);
+            
             modelBuilder.Entity<Transaction>()
                 .HasOne<Coin>(t => t.Coin)
                 .WithMany(c => c.Transaction)
                 .HasForeignKey(t => t.CoinId);
+
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.CoinPrice)
+                .HasPrecision(20, 9);
+            
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.Amount)
+                .HasPrecision(20, 9);
+            
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.Fee)
+                .HasPrecision(20, 9);
         }
     }
 }
