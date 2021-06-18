@@ -10,6 +10,8 @@ namespace CoinMaster.Modules
             Bind<CoinOverviewViewModel>().ToSelf().InSingletonScope();
             Bind<CoinDetailTitleViewModel>().ToSelf().InSingletonScope();
             Bind<TransactionViewModel>().ToSelf().InSingletonScope();
+
+            Bind<MainContentViewModel>().ToSelf().InSingletonScope();
         }
     }
 }

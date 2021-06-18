@@ -4,7 +4,7 @@ using CoinMaster.ViewModel;
 
 namespace CoinMaster.Core
 {
-    public class NavigationController : INavigationController
+    public class NavigationControllerMain : INavigationControllerMain
     {
         private readonly Func<AddCoinViewModel> addCoinViewModelFactory;
         private readonly Func<HomeScreenViewModel> homeScreenViewModelFactory;
@@ -12,7 +12,7 @@ namespace CoinMaster.Core
 
         public INavigationControllerDelegate Delegate { get; set; }
 
-        public NavigationController(
+        public NavigationControllerMain(
             Func<AddCoinViewModel> addCoinViewModelFactory,
             Func<HomeScreenViewModel> homeScreenViewModelFactory,
             Func<CoinDetailViewModel> coinDetailViewModelFactory)

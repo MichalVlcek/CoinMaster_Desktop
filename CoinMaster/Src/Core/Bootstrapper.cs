@@ -24,9 +24,13 @@ namespace CoinMaster
 
         protected override void OnLaunch()
         {
-            var navigationController = Container.Get<NavigationController>();
-            navigationController.Delegate = RootViewModel;
-            navigationController.NavigateToHomeScreen();
+            var navigationControllerMain = Container.Get<NavigationControllerMain>();
+            navigationControllerMain.Delegate =  Container.Get<MainContentViewModel>();
+            navigationControllerMain.NavigateToHomeScreen();
+
+            var navigationControllerAuthentication = Container.Get<NavigationControllerAuthentication>();
+            navigationControllerAuthentication.Delegate = RootViewModel;
+            navigationControllerAuthentication.NavigateToLogin();
 
             // Creating instances of the objects on launch, because I need the objects to be already created when starting app
             var coinOverview = Container.Get<CoinOverviewViewModel>();
