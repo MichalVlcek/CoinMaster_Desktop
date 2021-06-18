@@ -75,6 +75,7 @@
 
         <Button Grid.Row="4"
                 Style="{StaticResource BlueButtonTheme}"
+                Command="{s:Action NavigateToMain}"
                 Content="Sing In"
                 Width="300"
                 Height="40" />
@@ -92,6 +93,7 @@
 
             <Button Grid.Row="4"
                     Style="{StaticResource OrangeButtonTheme}"
+                    Command="{s:Action NavigateToRegister}"
                     Content="Sing Up"
                     Width="300"
                     Height="35" />

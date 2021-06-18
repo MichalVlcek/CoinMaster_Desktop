@@ -5,9 +5,9 @@ namespace CoinMaster.ViewModel
 {
     public class MenuBarViewModel : Screen
     {
-        private readonly INavigationController navigationController;
+        private readonly INavigationControllerMain navigationController;
 
-        public MenuBarViewModel(INavigationController navigationController)
+        public MenuBarViewModel(INavigationControllerMain navigationController)
         {
             this.navigationController = navigationController;
         }

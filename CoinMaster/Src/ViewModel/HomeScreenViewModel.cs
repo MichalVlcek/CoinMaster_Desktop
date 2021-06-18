@@ -33,13 +33,13 @@ namespace CoinMaster.ViewModel
         
         public DashboardOverviewViewModel DashboardOverview { get; }
 
-        private readonly INavigationController navigationController;
+        private readonly INavigationControllerMain navigationController;
         private readonly IEventAggregator events;
         private readonly CoinRepository coinRepository;
 
         public HomeScreenViewModel(
             CoinRepository coinRepository,
-            INavigationController navigationController,
+            INavigationControllerMain navigationController,
             IEventAggregator events,
             DashboardOverviewViewModel dashboardOverviewViewModel)
         {

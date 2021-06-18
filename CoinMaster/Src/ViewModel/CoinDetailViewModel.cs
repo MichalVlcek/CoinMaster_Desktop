@@ -9,7 +9,7 @@ namespace CoinMaster.ViewModel
         private CoinOverviewViewModel CoinOverview { get; }
         private TransactionViewModel TransactionViewModel { get; }
 
-        private readonly INavigationController navigationController;
+        private readonly INavigationControllerMain navigationController;
 
         private IScreen _selectedScreen;
 
@@ -19,7 +19,7 @@ namespace CoinMaster.ViewModel
             set => SetAndNotify(ref _selectedScreen, value);
         }
 
-        public CoinDetailViewModel(INavigationController navigationController, 
+        public CoinDetailViewModel(INavigationControllerMain navigationController, 
             CoinDetailTitleViewModel coinTitle,
             CoinOverviewViewModel coinOverview,
             TransactionViewModel transactionScreen)
