@@ -8,8 +8,86 @@
              xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
              d:DataContext="{d:DesignInstance viewModel:RegisterViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="720" d:DesignWidth="1152">
+             d:DesignHeight="720"
+             d:DesignWidth="1152">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1"
+                   Style="{StaticResource BasicLabel}"
+                   Text="Sign Up"
+                   FontWeight="Bold"
+                   FontSize="28"
+                   HorizontalAlignment="Center"
+                   Margin="10" />
+
+        <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+
+            <TextBlock Style="{StaticResource BasicLabel}"
+                       Text="Email:"
+                       HorizontalAlignment="Left"
+                       Margin="10" />
+            <TextBox Style="{StaticResource BasicTextBox}"
+                     HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     Width="300"
+                     Height="40" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+
+            <TextBlock Style="{StaticResource BasicLabel}"
+                       Text="Password:"
+                       HorizontalAlignment="Left"
+                       Margin="10" />
+            <TextBox Style="{StaticResource BasicTextBox}"
+                     HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     Width="300"
+                     Height="40" />
+        </StackPanel>
+
+        <Button Grid.Row="4"
+                Style="{StaticResource BlueButtonTheme}"
+                Command="{s:Action NavigateToMain}"
+                Content="Sing Up"
+                Width="300"
+                Height="40" />
+
+        <StackPanel Grid.Row="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+
+            <TextBlock Grid.Row="5"
+                       Style="{StaticResource BasicLabel}"
+                       Text="Have an account?"
+                       HorizontalAlignment="Center"
+                       Margin="10" />
+
+            <Button Grid.Row="4"
+                    Style="{StaticResource OrangeButtonTheme}"
+                    Command="{s:Action NavigateToLogin}"
+                    Content="Sing In"
+                    Width="300"
+                    Height="35" />
+        </StackPanel>
+
     </Grid>
 </UserControl>

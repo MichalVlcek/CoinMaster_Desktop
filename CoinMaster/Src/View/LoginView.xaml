@@ -87,7 +87,7 @@
 
             <TextBlock Grid.Row="5"
                        Style="{StaticResource BasicLabel}"
-                       Text="No Password?"
+                       Text="No Account?"
                        HorizontalAlignment="Center"
                        Margin="10" />
 
