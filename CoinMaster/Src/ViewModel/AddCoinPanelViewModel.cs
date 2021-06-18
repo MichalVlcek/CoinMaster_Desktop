@@ -18,7 +18,6 @@ namespace CoinMaster.ViewModel
         public async Task AddCoin()
         {
             await coinRepository.InsertCoin(SelectedCoin);
-            TmpDatabase.Coins.Add(SelectedCoin);
         }
     }
 }
