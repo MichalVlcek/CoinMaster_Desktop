@@ -36,7 +36,8 @@ namespace CoinMaster.DB
             modelBuilder.Entity<Transaction>()
                 .HasOne<Coin>(t => t.Coin)
                 .WithMany(c => c.Transaction)
-                .HasForeignKey(t => t.CoinId);
+                .HasForeignKey(t => t.CoinId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Transaction>()
                 .Property(t => t.CoinPrice)
