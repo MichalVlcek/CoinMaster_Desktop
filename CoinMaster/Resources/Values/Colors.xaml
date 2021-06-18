@@ -11,7 +11,7 @@
     <SolidColorBrush x:Key="OrangeLight"
                      Color="#ffb640" />
     <SolidColorBrush x:Key="OrangeDarker"
-                     Color="#f7a623" />
+                     Color="#ed9d1a" />
     <SolidColorBrush x:Key="Blue"
                      Color="#039BE5" />
     <SolidColorBrush x:Key="BlueDarker"
