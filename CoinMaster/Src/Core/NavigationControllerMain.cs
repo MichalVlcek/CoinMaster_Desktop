@@ -1,6 +1,8 @@
 ﻿using System;
 using CoinMaster.Interfaces;
-using CoinMaster.ViewModel;
+using CoinMaster.ViewModel.AddCoin;
+using CoinMaster.ViewModel.CoinDetail;
+using CoinMaster.ViewModel.HomeScreen;
 
 namespace CoinMaster.Core
 {

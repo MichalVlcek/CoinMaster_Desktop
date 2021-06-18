@@ -50,6 +50,12 @@
       <Page Update="Resources\Theme\Buttons\LightButtonTheme.xaml">
         <SubType>Designer</SubType>
       </Page>
+      <Page Update="Src\View\AddCoin\AddCoinView.xaml">
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Src\View\HomeScreen\DashboardOverviewView.xaml">
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using CoinMaster.Model;
 using CoinMaster.Utility;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.HomeScreen
 {
     public class DashboardOverviewViewModel : Screen
     {

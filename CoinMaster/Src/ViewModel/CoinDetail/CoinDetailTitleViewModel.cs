@@ -1,6 +1,6 @@
 ﻿using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.CoinDetail
 {
     public class CoinDetailTitleViewModel : AbstractCoinSubscriber
     {

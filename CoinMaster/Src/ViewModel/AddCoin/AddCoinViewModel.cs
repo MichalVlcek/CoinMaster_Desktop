@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
-using CoinMaster.Api;
 using CoinMaster.Data;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.AddCoin
 {
     public class AddCoinViewModel : Screen
     {

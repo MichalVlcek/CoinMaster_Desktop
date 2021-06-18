@@ -4,6 +4,7 @@ using CoinMaster.Data;
 using CoinMaster.DB;
 using CoinMaster.Modules;
 using CoinMaster.ViewModel;
+using CoinMaster.ViewModel.CoinDetail;
 using Stylet;
 using StyletIoC;
 

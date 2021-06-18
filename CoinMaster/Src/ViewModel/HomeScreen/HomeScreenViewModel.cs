@@ -6,7 +6,7 @@ using CoinMaster.Interfaces;
 using CoinMaster.Model;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.HomeScreen
 {
     public class HomeScreenViewModel : Screen
     {

@@ -1,7 +1,7 @@
 ﻿using CoinMaster.Interfaces;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.Authentication
 {
     public class AbstractAuthenticationViewModel : Screen
     {

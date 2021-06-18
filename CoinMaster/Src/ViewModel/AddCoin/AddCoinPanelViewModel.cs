@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 using CoinMaster.Data;
-using CoinMaster.Model;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.AddCoin
 {
     public class AddCoinPanelViewModel : AbstractCoinSubscriber
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using CoinMaster.Interfaces;
 using CoinMaster.ViewModel;
+using CoinMaster.ViewModel.Authentication;
 
 namespace CoinMaster.Core
 {

@@ -1,4 +1,5 @@
 ﻿using CoinMaster.ViewModel;
+using CoinMaster.ViewModel.Authentication;
 using FluentValidation;
 
 namespace CoinMaster.Validators

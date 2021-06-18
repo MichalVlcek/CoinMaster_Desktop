@@ -2,6 +2,10 @@
 using CoinMaster.Core;
 using CoinMaster.Interfaces;
 using CoinMaster.ViewModel;
+using CoinMaster.ViewModel.AddCoin;
+using CoinMaster.ViewModel.Authentication;
+using CoinMaster.ViewModel.CoinDetail;
+using CoinMaster.ViewModel.HomeScreen;
 using StyletIoC;
 
 namespace CoinMaster.Modules

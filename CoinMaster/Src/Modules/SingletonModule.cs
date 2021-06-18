@@ -1,4 +1,5 @@
 ﻿using CoinMaster.ViewModel;
+using CoinMaster.ViewModel.CoinDetail;
 using StyletIoC;
 
 namespace CoinMaster.Modules

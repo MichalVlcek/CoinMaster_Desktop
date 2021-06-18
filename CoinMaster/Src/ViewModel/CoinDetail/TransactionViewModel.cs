@@ -5,7 +5,7 @@ using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.CoinDetail
 {
     public class TransactionViewModel : AbstractCoinSubscriber, IHandle<TransactionsUpdatedEvent>
     {

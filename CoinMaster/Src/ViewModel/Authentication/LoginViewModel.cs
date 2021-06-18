@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using CoinMaster.Interfaces;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.Authentication
 {
     public class LoginViewModel : AbstractAuthenticationViewModel
     {
