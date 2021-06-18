@@ -38,12 +38,11 @@ namespace CoinMaster.Utility
         /// Counts current value for all held coins
         /// Formula: Sum(Sum of coin holdings * current price of coin)
         /// </summary>
-        //TODO uncomment when coins have id
-        // private static decimal CountHoldingsValue(IEnumerable<Transaction> transactions, IEnumerable<Coin> coins) =>
-        //     coins.Select(coin => CountHoldingsValue(
-        //         transactions.Where(t => t.CoinId == coin.Id),
-        //         coin.Price
-        //     )).Sum();
+        public static decimal CountHoldingsValue(IEnumerable<Transaction> transactions, IEnumerable<Coin> coins) =>
+            coins.Select(coin => CountHoldingsValue(
+                transactions.Where(t => t.CoinId == coin.Id),
+                coin.Price
+            )).Sum();
 
         /// <summary>
         /// Counts value of held coins in past
