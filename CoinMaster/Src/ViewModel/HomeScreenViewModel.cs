@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using CoinMaster.Data;
 using CoinMaster.Events;
@@ -49,11 +48,11 @@ namespace CoinMaster.ViewModel
 
         public void NavigateToCoinDetail() => navigationController.NavigateToCoinDetail();
 
-        protected override void OnActivate()
+        protected override async void OnActivate()
         {
             base.OnActivate();
 
-            Task.Run(async () => Coins = new BindingList<Coin>(await coinRepository.LoadWatchedCoins()));
+            await Task.Run(async () => Coins = new BindingList<Coin>(await coinRepository.LoadWatchedCoins()));
         }
     }
 }

@@ -59,7 +59,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding PriceFormat}"
+                                    <TextBlock Text="{Binding HeldValue}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -70,7 +70,7 @@
                                         Width="134">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding PriceFormat}"
+                                    <TextBlock Text="{Binding HeldAmount}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
