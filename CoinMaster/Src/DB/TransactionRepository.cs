@@ -33,7 +33,7 @@ namespace CoinMaster.Data
             context.Transactions.Update(transaction);
             await context.SaveChangesAsync();
         }
-        
+
         public async Task DeleteTransaction(Transaction transaction)
         {
             await using var context = dataContext();
@@ -48,7 +48,10 @@ namespace CoinMaster.Data
 
             try
             {
-                return await context.Transactions.Where(t => t.CoinId == coin.Id).ToListAsync();
+                return await context.Transactions
+                    .Where(t => t.CoinId == coin.Id)
+                    .OrderByDescending(t => t.Date)
+                    .ToListAsync();
             }
             catch (Exception e)
             {
@@ -60,7 +63,9 @@ namespace CoinMaster.Data
         {
             await using var context = dataContext();
 
-            return await context.Transactions.ToListAsync();
-        } 
+            return await context.Transactions
+                .OrderByDescending(t => t.Date)
+                .ToListAsync();
+        }
     }
 }

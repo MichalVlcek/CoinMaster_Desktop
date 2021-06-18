@@ -80,7 +80,7 @@ namespace CoinMaster.ViewModel
 
         public TransactionEditViewModel(
             IWindowManager windowManager,
-            IModelValidator<TransactionEditViewModel> validator, 
+            IModelValidator<TransactionEditViewModel> validator,
             IEventAggregator eventAggregator) : base(validator)
         {
             this.windowManager = windowManager;
@@ -91,6 +91,8 @@ namespace CoinMaster.ViewModel
 
         public void Handle(ElementSelectedEvent<Transaction> message)
         {
+            if (message.Element == null) return;
+            
             SelectedTransaction = message.Element;
             SelectedType = SelectedTransaction.Type;
             CoinPrice = StringFormats.DecimalFormat(SelectedTransaction.CoinPrice);
@@ -119,7 +121,7 @@ namespace CoinMaster.ViewModel
                 SelectedTransaction.Fee = Convert.ToDecimal(Fee, CultureInfo.InvariantCulture);
                 SelectedTransaction.Date = Date;
                 SelectedTransaction.Description = Description;
-                
+
                 eventAggregator.Publish(new TransactionsUpdatedEvent {Transaction = SelectedTransaction});
             }
             catch (Exception e)

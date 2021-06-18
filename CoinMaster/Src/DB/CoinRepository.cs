@@ -52,7 +52,10 @@ namespace CoinMaster.Data
             await using var context = dataContext();
 
             await context.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
-            return await context.Coins.ToListAsync();
+            var coins =  await context.Coins
+                .ToListAsync();
+
+            return coins.OrderByDescending(c => c.HeldValue).ToList();
         }
 
         public async Task<List<Coin>> LoadAllCoins()
@@ -77,8 +80,9 @@ namespace CoinMaster.Data
             }
 
             await context.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
-            coins = await context.Coins.ToListAsync();
-            return coins;
+            coins = await context.Coins
+                .ToListAsync();
+            return coins.OrderByDescending(c => c.HeldValue).ToList();
         }
 
         private async Task UpdateCoin(Coin coin)

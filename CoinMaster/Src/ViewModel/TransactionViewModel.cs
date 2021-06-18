@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using CoinMaster.Data;
 using CoinMaster.Events;
@@ -72,11 +71,13 @@ namespace CoinMaster.ViewModel
             }
 
             await LoadTransactions();
+            SelectedTransaction = null;
         }
 
         protected override async void OnViewLoaded()
         {
             base.OnViewLoaded();
+            SelectedTransaction = null;
             await LoadTransactions();
         }
         
