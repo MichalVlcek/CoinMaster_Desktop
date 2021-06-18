@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style BasedOn="{StaticResource BasicButtonTheme}"
+           TargetType="Button"
+           x:Key="OrangeButtonTheme">
+
+        <Setter Property="Background"
+                Value="{StaticResource Orange}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource OrangeDarker}" />
+            </Trigger>
+            <Trigger Property="IsPressed"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource OrangeLight}" />
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+</ResourceDictionary>
