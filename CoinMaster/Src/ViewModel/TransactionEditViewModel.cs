@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using CoinMaster.Events;
 using CoinMaster.Model;
+using CoinMaster.Utility;
 using Stylet;
 
 namespace CoinMaster.ViewModel
@@ -92,9 +93,9 @@ namespace CoinMaster.ViewModel
         {
             SelectedTransaction = message.Element;
             SelectedType = SelectedTransaction.Type;
-            CoinPrice = SelectedTransaction.CoinPrice.ToString(CultureInfo.InvariantCulture);
-            Amount = SelectedTransaction.Amount.ToString(CultureInfo.InvariantCulture);
-            Fee = SelectedTransaction.Fee.ToString(CultureInfo.InvariantCulture);
+            CoinPrice = StringFormats.DecimalFormat(SelectedTransaction.CoinPrice);
+            Amount = StringFormats.DecimalFormat(SelectedTransaction.Amount);
+            Fee = StringFormats.DecimalFormat(SelectedTransaction.Fee);
             Date = SelectedTransaction.Date;
             Description = SelectedTransaction.Description;
 
