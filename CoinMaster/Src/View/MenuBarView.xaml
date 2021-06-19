@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="225">
-    <Border Background="{StaticResource BackgroundDark}">
+    <Border Background="{StaticResource BackgroundLight}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="225" />
@@ -19,15 +19,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="65" />
                 <RowDefinition />
+                <RowDefinition Height="65" />
             </Grid.RowDefinitions>
-
-            <Border Background="{StaticResource BackgroundLight}"
-                    Grid.Column="0"
-                    Grid.Row="0" />
-
-            <Border Background="{StaticResource BackgroundLight}"
-                    Grid.Column="0"
-                    Grid.Row="1" />
 
             <Image Grid.Row="0"
                    Grid.Column="0"
@@ -63,6 +56,11 @@
                 <RadioButton Content="{StaticResource MarketOverview}"
                              Style="{StaticResource MenuButtonTheme}" />
             </StackPanel>
+
+            <Button Grid.Row="2"
+                    Content="Sign out"
+                    Style="{StaticResource LightButtonTheme}"
+                    Command="{s:Action SignOut}" />
         </Grid>
     </Border>
 </UserControl>

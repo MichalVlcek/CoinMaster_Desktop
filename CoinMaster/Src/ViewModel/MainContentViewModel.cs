@@ -7,14 +7,23 @@ namespace CoinMaster.ViewModel
     {
         public MenuBarViewModel MenuBar { get; }
 
-        public MainContentViewModel(MenuBarViewModel menuBar)
+        private readonly INavigationControllerMain navigationControllerMain;
+
+        public MainContentViewModel(INavigationControllerMain navigationControllerMain, MenuBarViewModel menuBar)
         {
+            this.navigationControllerMain = navigationControllerMain;
             MenuBar = menuBar;
         }
         
         public void NavigateTo(IScreen screen)
         {
             ActivateItem(screen);
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+            navigationControllerMain.NavigateToHomeScreen();
         }
     }
 }

@@ -5,5 +5,6 @@
         void NavigateToAddCoinsScreen();
         void NavigateToHomeScreen();
         void NavigateToCoinDetail();
+        void NavigateToLogin();
     }
 }
