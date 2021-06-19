@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using CoinMaster.DB;
+using CoinMaster.Exceptions;
 using CoinMaster.Interfaces;
 using Stylet;
 
@@ -18,16 +20,28 @@ namespace CoinMaster.ViewModel.Authentication
         {
         }
 
-        public void Register(PasswordBox passwordBox)
+        public async void Register(PasswordBox passwordBox)
         {
             Password = passwordBox.Password;
             if (Password == string.Empty)
             {
                 WindowManager.ShowMessageBox("Password can't be empty", "Empty Password", icon: MessageBoxImage.Error);
-                return;;
+                return;
             }
-            
-            NavigateToMain();
+
+            try
+            {
+                await UserRepository.RegisterUser(Email, Password);
+                NavigateToMain();
+            }
+            catch (UserExistsException e)
+            {
+                WindowManager.ShowMessageBox(e.Message, "User Exists", icon: MessageBoxImage.Error);
+            }
+            catch (Exception e)
+            {
+                WindowManager.ShowMessageBox("Something bad happened, try again.", "Error", icon: MessageBoxImage.Error);
+            }
         }
         
         public void NavigateToMain() => NavigationController.NavigateToMain();
