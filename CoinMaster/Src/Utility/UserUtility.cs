@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace CoinMaster.Utility
@@ -9,7 +10,7 @@ namespace CoinMaster.Utility
         {
             using var sha256 = new SHA256Managed();
             var hashed = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            return Encoding.UTF8.GetString(hashed);
+            return BitConverter.ToString(hashed).Replace("-", "");
         }
     }
 }
