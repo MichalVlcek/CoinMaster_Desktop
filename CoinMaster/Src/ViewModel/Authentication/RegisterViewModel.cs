@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using CoinMaster.DB;
 using CoinMaster.Interfaces;
 using Stylet;
 
@@ -11,8 +12,9 @@ namespace CoinMaster.ViewModel.Authentication
         public RegisterViewModel(
             IWindowManager windowManager, 
             INavigationControllerAuthentication navigationController, 
-            IModelValidator<AbstractAuthenticationViewModel> validator) 
-            : base(windowManager, navigationController, validator)
+            IModelValidator<AbstractAuthenticationViewModel> validator,
+            UserRepository userRepository) 
+            : base(windowManager, navigationController, validator, userRepository)
         {
         }
 

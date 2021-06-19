@@ -20,6 +20,7 @@ namespace CoinMaster
             builder.Bind<Func<CoinDataContext>>().ToFactory<Func<CoinDataContext>>(c => () => c.Get<CoinDataContext>());
             builder.Bind<CoinRepository>().ToSelf().InSingletonScope();
             builder.Bind<TransactionRepository>().ToSelf().InSingletonScope();
+            builder.Bind<UserRepository>().ToSelf().InSingletonScope();
         }
 
         protected override void OnLaunch()
@@ -38,6 +39,7 @@ namespace CoinMaster
             var transactionView = Container.Get<TransactionViewModel>();
             var coinRepository = Container.Get<CoinRepository>();
             var transactionRepository = Container.Get<TransactionRepository>();
+            var userRepository = Container.Get<UserRepository>();
         }
     }
 }

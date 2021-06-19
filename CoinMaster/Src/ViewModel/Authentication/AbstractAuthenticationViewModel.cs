@@ -1,4 +1,5 @@
-﻿using CoinMaster.Interfaces;
+﻿using CoinMaster.DB;
+using CoinMaster.Interfaces;
 using Stylet;
 
 namespace CoinMaster.ViewModel.Authentication
@@ -27,14 +28,17 @@ namespace CoinMaster.ViewModel.Authentication
 
         public readonly INavigationControllerAuthentication NavigationController;
         public readonly IWindowManager WindowManager;
+        public readonly UserRepository UserRepository;
 
         public AbstractAuthenticationViewModel(
             IWindowManager windowManager,
             INavigationControllerAuthentication navigationController,
-            IModelValidator<AbstractAuthenticationViewModel> validator) : base(validator)
+            IModelValidator<AbstractAuthenticationViewModel> validator,
+            UserRepository userRepository) : base(validator)
         {
             this.WindowManager = windowManager;
             this.NavigationController = navigationController;
+            this.UserRepository = userRepository;
             Validate();
         }
     }
