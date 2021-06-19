@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using CoinMaster.DB;
 using CoinMaster.Exceptions;
 using CoinMaster.Interfaces;
+using CoinMaster.Model;
 using Stylet;
 
 namespace CoinMaster.ViewModel.Authentication
@@ -30,7 +31,8 @@ namespace CoinMaster.ViewModel.Authentication
 
             try
             {
-                await UserRepository.LoginUser(Email, Password);
+                var user = await UserRepository.LoginUser(Email, Password);
+                LoggedUser.User = user;
                 NavigateToMain();
             }
             catch (WrongCredentialsException e)

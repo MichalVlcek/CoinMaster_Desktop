@@ -1,5 +1,6 @@
 ﻿using CoinMaster.DB;
 using CoinMaster.Interfaces;
+using CoinMaster.Model;
 using Stylet;
 
 namespace CoinMaster.ViewModel.Authentication
@@ -40,6 +41,13 @@ namespace CoinMaster.ViewModel.Authentication
             this.NavigationController = navigationController;
             this.UserRepository = userRepository;
             Validate();
+        }
+        
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+
+            LoggedUser.User = null;
         }
     }
 }

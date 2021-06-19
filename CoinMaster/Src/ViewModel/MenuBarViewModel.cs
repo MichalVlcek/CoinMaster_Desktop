@@ -1,4 +1,5 @@
 ﻿using CoinMaster.Interfaces;
+using CoinMaster.Model;
 using Stylet;
 
 namespace CoinMaster.ViewModel
@@ -18,6 +19,7 @@ namespace CoinMaster.ViewModel
 
         public void SignOut()
         {
+            LoggedUser.User = null;
             NavigateToLogin();
         }
         
