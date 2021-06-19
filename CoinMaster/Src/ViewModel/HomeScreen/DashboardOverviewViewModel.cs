@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CoinMaster.Data;
+using CoinMaster.DB;
 using CoinMaster.Model;
 using CoinMaster.Utility;
 using Stylet;

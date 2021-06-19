@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using CoinMaster.Data;
+using CoinMaster.DB;
 using Stylet;
 
 namespace CoinMaster.ViewModel.AddCoin

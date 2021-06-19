@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoinMaster.DB;
 using CoinMaster.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoinMaster.Data
+namespace CoinMaster.DB
 {
     public class TransactionRepository
     {

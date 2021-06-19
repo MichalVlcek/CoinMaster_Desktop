@@ -1,6 +1,5 @@
 ﻿using System;
 using CoinMaster.Core;
-using CoinMaster.Data;
 using CoinMaster.DB;
 using CoinMaster.Modules;
 using CoinMaster.ViewModel;

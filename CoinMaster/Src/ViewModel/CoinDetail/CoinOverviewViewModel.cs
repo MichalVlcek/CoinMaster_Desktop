@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CoinMaster.Data;
+using CoinMaster.DB;
 using CoinMaster.Model;
 using CoinMaster.Utility;
 using Stylet;
