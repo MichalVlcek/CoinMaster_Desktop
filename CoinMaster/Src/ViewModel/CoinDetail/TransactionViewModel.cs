@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
-using CoinMaster.Data;
+using CoinMaster.DB;
 using CoinMaster.Events;
 using CoinMaster.Model;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.CoinDetail
 {
     public class TransactionViewModel : AbstractCoinSubscriber, IHandle<TransactionsUpdatedEvent>
     {

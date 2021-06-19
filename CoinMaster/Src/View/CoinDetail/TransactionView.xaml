@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CoinMaster.View.TransactionView"
+﻿<UserControl x:Class="CoinMaster.View.CoinDetail.TransactionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:CoinMaster.View"
              xmlns:s="https://github.com/canton7/Stylet"
              xmlns:viewModel="clr-namespace:CoinMaster.ViewModel"
-             d:DataContext="{d:DesignInstance viewModel:TransactionViewModel}"
+             xmlns:coinDetail="clr-namespace:CoinMaster.ViewModel.CoinDetail"
+             d:DataContext="{d:DesignInstance coinDetail:TransactionViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="927">

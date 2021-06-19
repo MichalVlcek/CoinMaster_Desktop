@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using CoinMaster.Data;
+using CoinMaster.DB;
 using CoinMaster.Model;
 using CoinMaster.Utility;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.CoinDetail
 {
     public class CoinOverviewViewModel : AbstractCoinSubscriber
     {

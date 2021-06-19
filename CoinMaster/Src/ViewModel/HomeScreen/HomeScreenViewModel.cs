@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
-using CoinMaster.Data;
+using CoinMaster.DB;
 using CoinMaster.Events;
 using CoinMaster.Interfaces;
 using CoinMaster.Model;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.HomeScreen
 {
     public class HomeScreenViewModel : Screen
     {
@@ -33,13 +33,13 @@ namespace CoinMaster.ViewModel
         
         public DashboardOverviewViewModel DashboardOverview { get; }
 
-        private readonly INavigationController navigationController;
+        private readonly INavigationControllerMain navigationController;
         private readonly IEventAggregator events;
         private readonly CoinRepository coinRepository;
 
         public HomeScreenViewModel(
             CoinRepository coinRepository,
-            INavigationController navigationController,
+            INavigationControllerMain navigationController,
             IEventAggregator events,
             DashboardOverviewViewModel dashboardOverviewViewModel)
         {

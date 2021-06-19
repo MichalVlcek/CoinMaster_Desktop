@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
-using CoinMaster.Data;
-using CoinMaster.Model;
+using CoinMaster.DB;
 using Stylet;
 
-namespace CoinMaster.ViewModel
+namespace CoinMaster.ViewModel.AddCoin
 {
     public class AddCoinPanelViewModel : AbstractCoinSubscriber
     {
@@ -18,7 +17,6 @@ namespace CoinMaster.ViewModel
         public async Task AddCoin()
         {
             await coinRepository.InsertCoin(SelectedCoin);
-            TmpDatabase.Coins.Add(SelectedCoin);
         }
     }
 }
