@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoinMaster.Model;
+using CoinMaster.Utility;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoinMaster.DB
@@ -10,6 +11,7 @@ namespace CoinMaster.DB
     public class TransactionRepository
     {
         private readonly Func<CoinDataContext> dataContext;
+        private static User LoggedUser => Model.LoggedUser.User;
 
         public TransactionRepository(Func<CoinDataContext> dataContext)
         {
@@ -21,6 +23,7 @@ namespace CoinMaster.DB
             await using var context = dataContext();
 
             context.Entry(transaction.Coin).State = EntityState.Unchanged;
+            context.Entry(transaction.User).State = EntityState.Unchanged;
             await context.Transactions.AddAsync(transaction);
             await context.SaveChangesAsync();
         }
@@ -48,7 +51,7 @@ namespace CoinMaster.DB
             try
             {
                 return await context.Transactions
-                    .Where(t => t.CoinId == coin.Id)
+                    .Where(t => t.CoinId == coin.Id && t.UserId == LoggedUser.Id)
                     .OrderByDescending(t => t.Date)
                     .ToListAsync();
             }
@@ -62,9 +65,17 @@ namespace CoinMaster.DB
         {
             await using var context = dataContext();
 
-            return await context.Transactions
-                .OrderByDescending(t => t.Date)
-                .ToListAsync();
+            var user = await GetUser(context);
+            return user.Coins
+                .Select(c => c.Transaction)
+                .SelectMany(x => x)
+                .ToList();
         }
+        
+        private async Task<User> GetUser(CoinDataContext context) =>
+            await context.Users
+                .Include(i => i.Coins)
+                .ThenInclude(c => c.Transaction.Where(t => t.UserId == LoggedUser.Id))
+                .FirstOrDefaultAsync(i => i.Id == LoggedUser.Id);
     }
 }

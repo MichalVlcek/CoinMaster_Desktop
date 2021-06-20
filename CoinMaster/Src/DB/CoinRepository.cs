@@ -88,7 +88,7 @@ namespace CoinMaster.DB
             {
             }
 
-            await context.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
+            user = await GetUser(context); // need to get user again to include transactions to coin
             coins = user.Coins.ToList();
             return coins.OrderByDescending(c => c.HeldValue).ToList();
         }
@@ -111,7 +111,7 @@ namespace CoinMaster.DB
         private async Task<User> GetUser(CoinDataContext context) =>
             await context.Users
                 .Include(i => i.Coins)
-                .ThenInclude(c => c.Transaction)
+                .ThenInclude(c => c.Transaction.Where(t => t.UserId == LoggedUser.Id))
                 .FirstOrDefaultAsync(i => i.Id == LoggedUser.Id);
     }
 }
