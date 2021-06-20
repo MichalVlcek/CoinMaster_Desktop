@@ -26,8 +26,11 @@
                  Grid.Row="0"
                  VerticalContentAlignment="Center"
                  HorizontalAlignment="Stretch"
+                 HorizontalContentAlignment="Left"
+                 Height="45"
                  Margin="10"
-                 Style="{StaticResource TextBoxTheme}" />
+                 Style="{StaticResource BasicTextBox}"
+                 Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
 
         <ScrollViewer Grid.Row="1"
                       Grid.Column="0"
@@ -40,7 +43,7 @@
                       Background="Transparent"
                       BorderBrush="Transparent"
                       SelectionMode="Single"
-                      ItemsSource="{Binding Coins}"
+                      ItemsSource="{Binding FilteredCoins}"
                       SelectedItem="{Binding SelectedCoin}">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
