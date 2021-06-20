@@ -104,7 +104,7 @@ namespace CoinMaster.ViewModel.CoinDetail
             Validate();
         }
 
-        public async void UpdateTransaction()
+        public void UpdateTransaction()
         {
             if (HasErrors) // This shouldn't happen but if it would, the app will not crash
             {

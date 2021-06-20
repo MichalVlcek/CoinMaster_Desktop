@@ -11,6 +11,7 @@ namespace CoinMaster.DB
     public class CoinRepository
     {
         private readonly Func<CoinDataContext> dataContext;
+        private static User LoggedUser => Model.LoggedUser.User;
 
         public CoinRepository(Func<CoinDataContext> dataContext)
         {
@@ -19,40 +20,42 @@ namespace CoinMaster.DB
 
         public async Task InsertCoin(Coin coin)
         {
-            await Task.Run(async () =>
+            await using var context = dataContext();
+            var user = await GetUser(context);
+
+            if (user.Coins.Contains(coin))
             {
-                await using var context = dataContext();
+                await UpdateCoin(coin);
+            }
+            else
+            {
+                var insertCoin = coin;
                 if (context.Coins.Contains(coin))
                 {
-                    await UpdateCoin(coin);
-                }
-                else
-                {
-                    await context.AddAsync(coin);
+                    insertCoin = await context.Coins.FindAsync(coin.Id);
                 }
 
-                await context.SaveChangesAsync();
-            });
+                user.Coins.Add(insertCoin);
+            }
+
+            await context.SaveChangesAsync();
         }
 
         public async Task DeleteCoin(Coin coin)
         {
-            await Task.Run(async () =>
-            {
-                await using var context = dataContext();
+            await using var context = dataContext();
+            var user = await GetUser(context);
 
-                context.Coins.Remove(coin);
-                await context.SaveChangesAsync();
-            });
+            user.Coins.Remove(await context.Coins.FindAsync(coin.Id));
+            await context.SaveChangesAsync();
         }
 
         public async Task<List<Coin>> GetAllFromDatabase()
         {
             await using var context = dataContext();
+            var user = await GetUser(context);
 
-            await context.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
-            var coins =  await context.Coins
-                .ToListAsync();
+            var coins = user.Coins;
 
             return coins.OrderByDescending(c => c.HeldValue).ToList();
         }
@@ -65,8 +68,9 @@ namespace CoinMaster.DB
         public async Task<List<Coin>> LoadWatchedCoins()
         {
             await using var context = dataContext();
+            var user = await GetUser(context);
 
-            var coins = await context.Coins.ToListAsync();
+            var coins = user.Coins.ToList();
             if (!coins.Any()) return coins; // Needs to return when coins are empty, otherwise api would load all coins
 
             try
@@ -78,9 +82,8 @@ namespace CoinMaster.DB
             {
             }
 
-            await context.Transactions.ToListAsync(); // Loading transactions to bind them to Coin objects
-            coins = await context.Coins
-                .ToListAsync();
+            user = await GetUser(context); // need to get user again to include transactions to coin
+            coins = user.Coins.ToList();
             return coins.OrderByDescending(c => c.HeldValue).ToList();
         }
 
@@ -98,5 +101,11 @@ namespace CoinMaster.DB
         }
 
         private void UpdateCoins(List<Coin> coins) => coins.ForEach(async c => await UpdateCoin(c));
+
+        private async Task<User> GetUser(CoinDataContext context) =>
+            await context.Users
+                .Include(i => i.Coins)
+                .ThenInclude(c => c.Transaction.Where(t => t.UserId == LoggedUser.Id))
+                .FirstOrDefaultAsync(i => i.Id == LoggedUser.Id);
     }
 }

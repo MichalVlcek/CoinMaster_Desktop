@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -29,13 +30,19 @@ namespace CoinMaster.Api
 
         public static async Task<List<Coin>> LoadCoins(params Coin[] coins)
         {
-            //TODO exception handling
-            var joinedCoins = string.Join(',', coins.Select(c => c.Id));
-            CoinsMarketsRequest.AddOrUpdateParameter("ids", joinedCoins);
-            var response = await Client.ExecuteAsync(CoinsMarketsRequest);
+            try
+            {
+                var joinedCoins = string.Join(',', coins.Select(c => c.Id));
+                CoinsMarketsRequest.AddOrUpdateParameter("ids", joinedCoins);
+                var response = await Client.ExecuteAsync(CoinsMarketsRequest);
 
-            return JsonSerializer.Deserialize<List<Coin>>(response.Content)
-                   ?? new List<Coin> { };
+                return JsonSerializer.Deserialize<List<Coin>>(response.Content)
+                       ?? new List<Coin> { };
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException("Something failed during coin loading. Check your internet connection");
+            }
         }
     }
 }

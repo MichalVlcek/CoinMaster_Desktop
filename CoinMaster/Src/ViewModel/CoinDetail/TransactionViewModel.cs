@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using CoinMaster.DB;
 using CoinMaster.Events;
 using CoinMaster.Model;
@@ -10,6 +12,7 @@ namespace CoinMaster.ViewModel.CoinDetail
     public class TransactionViewModel : AbstractCoinSubscriber, IHandle<TransactionsUpdatedEvent>
     {
         private readonly IEventAggregator eventAggregator;
+        private readonly IWindowManager windowManager;
 
         private readonly TransactionRepository transactionRepository;
         public TransactionEditViewModel TransactionEdit { get; }
@@ -43,45 +46,83 @@ namespace CoinMaster.ViewModel.CoinDetail
         public TransactionViewModel(
             TransactionRepository transactionRepository,
             IEventAggregator eventAggregator,
+            IWindowManager windowManager,
             TransactionEditViewModel transactionEdit)
             : base(eventAggregator)
         {
             this.transactionRepository = transactionRepository;
             this.eventAggregator = eventAggregator;
+            this.windowManager = windowManager;
             TransactionEdit = transactionEdit;
         }
 
-        public void AddNewTransaction() => SelectedTransaction = Transaction.EmptyTransaction(SelectedCoin);
+        public void AddNewTransaction() =>
+            SelectedTransaction = Transaction.EmptyTransaction(SelectedCoin, LoggedUser.User);
 
         public async void DeleteTransactions()
         {
-            await transactionRepository.DeleteTransaction(SelectedTransaction);
-            Transactions.Remove(SelectedTransaction);
+            try
+            {
+                await transactionRepository.DeleteTransaction(SelectedTransaction);
+                Transactions.Remove(SelectedTransaction);
+            }
+            catch (Exception e)
+            {
+                windowManager.ShowMessageBox("Something wrong happened, try again", "Unexpected error",
+                    icon: MessageBoxImage.Error);
+            }
         }
 
         public async void Handle(TransactionsUpdatedEvent message)
         {
-            if (Transactions.Contains(SelectedTransaction))
+            try
             {
-                await transactionRepository.UpdateTransaction(message.Transaction);
-            }
-            else
-            {
-                await transactionRepository.InsertTransaction(message.Transaction);
-            }
+                if (Transactions.Contains(SelectedTransaction))
+                {
+                    await transactionRepository.UpdateTransaction(message.Transaction);
+                }
+                else
+                {
+                    await transactionRepository.InsertTransaction(message.Transaction);
+                }
 
-            await LoadTransactions();
-            SelectedTransaction = null;
+                await LoadTransactions();
+                SelectedTransaction = null;
+            }
+            catch (Exception e)
+            {
+                windowManager.ShowMessageBox("Something wrong happened, try again", "Unexpected error",
+                    icon: MessageBoxImage.Error);
+            }
         }
 
         protected override async void OnViewLoaded()
         {
             base.OnViewLoaded();
             SelectedTransaction = null;
-            await LoadTransactions();
+            try
+            {
+                await LoadTransactions();
+            }
+            catch (Exception e)
+            {
+                windowManager.ShowMessageBox("Something wrong happened, try again", "Unexpected error",
+                    icon: MessageBoxImage.Error);
+            }
         }
-        
-        private async Task LoadTransactions() => 
-            Transactions = new BindingList<Transaction>(await transactionRepository.GetTransactionsForCoin(SelectedCoin));
+
+        private async Task LoadTransactions()
+        {
+            try
+            {
+                Transactions =
+                    new BindingList<Transaction>(await transactionRepository.GetTransactionsForCoin(SelectedCoin));
+            }
+            catch (Exception e)
+            {
+                windowManager.ShowMessageBox("Something wrong happened, try again", "Unexpected error",
+                    icon: MessageBoxImage.Error);
+            }
+        }
     }
 }

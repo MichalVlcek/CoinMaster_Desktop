@@ -1,5 +1,6 @@
 ﻿using CoinMaster.DB;
 using CoinMaster.Interfaces;
+using CoinMaster.Model;
 using Stylet;
 
 namespace CoinMaster.ViewModel.Authentication
@@ -26,11 +27,11 @@ namespace CoinMaster.ViewModel.Authentication
 
         public bool CanAuthenticate => !HasErrors;
 
-        public readonly INavigationControllerAuthentication NavigationController;
-        public readonly IWindowManager WindowManager;
-        public readonly UserRepository UserRepository;
+        protected readonly INavigationControllerAuthentication NavigationController;
+        protected readonly IWindowManager WindowManager;
+        protected readonly UserRepository UserRepository;
 
-        public AbstractAuthenticationViewModel(
+        protected AbstractAuthenticationViewModel(
             IWindowManager windowManager,
             INavigationControllerAuthentication navigationController,
             IModelValidator<AbstractAuthenticationViewModel> validator,
@@ -40,6 +41,13 @@ namespace CoinMaster.ViewModel.Authentication
             this.NavigationController = navigationController;
             this.UserRepository = userRepository;
             Validate();
+        }
+        
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+
+            LoggedUser.User = null;
         }
     }
 }
