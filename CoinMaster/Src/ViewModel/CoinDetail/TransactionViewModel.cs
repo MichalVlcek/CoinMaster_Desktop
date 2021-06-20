@@ -51,7 +51,8 @@ namespace CoinMaster.ViewModel.CoinDetail
             TransactionEdit = transactionEdit;
         }
 
-        public void AddNewTransaction() => SelectedTransaction = Transaction.EmptyTransaction(SelectedCoin);
+        public void AddNewTransaction() =>
+            SelectedTransaction = Transaction.EmptyTransaction(SelectedCoin, LoggedUser.User);
 
         public async void DeleteTransactions()
         {
@@ -80,8 +81,9 @@ namespace CoinMaster.ViewModel.CoinDetail
             SelectedTransaction = null;
             await LoadTransactions();
         }
-        
-        private async Task LoadTransactions() => 
-            Transactions = new BindingList<Transaction>(await transactionRepository.GetTransactionsForCoin(SelectedCoin));
+
+        private async Task LoadTransactions() =>
+            Transactions =
+                new BindingList<Transaction>(await transactionRepository.GetTransactionsForCoin(SelectedCoin));
     }
 }
