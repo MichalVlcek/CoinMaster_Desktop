@@ -9,8 +9,8 @@
              xmlns:coinDetail="clr-namespace:CoinMaster.ViewModel.CoinDetail"
              d:DataContext="{d:DesignInstance coinDetail:TransactionViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="720"
-             d:DesignWidth="927">
+             d:DesignHeight="800"
+             d:DesignWidth="1055">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*" />
@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="11*" />
+            <RowDefinition Height="13*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
@@ -37,7 +37,7 @@
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="Type"
-                                        Width="60">
+                                        Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Type }"
@@ -48,7 +48,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Date"
-                                        Width="80">
+                                        Width="90">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
 
@@ -60,7 +60,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Coin Price"
-                                        Width="95">
+                                        Width="105">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding CoinPriceFormat}"
@@ -71,7 +71,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Amount"
-                                        Width="105">
+                                        Width="115">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding AmountFormat}"
@@ -82,7 +82,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Total Cost"
-                                        Width="110">
+                                        Width="130">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel HorizontalAlignment="Right">

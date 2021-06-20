@@ -29,7 +29,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="4*" />
-            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
         <!--#region Border definition-->

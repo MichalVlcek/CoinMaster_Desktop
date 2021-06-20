@@ -56,11 +56,11 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Coin"
-                                        Width="170">
+                                        Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
-                                                Width="170"
+                                                Width="200"
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Center">
                                         <Image x:Name="CoinIcon"
@@ -80,7 +80,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Price"
-                                        Width="95">
+                                        Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding PriceFormat}"
@@ -91,7 +91,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Market Cap"
-                                        Width="115">
+                                        Width="140">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding MarketCapFormat}"
