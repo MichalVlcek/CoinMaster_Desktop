@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using CoinMaster.DB;
 using CoinMaster.Model;
 using CoinMaster.Utility;
@@ -8,6 +10,8 @@ namespace CoinMaster.ViewModel.CoinDetail
 {
     public class CoinOverviewViewModel : AbstractCoinSubscriber
     {
+        private readonly IWindowManager windowManager;
+
         private readonly TransactionRepository transactionRepository;
 
         private List<Transaction> Transactions { get; set; }
@@ -27,17 +31,30 @@ namespace CoinMaster.ViewModel.CoinDetail
         public string PercentChange =>
             StringFormats.PercentFormat(CoinUtils.CountPercentChange(Transactions, SelectedCoin.Price));
 
-        public CoinOverviewViewModel(TransactionRepository transactionRepository, IEventAggregator eventAggregator) :
+        public CoinOverviewViewModel(
+            TransactionRepository transactionRepository,
+            IEventAggregator eventAggregator,
+            IWindowManager windowManager) :
             base(eventAggregator)
         {
             this.transactionRepository = transactionRepository;
+            this.windowManager = windowManager;
         }
 
         protected override async void OnViewLoaded()
         {
             base.OnViewLoaded();
 
-            Transactions = await transactionRepository.GetTransactionsForCoin(SelectedCoin);
+            try
+            {
+                Transactions = await transactionRepository.GetTransactionsForCoin(SelectedCoin);
+            }
+            catch (Exception e)
+            {
+                windowManager.ShowMessageBox("Something wrong happened, try again", "Unexpected error",
+                    icon: MessageBoxImage.Error);
+            }
+
             NotifyOfPropertyChange(() => CoinHoldings);
             NotifyOfPropertyChange(() => HoldingsValue);
             NotifyOfPropertyChange(() => ProfitLoss);

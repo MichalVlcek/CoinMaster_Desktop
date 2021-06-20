@@ -27,11 +27,11 @@ namespace CoinMaster.ViewModel.Authentication
 
         public bool CanAuthenticate => !HasErrors;
 
-        public readonly INavigationControllerAuthentication NavigationController;
-        public readonly IWindowManager WindowManager;
-        public readonly UserRepository UserRepository;
+        protected readonly INavigationControllerAuthentication NavigationController;
+        protected readonly IWindowManager WindowManager;
+        protected readonly UserRepository UserRepository;
 
-        public AbstractAuthenticationViewModel(
+        protected AbstractAuthenticationViewModel(
             IWindowManager windowManager,
             INavigationControllerAuthentication navigationController,
             IModelValidator<AbstractAuthenticationViewModel> validator,
