@@ -20,40 +20,34 @@ namespace CoinMaster.DB
 
         public async Task InsertCoin(Coin coin)
         {
-            await Task.Run(async () =>
+            await using var context = dataContext();
+            var user = await GetUser(context);
+
+            if (user.Coins.Contains(coin))
             {
-                await using var context = dataContext();
-                var user = await GetUser(context);
-                
-                if (user.Coins.Contains(coin))
+                await UpdateCoin(coin);
+            }
+            else
+            {
+                var insertCoin = coin;
+                if (context.Coins.Contains(coin))
                 {
-                    await UpdateCoin(coin);
-                }
-                else
-                {
-                    var insertCoin = coin;
-                    if (context.Coins.Contains(coin))
-                    {
-                        insertCoin = await context.Coins.FindAsync(coin.Id);
-                    }
-
-                    user.Coins.Add(insertCoin);
+                    insertCoin = await context.Coins.FindAsync(coin.Id);
                 }
 
-                await context.SaveChangesAsync();
-            });
+                user.Coins.Add(insertCoin);
+            }
+
+            await context.SaveChangesAsync();
         }
 
         public async Task DeleteCoin(Coin coin)
         {
-            await Task.Run(async () =>
-            {
-                await using var context = dataContext();
-                var user = await GetUser(context);
+            await using var context = dataContext();
+            var user = await GetUser(context);
 
-                user.Coins.Remove(await context.Coins.FindAsync(coin.Id));
-                await context.SaveChangesAsync();
-            });
+            user.Coins.Remove(await context.Coins.FindAsync(coin.Id));
+            await context.SaveChangesAsync();
         }
 
         public async Task<List<Coin>> GetAllFromDatabase()
