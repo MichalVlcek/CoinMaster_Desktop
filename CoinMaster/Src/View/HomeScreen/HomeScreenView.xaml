@@ -8,13 +8,13 @@
              xmlns:homeScreen="clr-namespace:CoinMaster.ViewModel.HomeScreen"
              d:DataContext="{d:DesignInstance homeScreen:HomeScreenViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="720"
-             d:DesignWidth="927">
+             d:DesignHeight="800"
+             d:DesignWidth="1055">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
             <RowDefinition Height="6*" />
-            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="0.7*" />
         </Grid.RowDefinitions>
 
         <ContentControl Grid.Row="0"
@@ -33,11 +33,11 @@
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="{StaticResource Coin}"
-                                        Width="200">
+                                        Width="220">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
-                                                Width="170"
+                                                Width="200"
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Center">
                                         <Image x:Name="CoinIcon"
@@ -46,7 +46,7 @@
                                                Width="30"
                                                Height="30"
                                                HorizontalAlignment="Left"
-                                               Margin="0,0,10,0" />
+                                               Margin="10,0,10,0" />
 
                                         <TextBlock Text="{Binding Title}"
                                                    Foreground="White"
@@ -79,7 +79,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{StaticResource Percent24h}"
-                                        Width="134">
+                                        Width="115">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding PriceChangePercent24HFormat}"
@@ -90,7 +90,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{StaticResource Percent7d}"
-                                        Width="134">
+                                        Width="115">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding PriceChangePercent7DFormat}"
@@ -101,10 +101,21 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="{StaticResource CurrentPrice}"
-                                        Width="134">
+                                        Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding PriceFormat}"
+                                               Foreground="White"
+                                               FontSize="14"
+                                               TextAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Profit/Loss"
+                                        Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ProfitLoss}"
                                                Foreground="White"
                                                FontSize="14"
                                                TextAlignment="Center" />
@@ -126,16 +137,16 @@
                     x:Name="EditButton"
                     Content="EDIT SELECTED"
                     Margin="0,6,6,6"
-                    Style="{StaticResource BlueButtonTheme}" 
+                    Style="{StaticResource BlueButtonTheme}"
                     Command="{s:Action NavigateToCoinDetail}"
-                    IsEnabled="{Binding EnableButtons}"/>
+                    IsEnabled="{Binding EnableButtons}" />
             <Button Grid.Column="1"
                     x:Name="DeleteButton"
                     Content="DELETE SELECTED"
                     Margin="6,6,0,6"
-                    Style="{StaticResource RedButtonTheme}" 
+                    Style="{StaticResource RedButtonTheme}"
                     Command="{s:Action DeleteCoin}"
-                    IsEnabled="{Binding EnableButtons}"/>
+                    IsEnabled="{Binding EnableButtons}" />
         </Grid>
     </Grid>
 </UserControl>

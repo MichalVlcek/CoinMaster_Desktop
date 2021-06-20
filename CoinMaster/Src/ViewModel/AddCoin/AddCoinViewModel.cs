@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using CoinMaster.DB;
@@ -22,7 +23,18 @@ namespace CoinMaster.ViewModel.AddCoin
         public BindingList<Coin> Coins
         {
             get => _coins;
-            private set => SetAndNotify(ref _coins, value);
+            private set
+            {
+                SetAndNotify(ref _coins, value);
+                FilteredCoins = value;
+            }
+        }
+
+        private BindingList<Coin> _filteredCoins;
+        public BindingList<Coin> FilteredCoins
+        {
+            get => _filteredCoins;
+            set => SetAndNotify(ref _filteredCoins, value);
         }
 
         private Coin _selectedCoin;
@@ -33,6 +45,19 @@ namespace CoinMaster.ViewModel.AddCoin
             {
                 SetAndNotify(ref _selectedCoin, value);
                 events.Publish(new ElementSelectedEvent<Coin> {Element = SelectedCoin});
+            }
+        }
+
+        private string _filterText;
+        public string FilterText
+        {
+            get => _filterText;
+            set
+            {
+                SetAndNotify(ref _filterText, value);
+                FilteredCoins = new BindingList<Coin>(Coins
+                    .Where(c => c.Title.ToLower().Contains(FilterText.ToLower()))
+                    .ToList());
             }
         }
 

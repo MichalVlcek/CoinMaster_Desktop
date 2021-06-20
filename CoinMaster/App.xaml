@@ -18,7 +18,6 @@
                 <ResourceDictionary Source="Resources/Theme/Buttons/BasicButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/Buttons/RedButtonTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/Buttons/BlueButtonTheme.xaml" />
-                <ResourceDictionary Source="Resources/Theme/TextBoxTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BasicLabelTheme.xaml" />
                 <ResourceDictionary Source="Resources/Theme/BoxBorder.xaml" />
                 <ResourceDictionary Source="Resources/Theme/Buttons/TopbarButtonTheme.xaml" />

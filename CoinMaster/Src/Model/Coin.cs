@@ -84,5 +84,8 @@ namespace CoinMaster.Model
 
         public string PriceChange7DFormat =>
             StringFormats.CurrencyFormat(CoinUtils.CalculatePriceChange(Price, PriceChangePercent7D ?? 0));
+        
+        public string ProfitLoss =>
+            StringFormats.CurrencyFormat(CoinUtils.CountProfitOrLoss(Transaction, Price));
     }
 }
